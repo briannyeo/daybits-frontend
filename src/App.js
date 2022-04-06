@@ -1,12 +1,12 @@
-import logo from "./logo.svg";
 import "./App.css";
+import { Outlet, useOutletContext, Link } from "react-router-dom";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>HELLO DAYBITS PROJECT</p>
-      </header>
+      <Header />
+      <Outlet />
     </div>
   );
 }
