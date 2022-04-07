@@ -3,6 +3,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import React from "react";
 import "./owl.css";
+import Login from "./Login";
 
 const Owldemo1 = () => {
   return (
@@ -30,13 +31,7 @@ const Owldemo1 = () => {
               alt="abstract"
             />
           </div>
-          <div>
-            <img
-              className="img"
-              src="https://img.freepik.com/free-vector/background-seamless-pattern-vector-with-cute-memphis_53876-105506.jpg?w=996"
-              alt="abstract"
-            />
-          </div>
+          <Login />
           <div>
             <img
               className="img"
