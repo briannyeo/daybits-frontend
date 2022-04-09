@@ -22,9 +22,6 @@ const Journal = () => {
   const [error, setError] = useState("");
   const [dailygoal, setDailygoal] = useState("");
 
-  console.log("title", title);
-  console.log("body", body);
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const journalEntry = { title, body }; //backend
