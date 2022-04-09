@@ -10,7 +10,7 @@ import "./journal.css";
 import urlcat from "urlcat";
 import TextField from "@mui/material/TextField";
 const BACKEND = process.env.REACT_APP_BACKEND;
-const url = urlcat(BACKEND, "/daybits");
+const url = urlcat(BACKEND, "/daybits/journal");
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
