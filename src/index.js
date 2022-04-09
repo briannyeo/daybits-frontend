@@ -4,11 +4,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
-import Home from "./components/Home";
-import Journal from "./components/Journal";
-import Planner from "./components/Planner";
-import Profile from "./components/Profile";
-import Progress from "./components/Progress";
+import Home from "./pages/Home";
+import Journal from "./pages/Journal";
+import Planner from "./pages/Planner";
+import Profile from "./pages/Profile";
+import Progress from "./pages/Progress";
 
 const rootElement = document.getElementById("root");
 

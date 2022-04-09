@@ -5,8 +5,12 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import "./journal.css";
-
+//import { BACKEND } from "../utils/utils";
+// import { BACKEND } from "../utils/utils.js";
+import urlcat from "urlcat";
 import TextField from "@mui/material/TextField";
+const BACKEND = process.env.REACT_APP_BACKEND;
+const url = urlcat(BACKEND, "/daybits");
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -22,11 +26,28 @@ const Journal = () => {
   const [error, setError] = useState("");
   const [dailygoal, setDailygoal] = useState("");
 
+  const createJournal = (journalEntry) => {
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(journalEntry),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          setError(data.error);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const journalEntry = { title, body }; //backend
     console.log(journalEntry);
-    //createHoliday(holiday); LINK to backend
+    createJournal(journalEntry); //LINK to backend
   };
 
   const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {

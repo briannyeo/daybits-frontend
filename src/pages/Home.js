@@ -1,5 +1,5 @@
 import React from "react";
-import Owldemo1 from "./Owldemo1";
+import Owldemo1 from "../components/Owldemo1";
 
 const Home = () => {
   return (
