@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { styled } from "@mui/material/styles";
+import urlcat from "urlcat";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
@@ -12,6 +13,7 @@ const url = urlcat(BACKEND, "/daybits/register");
 const Registration = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [confirmpw, setConfirmpw] = useState("");
 
   const handleChangeusername = (event: React.ChangeEvent<HTMLInputElement>) => {
