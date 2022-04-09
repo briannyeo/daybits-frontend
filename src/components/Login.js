@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "./login.css";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [errorMessages, setErrorMessages] = useState({});
@@ -98,6 +99,13 @@ const Login = () => {
       <div className="login-form">
         <div className="title">Sign In</div>
         {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+        <div className="button-container">
+          <Link to="/daybits/register">
+            <button type="button" className="btn btn-info">
+              New User? Click here
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
