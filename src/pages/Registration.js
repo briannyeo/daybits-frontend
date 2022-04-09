@@ -6,6 +6,9 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 
+const BACKEND = process.env.REACT_APP_BACKEND;
+const url = urlcat(BACKEND, "/daybits/register");
+
 const Registration = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -25,12 +28,29 @@ const Registration = () => {
     setConfirmpw(event.target.value);
   };
 
+  const createUser = (userInfo) => {
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          setError(data.error);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (password === confirmpw) {
       const userInfo = { username, password }; //backend
       console.log(userInfo);
-      //createUser(userInfo); //LINK to backend
+      createUser(userInfo); //LINK to backend
     } else {
       alert("passwords do not match");
     }
