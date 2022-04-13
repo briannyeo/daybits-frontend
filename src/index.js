@@ -10,6 +10,7 @@ import Planner from "./pages/Planner";
 import Profile from "./pages/Profile";
 import Progress from "./pages/Progress";
 import Registration from "./pages/Registration";
+import Editprofile from "./pages/Editprofile";
 
 const rootElement = document.getElementById("root");
 
@@ -23,6 +24,7 @@ ReactDOM.render(
         <Route path="profile" element={<Profile />} />
         <Route path="progress" element={<Progress />} />
         <Route path="register" element={<Registration />} />
+        <Route path="editprofile" element={<Editprofile />} />
       </Route>
     </Routes>
   </BrowserRouter>,

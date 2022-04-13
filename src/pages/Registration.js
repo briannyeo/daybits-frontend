@@ -81,24 +81,26 @@ const Registration = () => {
             onChange={handleChangeusername}
           />
         </Grid>
-
-        <TextField
-          id="outlined-multiline-static"
-          label="Password"
-          multiline
-          maxRows={4}
-          value={password}
-          onChange={handleChangepassword}
-        />
-
-        <TextField
-          id="outlined-multiline-static"
-          label="Confirm Password"
-          multiline
-          maxRows={4}
-          value={confirmpw}
-          onChange={handleChangeconfirmpw}
-        />
+        <Grid item xs={12}>
+          <TextField
+            id="outlined-multiline-static"
+            label="Password"
+            multiline
+            maxRows={4}
+            value={password}
+            onChange={handleChangepassword}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            id="outlined-multiline-static"
+            label="Confirm Password"
+            multiline
+            maxRows={4}
+            value={confirmpw}
+            onChange={handleChangeconfirmpw}
+          />
+        </Grid>
       </Box>
       <button onClick={handleSubmit}>Submit</button>
     </div>
