@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
+import "./Profile.css";
 
 const Profile = (props) => {
   const [profilecompiled, setProfilecompiled] = useOutletContext();
   console.log("from profile", profilecompiled);
   return (
-    <div>
+    <div className="container">
       <h3 style={{ marginTop: "30px" }}>
         I want to{" "}
         <span style={{ color: "green", fontStyle: "italic" }}>

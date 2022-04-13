@@ -47,7 +47,15 @@ const Editprofile = () => {
       <h2>Profile</h2>
       <form onSubmit={handleSubmit}>
         I want to
-        <input
+        <select
+          id="habit"
+          name="habit"
+          onChange={(event) => setHabitstatus(event.target.value)}
+        >
+          <option value="break">Break</option>
+          <option value="build">Build</option>
+        </select>
+        {/* <input
           style={{ textAlign: "center" }}
           type="text"
           name="habitStatus"
@@ -55,7 +63,7 @@ const Editprofile = () => {
           required
           value={habitstatus}
           onChange={(event) => setHabitstatus(event.target.value)}
-        />
+        /> */}
         my habit of
         <input
           style={{ textAlign: "center" }}
