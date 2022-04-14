@@ -4,6 +4,7 @@ import urlcat from "urlcat";
 import { Link } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import Profile from "./Profile";
+import "./Editprofile.css";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 const url = urlcat(BACKEND, "/daybits/profile");
@@ -45,7 +46,7 @@ const Editprofile = () => {
   return (
     <>
       <h2>Profile</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="editProfileForm" onSubmit={handleSubmit}>
         I want to
         <select
           id="habit"
