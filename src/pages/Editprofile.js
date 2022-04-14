@@ -4,6 +4,7 @@ import urlcat from "urlcat";
 import { Link } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import Profile from "./Profile";
+import "./Editprofile.css";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 const url = urlcat(BACKEND, "/daybits/profile");
@@ -45,9 +46,17 @@ const Editprofile = () => {
   return (
     <>
       <h2>Profile</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="editProfileForm" onSubmit={handleSubmit}>
         I want to
-        <input
+        <select
+          id="habit"
+          name="habit"
+          onChange={(event) => setHabitstatus(event.target.value)}
+        >
+          <option value="break">Break</option>
+          <option value="build">Build</option>
+        </select>
+        {/* <input
           style={{ textAlign: "center" }}
           type="text"
           name="habitStatus"
@@ -55,7 +64,7 @@ const Editprofile = () => {
           required
           value={habitstatus}
           onChange={(event) => setHabitstatus(event.target.value)}
-        />
+        /> */}
         my habit of
         <input
           style={{ textAlign: "center" }}

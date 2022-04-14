@@ -1,5 +1,6 @@
 body {
-  background-image: url("https://img.freepik.com/free-vector/summer-nature-landscape-background_53876-101102.jpg?w=996&t=st=1649226970~exp=1649227570~hmac=e9cd273fec17989fae31c11aef87779f5db8d5aafd3f24ba55b674401067463f");
+  /* background-image: url("https://img.freepik.com/free-vector/summer-nature-landscape-background_53876-101102.jpg?w=996&t=st=1649226970~exp=1649227570~hmac=e9cd273fec17989fae31c11aef87779f5db8d5aafd3f24ba55b674401067463f"); */
+  background-image: url(./images/background-image.jpg);
   /* Full height */
   height: 100%;
 

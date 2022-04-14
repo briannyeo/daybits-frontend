@@ -18,19 +18,22 @@ const Owldemo1 = () => {
               padding: "100",
             }}
           >
-            Daybits - Form or Break a Habit in 30 Days
+            Daybits - Daily Habits for 30 Days
           </p>
         </div>
       </div>
       <div class="container-fluid">
-        <OwlCarousel items={3} className="owl-theme" loop nav margin={7}>
-          <div>
-            <img
-              className="img"
-              src="https://img.freepik.com/free-vector/flower-seamless-pattern-aesthetic-background-design-vector_53876-144691.jpg?w=996&t=st=1649229615~exp=1649230215~hmac=eeb07924f4ffd9e23ecaafd89c39f186e3cb4559260e4dd78e0f4ee05b1d567e"
-              alt="abstract"
-            />
-          </div>
+        <OwlCarousel
+          items={1}
+          className="owl-theme"
+          loop={true}
+          nav={true}
+          margin={4}
+          center={true}
+          touchDrag={true}
+          mouseDrag={true}
+          dots={true}
+        >
           <Login />
           <div>
             <img
