@@ -53,18 +53,10 @@ const Editprofile = () => {
           name="habit"
           onChange={(event) => setHabitstatus(event.target.value)}
         >
+          <option value="-">Select an option</option>
           <option value="break">Break</option>
           <option value="build">Build</option>
         </select>
-        {/* <input
-          style={{ textAlign: "center" }}
-          type="text"
-          name="habitStatus"
-          placeholder=" break / build"
-          required
-          value={habitstatus}
-          onChange={(event) => setHabitstatus(event.target.value)}
-        /> */}
         my habit of
         <input
           style={{ textAlign: "center" }}

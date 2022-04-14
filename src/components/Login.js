@@ -1,34 +1,80 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./login.css";
 import { Link } from "react-router-dom";
+import urlcat from "urlcat";
+
+const BACKEND = process.env.REACT_APP_BACKEND;
+const url = urlcat(BACKEND, "/daybits/register/home");
+const logoutUrl = urlcat(BACKEND, "/daybits/register/logout");
 
 const Login = () => {
   const [errorMessages, setErrorMessages] = useState({});
+  const [userData, setUserData] = useState({});
+  const [userInputData, setUserInputData] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [username, setUsername] = useState({});
+  const [password, setPassword] = useState({});
+
+  //PASS DATA TO THE BACKEND THROUGH REQ.BODY
+
+  const checkUser = (userInfo) => {
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          setErrorMessages(data.error);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
 
   const handleSubmit = (event) => {
-    //Prevent page reload
     event.preventDefault();
-
-    const { uname, pass } = document.forms[0];
-
-    // Find user login info
-    const userData = database.find((user) => user.username === uname.value);
-
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // Invalid password
-        setErrorMessages({ name: "pass", message: errors.pass });
-      } else {
-        setIsSubmitted(true);
-      }
-    } else {
-      // Username not found
-      setErrorMessages({ name: "uname", message: errors.uname });
-    }
+    const userInfo = { username, password };
+    checkUser(userInfo); //LINK to backend
   };
+
+  const handleLogout = (event) => {
+    event.preventDefault();
+    fetch(url, {
+      method: "POST",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          setErrorMessages(data.error);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
+  // Find user login info
+  // useEffect(() => {
+  //   fetch(urlcat(BACKEND, "/user"))
+  //     .then((response) => response.json())
+  //     .then((data) => setUserData(data));
+  // }, [userInputData]);
+
+  // Compare user info
+  //   if (userInputData) {
+  //     if (userInputData.password !== userData.password) {
+  //       // Invalid password
+  //       setErrorMessages({ name: "pass", message: errors.pass });
+  //     } else {
+  //       setIsSubmitted(true);
+  //     }
+  //   } else {
+  //     // Username not found
+  //     setErrorMessages({ name: "uname", message: errors.uname });
+  //   }
+  // };
 
   // Generate JSX code for error message
   const renderErrorMessage = (name) =>
@@ -42,12 +88,21 @@ const Login = () => {
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label>Username </label>
-          <input type="text" name="uname" required />
+          <input
+            type="text"
+            name="username"
+            onChange={(event) => setUsername(event.target.value)}
+          />
           {renderErrorMessage("uname")}
         </div>
         <div className="input-container">
           <label>Password </label>
-          <input type="password" name="pass" required />
+          <input
+            type="password"
+            name="password"
+            onChange={(event) => setPassword(event.target.value)}
+            required
+          />
           {renderErrorMessage("pass")}
         </div>
         <div className="button-container">
@@ -105,6 +160,9 @@ const Login = () => {
               New User? Click here
             </button>
           </Link>
+          <button type="button" className="btn btn-info" onClick={handleLogout}>
+            Logout
+          </button>
         </div>
       </div>
     </div>
