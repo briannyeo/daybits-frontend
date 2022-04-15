@@ -12,16 +12,8 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
-const pages = ["Home", "Journal", "Planner", "Community", "Progress"];
-
-const pages1 = [
-  { label: "Home", route: "home" },
-  { label: "Journal", route: "journal" },
-  { label: "Planner", route: "planner" },
-  { label: "Progress", route: "progress" },
-];
+const pages = ["home", "journal", "planner", "profile", "progress"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Navbar = () => {
@@ -42,8 +34,6 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-  const navigate = useNavigate();
 
   return (
     <AppBar position="static">
@@ -88,8 +78,10 @@ const Navbar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={() => navigate("/page")}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    <Link to={`/daybits/${page}`}>{page}</Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
