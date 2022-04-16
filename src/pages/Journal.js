@@ -84,25 +84,28 @@ const Journal = () => {
             onChange={handleChangeTitle}
           />
         </Grid>
-
-        <TextField
-          id="outlined-multiline-static"
-          label="Journal Entry"
-          multiline
-          required
-          rows={20}
-          value={body}
-          onChange={handleChangeBody}
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={dailygoal}
-              onChange={(e) => setDailygoal(e.target.checked)}
-            />
-          }
-          label="I completed my daily goal today"
-        />
+        <Grid item xs={12}>
+          <TextField
+            id="outlined-multiline-static"
+            label="Journal Entry"
+            multiline
+            required
+            rows={20}
+            value={body}
+            onChange={handleChangeBody}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={dailygoal}
+                onChange={(e) => setDailygoal(e.target.checked)}
+              />
+            }
+            label="I completed my daily goal today"
+          />
+        </Grid>
       </Box>
       <button onClick={handleSubmit}>Submit</button>
     </div>

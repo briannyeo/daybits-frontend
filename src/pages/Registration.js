@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
+import { Link } from "react-router-dom";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 const url = urlcat(BACKEND, "/daybits/register");
@@ -16,17 +17,15 @@ const Registration = () => {
   const [error, setError] = useState("");
   const [confirmpw, setConfirmpw] = useState("");
 
-  const handleChangeusername = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeusername = (event) => {
     setUsername(event.target.value);
   };
 
-  const handleChangepassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangepassword = (event) => {
     setPassword(event.target.value);
   };
 
-  const handleChangeconfirmpw = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleChangeconfirmpw = (event) => {
     setConfirmpw(event.target.value);
   };
 
@@ -102,7 +101,10 @@ const Registration = () => {
           />
         </Grid>
       </Box>
-      <button onClick={handleSubmit}>Submit</button>
+
+      <button onClick={handleSubmit}>
+        <Link to="/daybits/home">Submit</Link>
+      </button>
     </div>
   );
 };

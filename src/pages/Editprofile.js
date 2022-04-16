@@ -2,12 +2,12 @@ import React from "react";
 import { useState } from "react";
 import urlcat from "urlcat";
 import { Link } from "react-router-dom";
-import { useOutletContext } from "react-router-dom";
+
 import Profile from "./Profile";
 import "./Editprofile.css";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
-const url = urlcat(BACKEND, "/daybits/profile");
+const url = urlcat(BACKEND, "/daybits/register/profile");
 
 const Editprofile = () => {
   const [habitstatus, setHabitstatus] = useState("");
@@ -15,11 +15,11 @@ const Editprofile = () => {
   const [error, setError] = useState("");
   const [target, setTarget] = useState("");
   const [goal, setGoal] = useState("");
-  const [profilecompiled, setProfilecompiled] = useOutletContext();
 
   const createProfile = (profile) => {
     fetch(url, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -37,9 +37,6 @@ const Editprofile = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const profile = { habitstatus, habit, target, goal }; //backend
-    console.log("profile", profile);
-    setProfilecompiled(profile); //setting the state
-    console.log("compiled profile", profilecompiled);
     createProfile(profile); //LINK to backend
   };
 
