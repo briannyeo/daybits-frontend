@@ -75,7 +75,6 @@ const Journal = () => {
           <TextField
             id="outlined-multiline-flexible"
             label="Journal Title"
-            required
             multiline
             maxRows={4}
             value={title}
@@ -87,7 +86,6 @@ const Journal = () => {
           id="outlined-multiline-static"
           label="Journal Entry"
           multiline
-          required
           rows={20}
           value={body}
           onChange={handleChangeBody}
