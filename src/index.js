@@ -27,6 +27,7 @@ ReactDOM.render(
         <Route path="progress" element={<Progress />} />
         <Route path="register" element={<Registration />} />
         <Route path="editprofile" element={<Editprofile />} />
+
         <Route path="*" element={<NoPageFound />} />
       </Route>
     </Routes>
