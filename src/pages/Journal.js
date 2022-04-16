@@ -29,6 +29,7 @@ const Journal = () => {
   const createJournal = (journalEntry) => {
     fetch(url, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -52,11 +53,11 @@ const Journal = () => {
     //window.location.reload();
   };
 
-  const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeTitle = (event) => {
     setTitle(event.target.value);
   };
 
-  const handleChangeBody = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeBody = (event) => {
     setBody(event.target.value);
   };
 
@@ -88,6 +89,7 @@ const Journal = () => {
           id="outlined-multiline-static"
           label="Journal Entry"
           multiline
+          required
           rows={20}
           value={body}
           onChange={handleChangeBody}
