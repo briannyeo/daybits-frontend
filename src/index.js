@@ -29,7 +29,7 @@ ReactDOM.render(
         <Route path="progress" element={<Progress />} />
         <Route path="register" element={<Registration />} />
         <Route path="editprofile" element={<Editprofile />} />
-        <Route path="communityjournal" element={<Comjournal />} />
+        <Route path="community" element={<Comjournal />} />
         <Route path="*" element={<NoPageFound />} />
       </Route>
       <Route path="*" element={<NoPageFound />} />

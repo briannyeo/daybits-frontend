@@ -49,7 +49,7 @@ const Journal = () => {
     console.log(journalEntry);
     createJournal(journalEntry); //LINK to backend
     alert("journal entry submitted to the community");
-    window.location.reload();
+    //window.location.reload();
   };
 
   const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
