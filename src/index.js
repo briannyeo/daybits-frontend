@@ -13,9 +13,8 @@ import Progress from "./pages/Progress";
 import Registration from "./pages/Registration";
 import Editprofile from "./pages/Editprofile";
 
-  
 import Comjournal from "./pages/Comjournal";
-
+import NoPageFound from "./pages/NoPageFound";
 
 const rootElement = document.getElementById("root");
 
@@ -30,10 +29,10 @@ ReactDOM.render(
         <Route path="progress" element={<Progress />} />
         <Route path="register" element={<Registration />} />
         <Route path="editprofile" element={<Editprofile />} />
-
         <Route path="communityjournal" element={<Comjournal />} />
-
+        <Route path="*" element={<NoPageFound />} />
       </Route>
+      <Route path="*" element={<NoPageFound />} />
     </Routes>
   </BrowserRouter>,
   rootElement
