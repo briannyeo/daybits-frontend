@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import "./login.css";
 import { Link } from "react-router-dom";
 import urlcat from "urlcat";
+import { useAtom } from "jotai";
+import { loginAtom } from "../App";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 const url = urlcat(BACKEND, "/daybits/register/home");
@@ -15,6 +17,7 @@ const Login = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [username, setUsername] = useState({});
   const [password, setPassword] = useState({});
+  const [login, setLogin] = useAtom(loginAtom);
 
   //PASS DATA TO THE BACKEND THROUGH REQ.BODY
 
@@ -29,8 +32,8 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.error) {
-          setErrorMessages(data.error);
+        if (data.status === "success") {
+          setLogin(true);
         }
       })
       .catch((error) => console.log(error));

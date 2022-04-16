@@ -88,6 +88,7 @@ const Journal = () => {
           id="outlined-multiline-static"
           label="Journal Entry"
           multiline
+          required
           rows={20}
           value={body}
           onChange={handleChangeBody}
