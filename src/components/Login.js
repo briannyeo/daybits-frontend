@@ -21,6 +21,7 @@ const Login = () => {
   const checkUser = (userInfo) => {
     fetch(url, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -45,6 +46,7 @@ const Login = () => {
     event.preventDefault();
     fetch(url, {
       method: "POST",
+      credentials: "include",
     })
       .then((response) => response.json())
       .then((data) => {

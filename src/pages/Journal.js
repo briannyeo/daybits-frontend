@@ -5,10 +5,10 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import "./journal.css";
-//import { BACKEND } from "../utils/utils";
-// import { BACKEND } from "../utils/utils.js";
+
 import urlcat from "urlcat";
 import TextField from "@mui/material/TextField";
+import { Checkbox, FormControlLabel } from "@mui/material";
 const BACKEND = process.env.REACT_APP_BACKEND;
 const url = urlcat(BACKEND, "/daybits/journal");
 
@@ -24,7 +24,7 @@ const Journal = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [error, setError] = useState("");
-  const [dailygoal, setDailygoal] = useState("");
+  const [dailygoal, setDailygoal] = useState(true);
 
   const createJournal = (journalEntry) => {
     fetch(url, {
@@ -45,7 +45,7 @@ const Journal = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const journalEntry = { title, body }; //backend
+    const journalEntry = { title, body, dailygoal }; //backend
     console.log(journalEntry);
     createJournal(journalEntry); //LINK to backend
     alert("journal entry submitted to the community");
@@ -91,6 +91,15 @@ const Journal = () => {
           rows={20}
           value={body}
           onChange={handleChangeBody}
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={dailygoal}
+              onChange={(e) => setDailygoal(e.target.checked)}
+            />
+          }
+          label="I completed my daily goal today"
         />
       </Box>
       <button onClick={handleSubmit}>Submit</button>
