@@ -12,25 +12,86 @@ import Editprofile from "./Editprofile";
 import Comjournal from "./Comjournal";
 import NoPageFound from "./NoPageFound";
 import App from "../App";
+import { useAtom } from "jotai";
+import { loginAtom } from "../App";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 //<Outlet context={[profilecompiled, setProfilecompiled]} />
 
+//<Route path="journal" element={login ? <Journal /> : <NoPageFound />} />;
+const Protected = ({ children }) => {
+  const [login, _] = useAtom(loginAtom);
+  if (login) {
+    return children;
+  } else {
+    return <NoPageFound />;
+  }
+};
 const Main = () => {
   const [profilecompiled, setProfilecompiled] = useState([]);
+
   return (
     <div>
       {" "}
       <Routes>
-        <Route path="/daybits" element={<App />}>
+        <Route path="/daybits" element={<Outlet />}>
           <Route path="home" element={<Home />} />
-          <Route path="journal" element={<Journal />} />
-          <Route path="planner" element={<Planner />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="progress" element={<Progress />} />
-          <Route path="register" element={<Registration />} />
-          <Route path="editprofile" element={<Editprofile />} />
-          <Route path="community" element={<Comjournal />} />
+          <Route
+            path="journal"
+            element={
+              <Protected>
+                <Journal />
+              </Protected>
+            }
+          />
+          <Route
+            path="planner"
+            element={
+              <Protected>
+                <Planner />
+              </Protected>
+            }
+          />
+          <Route
+            path="profile"
+            element={
+              <Protected>
+                <Profile />
+              </Protected>
+            }
+          />
+          <Route
+            path="progress"
+            element={
+              <Protected>
+                <Progress />
+              </Protected>
+            }
+          />
+          <Route
+            path="register"
+            element={
+              <Protected>
+                <Registration />
+              </Protected>
+            }
+          />
+          <Route
+            path="editprofile"
+            element={
+              <Protected>
+                <Editprofile />
+              </Protected>
+            }
+          />
+          <Route
+            path="community"
+            element={
+              <Protected>
+                <Comjournal />
+              </Protected>
+            }
+          />
         </Route>
       </Routes>
     </div>

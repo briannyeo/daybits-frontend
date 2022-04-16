@@ -34,6 +34,7 @@ const Login = () => {
       .then((data) => {
         if (data.status === "success") {
           setLogin(true);
+          console.log("hello");
         }
       })
       .catch((error) => console.log(error));

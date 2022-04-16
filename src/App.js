@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import { atom, useAtom } from "jotai";
 import Main from "./pages/Main";
 
-export const loginAtom = atom("");
+export const loginAtom = atom(false);
 
 function App() {
   const [profilecompiled, setProfilecompiled] = useState([]);
@@ -15,7 +15,6 @@ function App() {
     <div className="App">
       <Navbar />
       <Main />
-      <Outlet context={[profilecompiled, setProfilecompiled]} />
     </div>
   );
 }
