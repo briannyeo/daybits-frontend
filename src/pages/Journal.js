@@ -4,7 +4,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import "./Journal.css";
+import "./journal.css";
 
 import urlcat from "urlcat";
 import TextField from "@mui/material/TextField";
