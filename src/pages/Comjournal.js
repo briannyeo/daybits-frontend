@@ -8,19 +8,28 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+
 import { Link, useNavigate } from "react-router-dom";
+
+import "./Comjournal.css";
+import JournalModal from "../components/JournalModal";
+
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 
 const Comjournal = () => {
   const [journallist, setJournallist] = useState([]);
   const [community, setCommunity] = useState("");
+  const [show, setShow] = useState(false);
 
   //fetch all journal entries
   useEffect(() => {
     fetch(urlcat(BACKEND, "/daybits/journal"))
       .then((response) => response.json())
-      .then((data) => setJournallist(data));
+      .then((data) => {
+        setJournallist(data);
+        console.log(journallist);
+      });
   }, []);
 
   //fetch communitydata - comments and likes
@@ -88,7 +97,9 @@ const Comjournal = () => {
                 <TableCell component="th" scope="row">
                   USER - TBC
                 </TableCell>
-                <TableCell align="center">{entry.title} </TableCell>
+                <TableCell onClick={() => setShow(true)} align="center">
+                  {entry.title}{" "}
+                </TableCell>
                 <TableCell align="center">{entry.body}</TableCell>
                 <TableCell align="center">
                   <button onClick={handleUpdate(entry)}>Like</button> <br></br>
@@ -103,6 +114,7 @@ const Comjournal = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <JournalModal show={show} onHide={() => setShow(false)} />
     </>
   );
 };
