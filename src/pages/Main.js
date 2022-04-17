@@ -14,8 +14,8 @@ import NoPageFound from "./NoPageFound";
 import App from "../App";
 import { useAtom } from "jotai";
 import { loginAtom } from "../App";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 //<Outlet context={[profilecompiled, setProfilecompiled]} />
 
 //<Route path="journal" element={login ? <Journal /> : <NoPageFound />} />;
@@ -52,14 +52,7 @@ const Main = () => {
               </Protected>
             }
           />
-          <Route
-            path="profile"
-            element={
-              <Protected>
-                <Profile />
-              </Protected>
-            }
-          />
+          <Route path="profile" element={<Profile />} />
           <Route
             path="progress"
             element={
@@ -77,6 +70,7 @@ const Main = () => {
               </Protected>
             }
           />
+
           <Route
             path="community"
             element={

@@ -34,7 +34,9 @@ const Login = () => {
       .then((data) => {
         if (data.status === "success") {
           setLogin(true);
-          console.log("hello");
+          alert("success! please click on the nav bar to proceed into the app");
+        } else {
+          alert("login failed, please try again, or register as a new user");
         }
       })
       .catch((error) => console.log(error));
@@ -54,33 +56,14 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.error) {
-          setErrorMessages(data.error);
+        if (data.status === "success") {
+          alert("success! please come again");
+        } else {
+          alert("logout failed");
         }
       })
       .catch((error) => console.log(error));
   };
-
-  // Find user login info
-  // useEffect(() => {
-  //   fetch(urlcat(BACKEND, "/user"))
-  //     .then((response) => response.json())
-  //     .then((data) => setUserData(data));
-  // }, [userInputData]);
-
-  // Compare user info
-  //   if (userInputData) {
-  //     if (userInputData.password !== userData.password) {
-  //       // Invalid password
-  //       setErrorMessages({ name: "pass", message: errors.pass });
-  //     } else {
-  //       setIsSubmitted(true);
-  //     }
-  //   } else {
-  //     // Username not found
-  //     setErrorMessages({ name: "uname", message: errors.uname });
-  //   }
-  // };
 
   // Generate JSX code for error message
   const renderErrorMessage = (name) =>
@@ -112,48 +95,16 @@ const Login = () => {
           {renderErrorMessage("pass")}
         </div>
         <div className="button-container">
-          <input type="submit" />
+          <button>Submit</button>
         </div>
       </form>
     </div>
   );
 
-  // User Login info - CHANGE TO LINK TO DATABASE
-  const database = [
-    {
-      username: "user1",
-      password: "pass1",
-    },
-    {
-      username: "user2",
-      password: "pass2",
-    },
-  ];
-
   const errors = {
     uname: "invalid username",
     pass: "invalid password",
   };
-
-  //CODE FOR BACKEND - to create user accounts
-  // const createHoliday = (holiday) => {
-  //   fetch(url, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(holiday),
-  //   })
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       if (data.error) {
-  //         setError(data.error);
-  //       }
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
 
   return (
     <div className="app">
@@ -162,11 +113,20 @@ const Login = () => {
         {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
         <div className="button-container">
           <Link to="/daybits/register">
-            <button type="button" className="btn btn-info">
+            <button
+              style={{ margin: "10px" }}
+              type="button"
+              className="btn btn-info"
+            >
               New User? Click here
             </button>
-          </Link>
-          <button type="button" className="btn btn-info" onClick={handleLogout}>
+          </Link>{" "}
+          <button
+            style={{ margin: "10px" }}
+            type="button"
+            className="btn btn-info"
+            onClick={handleLogout}
+          >
             Logout
           </button>
         </div>

@@ -46,13 +46,14 @@ const Comjournal = () => {
       .then((data) => setJournallist(data));
   };
 
-  //delete works but have to refresh for it to delete
+  //delete works but how to make list auto update after delete?
   const handleDelete = (id) => () => {
     const url = urlcat(BACKEND, `/daybits/journal/${id}`);
     fetch(url, { method: "DELETE" })
       .then((response) => response.json())
-      .then((data) => console.log(data));
-    window.location.reload();
+      .then((data) => {
+        alert("post deleted");
+      });
   };
 
   //User in list not reading (something to do with populate
