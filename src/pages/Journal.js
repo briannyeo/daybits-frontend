@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import { Link, useNavigate } from "react-router-dom";
 import "./journal.css";
 
 import urlcat from "urlcat";
@@ -44,12 +45,15 @@ const Journal = () => {
       .catch((error) => console.log(error));
   };
 
+  let navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const journalEntry = { title, body, dailygoal }; //backend
     console.log(journalEntry);
     createJournal(journalEntry); //LINK to backend
     alert("journal entry submitted to the community");
+    navigate("/daybits/community");
     //window.location.reload();
   };
 

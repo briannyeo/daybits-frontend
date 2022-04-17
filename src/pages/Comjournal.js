@@ -8,6 +8,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { Link, useNavigate } from "react-router-dom";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 
@@ -24,11 +25,11 @@ const Comjournal = () => {
 
   //fetch communitydata - comments and likes
   //STUCK HERE - likes needs to read from communityschema, not sure how to link to journaltitle (in userdata schema)
-  useEffect(() => {
-    fetch(urlcat(BACKEND, "/daybits/journal/community"))
-      .then((response) => response.json())
-      .then((data) => setCommunity(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch(urlcat(BACKEND, "/daybits/journal/community"))
+  //     .then((response) => response.json())
+  //     .then((data) => setCommunity(data));
+  // }, []);
 
   //code for Likes update in backend
   const handleUpdate = (entry) => () => {
@@ -46,13 +47,19 @@ const Comjournal = () => {
       .then((data) => setJournallist(data));
   };
 
-  //delete works but how to make list auto update after delete?
   const handleDelete = (id) => () => {
     const url = urlcat(BACKEND, `/daybits/journal/${id}`);
     fetch(url, { method: "DELETE" })
       .then((response) => response.json())
       .then((data) => {
         alert("post deleted");
+      })
+      .then(() => {
+        setJournallist(
+          journallist.filter((entry) => {
+            return entry._id !== id;
+          })
+        );
       });
   };
 
