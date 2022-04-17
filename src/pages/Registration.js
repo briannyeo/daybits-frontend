@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 const url = urlcat(BACKEND, "/daybits/register");
@@ -46,12 +46,16 @@ const Registration = () => {
       .catch((error) => console.log(error));
   };
 
+  let navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (password === confirmpw) {
       const userInfo = { username, password }; //backend
       console.log(userInfo);
       createUser(userInfo); //LINK to backend
+      alert("new account created - proceed to sign in");
+      navigate("/daybits/home");
     } else {
       alert("passwords do not match");
     }
@@ -102,9 +106,7 @@ const Registration = () => {
         </Grid>
       </Box>
 
-      <button onClick={handleSubmit}>
-        <Link to="/daybits/home">Submit</Link>
-      </button>
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 };

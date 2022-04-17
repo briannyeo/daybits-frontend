@@ -1,7 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import "./Login.css";
-import { Link } from "react-router-dom";
+
+import "./login.css";
+import { Link, useNavigate } from "react-router-dom";
+
+
 import urlcat from "urlcat";
 import { useAtom } from "jotai";
 import { loginAtom } from "../App";
@@ -12,14 +15,15 @@ const logoutUrl = urlcat(BACKEND, "/daybits/register/logout");
 
 const Login = () => {
   const [errorMessages, setErrorMessages] = useState({});
-  const [userData, setUserData] = useState({});
-  const [userInputData, setUserInputData] = useState({});
+  const [user, setUser] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [username, setUsername] = useState({});
   const [password, setPassword] = useState({});
   const [login, setLogin] = useAtom(loginAtom);
 
   //PASS DATA TO THE BACKEND THROUGH REQ.BODY
+
+  let navigate = useNavigate();
 
   const checkUser = (userInfo) => {
     fetch(url, {
@@ -33,11 +37,16 @@ const Login = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          setLogin(true);
+          setLogin(true); //check that the cookie.user exists? should be on index page
           alert("success! please click on the nav bar to proceed into the app");
+          setUser(data.user);
+          console.log(user); //user saved from cookies and stored in state
         } else {
           alert("login failed, please try again, or register as a new user");
         }
+      })
+      .then(() => {
+        navigate("/daybits/profile");
       })
       .catch((error) => console.log(error));
   };
@@ -50,14 +59,16 @@ const Login = () => {
 
   const handleLogout = (event) => {
     event.preventDefault();
-    fetch(url, {
+    fetch(logoutUrl, {
       method: "POST",
       credentials: "include",
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          alert("success! please come again");
+          alert("logout success! please come again");
+          window.location.reload();
+          //code to delete the cookie here
         } else {
           alert("logout failed");
         }
@@ -72,6 +83,7 @@ const Login = () => {
     );
 
   // JSX code for login form
+
   const renderForm = (
     <div className="form">
       <form onSubmit={handleSubmit}>
