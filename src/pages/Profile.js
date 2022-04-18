@@ -35,7 +35,7 @@ const Profile = (props) => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          //console.log(data);
           setProfile(data);
           setLoading(false);
         })

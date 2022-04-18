@@ -22,18 +22,25 @@ const Comjournal = () => {
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
   //fetch all journal entries
+
   useEffect(() => {
-    fetch(urlcat(BACKEND, "/daybits/journal"))
-      .then((response) => response.json())
-      .then((data) => {
-        setJournallist(data);
+    const showJournal = (journalEntry) => {
+      fetch(urlcat(BACKEND, "/daybits/journal"), {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(journalEntry),
       })
-      .then((data) => {
-        if (data.error) {
-          setError(data.error);
-        }
-      })
-      .catch((error) => console.log(error));
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("GET", data);
+          setJournallist(data);
+        })
+        .catch((error) => console.log(error));
+    };
+    showJournal();
   }, []);
 
   //fetch communitydata - comments and likes
