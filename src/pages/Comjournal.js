@@ -119,6 +119,7 @@ const Comjournal = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <JournalModal show={show} onHide={() => setShow(false)} />
     </>
   );
 };
