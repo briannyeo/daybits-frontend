@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-import "./Login.css";
+import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 
 import urlcat from "urlcat";
@@ -38,14 +38,10 @@ const Login = () => {
         if (data.status === "success") {
           setLogin(true); //check that the cookie.user exists? should be on index page
           alert("success! please click on the nav bar to proceed into the app");
-          setUser(data.user);
-          console.log(user); //user saved from cookies and stored in state
+          navigate("/daybits/profile");
         } else {
           alert("login failed, please try again, or register as a new user");
         }
-      })
-      .then(() => {
-        navigate("/daybits/profile");
       })
       .catch((error) => console.log(error));
   };
