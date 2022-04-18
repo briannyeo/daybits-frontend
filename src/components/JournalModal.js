@@ -4,7 +4,7 @@ import { useState } from "react";
 
 function JournalModal(props) {
   //const [show, setShow] = useState(false);
-  console.log(props.title);
+  //console.log(props.title);
 
   return (
     <>

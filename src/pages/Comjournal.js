@@ -14,22 +14,26 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Comjournal.css";
 import JournalModal from "../components/JournalModal";
 
-
 const BACKEND = process.env.REACT_APP_BACKEND;
 
 const Comjournal = () => {
   const [journallist, setJournallist] = useState([]);
   const [community, setCommunity] = useState("");
   const [show, setShow] = useState(false);
-
+  const [error, setError] = useState("");
   //fetch all journal entries
   useEffect(() => {
     fetch(urlcat(BACKEND, "/daybits/journal"))
       .then((response) => response.json())
       .then((data) => {
         setJournallist(data);
-        console.log(journallist);
-      });
+      })
+      .then((data) => {
+        if (data.error) {
+          setError(data.error);
+        }
+      })
+      .catch((error) => console.log(error));
   }, []);
 
   //fetch communitydata - comments and likes
@@ -41,20 +45,20 @@ const Comjournal = () => {
   // }, []);
 
   //code for Likes update in backend
-  const handleUpdate = (entry) => () => {
-    const url = urlcat(BACKEND, `/daybits/journal/${entry._id}`);
-    const newEntry = { ...journallist, likes: entry.likes + 1 }; //adds 1
+  // const handleUpdate = (entry) => () => {
+  //   const url = urlcat(BACKEND, `/daybits/journal/${entry._id}`);
+  //   const newEntry = { ...journallist, likes: entry.likes + 1 }; //adds 1
 
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newEntry),
-    })
-      .then((response) => response.json())
-      .then((data) => setJournallist(data));
-  };
+  //   fetch(url, {
+  //     method: "PUT",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(newEntry),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => setJournallist(data));
+  // };
 
   const handleDelete = (id) => () => {
     const url = urlcat(BACKEND, `/daybits/journal/${id}`);
@@ -73,6 +77,7 @@ const Comjournal = () => {
   };
 
   //User in list not reading (something to do with populate
+  //<JournalModal show={show} onHide={() => setShow(false)} />
 
   return (
     <>
@@ -100,9 +105,9 @@ const Comjournal = () => {
                 <TableCell onClick={() => setShow(true)} align="center">
                   {entry.title}{" "}
                 </TableCell>
-                <TableCell align="center">{entry.body}</TableCell>
+                <TableCell align="center">{entry.journalBody}</TableCell>
                 <TableCell align="center">
-                  <button onClick={handleUpdate(entry)}>Like</button> <br></br>
+                  <button>Like</button> <br></br>
                   LIKES COUNTER - TBC
                 </TableCell>
                 <TableCell align="center">COMMENTS - TBC</TableCell>
@@ -114,7 +119,6 @@ const Comjournal = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <JournalModal show={show} onHide={() => setShow(false)} />
     </>
   );
 };

@@ -23,9 +23,9 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Journal = () => {
   const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [journalBody, setJournalBody] = useState("");
   const [error, setError] = useState("");
-  const [dailygoal, setDailygoal] = useState(true);
+  const [dailyGoalAchived, setDailyGoalAchived] = useState(true);
 
   const createJournal = (journalEntry) => {
     fetch(url, {
@@ -49,12 +49,10 @@ const Journal = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const journalEntry = { title, body, dailygoal }; //backend
-    console.log(journalEntry);
+    const journalEntry = { title, journalBody, dailyGoalAchived }; //backend
     createJournal(journalEntry); //LINK to backend
     alert("journal entry submitted to the community");
     navigate("/daybits/community");
-    //window.location.reload();
   };
 
   const handleChangeTitle = (event) => {
@@ -62,7 +60,7 @@ const Journal = () => {
   };
 
   const handleChangeBody = (event) => {
-    setBody(event.target.value);
+    setJournalBody(event.target.value);
   };
 
   return (
@@ -95,7 +93,7 @@ const Journal = () => {
             multiline
             required
             rows={20}
-            value={body}
+            value={journalBody}
             onChange={handleChangeBody}
           />
         </Grid>
@@ -103,8 +101,8 @@ const Journal = () => {
           <FormControlLabel
             control={
               <Checkbox
-                checked={dailygoal}
-                onChange={(e) => setDailygoal(e.target.checked)}
+                checked={dailyGoalAchived}
+                onChange={(e) => setDailyGoalAchived(e.target.checked)}
               />
             }
             label="I completed my daily goal today"
