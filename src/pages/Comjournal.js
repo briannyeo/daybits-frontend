@@ -18,6 +18,7 @@ const BACKEND = process.env.REACT_APP_BACKEND;
 
 const Comjournal = () => {
   const [journallist, setJournallist] = useState([]);
+  const [load, setLoad] = useState(false);
   const [community, setCommunity] = useState("");
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
@@ -35,13 +36,13 @@ const Comjournal = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("GET", data);
           setJournallist(data);
+          setLoad(true);
         })
         .catch((error) => console.log(error));
     };
     showJournal();
-  }, []);
+  }, [load]);
 
   //fetch communitydata - comments and likes
   //STUCK HERE - likes needs to read from communityschema, not sure how to link to journaltitle (in userdata schema)
@@ -75,17 +76,88 @@ const Comjournal = () => {
         alert("post deleted");
       })
       .then(() => {
-        setJournallist(
-          journallist.filter((entry) => {
-            return entry._id !== id;
-          })
-        );
+        arrJournalId.filter((entry) => {
+          return entry._id !== id;
+        });
+        setLoad(false);
       });
   };
 
-  //User in list not reading (something to do with populate
-  //<JournalModal show={show} onHide={() => setShow(false)} />
+  //  setJournallist(
+  //    journallist.filter((entry) => {
+  //      return entry._id !== id;
+  //    })
+  //  );
 
+  let arrTitle = [];
+  let arrUser = [];
+  let arrJournalBody = [];
+  let arrJournalId = [];
+
+  const createArr = (journallist) => {
+    for (let i = 0; i < journallist.length; i++) {
+      for (let x = 0; x < journallist[i].journals.length; x++) {
+        arrTitle.push(journallist[i].journals[x].title);
+        arrJournalBody.push(journallist[i].journals[x].journalBody);
+        arrUser.push(journallist[i].username);
+        arrJournalId.push(journallist[i].journals[x]._id);
+      }
+    }
+    return;
+  };
+
+  createArr(journallist);
+  // console.log("arrTitle", arrTitle);
+  // console.log("arrJournalBody", arrJournalBody);
+  // console.log("arrUser", arrUser);
+
+  let tableCells = [];
+
+  const createTableCells = () => {
+    for (let i = 0; i < arrJournalBody.length; i++) {
+      tableCells.push(
+        <TableRow key={arrJournalId[i]}>
+          <TableCell align="center">{arrUser[i]}</TableCell>
+          <TableCell align="center">{arrTitle[i]}</TableCell>
+          <TableCell align="center">{arrJournalBody[i]}</TableCell>
+          <TableCell align="center">LIKES TBC</TableCell>
+          <TableCell align="center">COMMENTS TBC</TableCell>
+          <TableCell align="center">
+            <button onClick={handleDelete(arrJournalId[i])}>Delete</button>
+          </TableCell>
+        </TableRow>
+      );
+    }
+  };
+
+  createTableCells();
+  // console.log("tablecells", tableCells);
+
+  //ORIGINAL CODE - PUT INSIDE TABLEBODY
+  // {
+  //   journallist.map((entry) => (
+  //     <TableRow
+  //       key={entry._id}
+  //       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+  //     >
+  //       <TableCell component="th" scope="row">
+  //         {entry.username}
+  //       </TableCell>
+  //       <TableCell onClick={() => setShow(true)} align="center">
+  //         {entry.title}{" "}
+  //       </TableCell>
+  //       <TableCell align="center">{entry.journalBody}</TableCell>
+  //       <TableCell align="center">
+  //         <button>Like</button> <br></br>
+  //         LIKES COUNTER - TBC
+  //       </TableCell>
+  //       <TableCell align="center">COMMENTS - TBC</TableCell>
+  //       <TableCell align="center">
+  //         <button onClick={handleDelete(entry._id)}>Delete</button>
+  //       </TableCell>
+  //     </TableRow>
+  //   ));
+  // }
   return (
     <>
       <TableContainer component={Paper} style={{ margin: "20px" }}>
@@ -100,30 +172,7 @@ const Comjournal = () => {
               <TableCell align="center">Delete</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            {journallist.map((entry) => (
-              <TableRow
-                key={entry._id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  USER - TBC
-                </TableCell>
-                <TableCell onClick={() => setShow(true)} align="center">
-                  {entry.title}{" "}
-                </TableCell>
-                <TableCell align="center">{entry.journalBody}</TableCell>
-                <TableCell align="center">
-                  <button>Like</button> <br></br>
-                  LIKES COUNTER - TBC
-                </TableCell>
-                <TableCell align="center">COMMENTS - TBC</TableCell>
-                <TableCell align="center">
-                  <button onClick={handleDelete(entry._id)}>Delete</button>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
+          <TableBody>{tableCells}</TableBody>
         </Table>
       </TableContainer>
       <JournalModal show={show} onHide={() => setShow(false)} />
