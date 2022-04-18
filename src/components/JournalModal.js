@@ -17,6 +17,7 @@ function JournalModal(props) {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        dialogClassName="modal-98w"
       >
         <Modal.Header closeButton>
           <Modal.Title id="example-custom-modal-styling-title">

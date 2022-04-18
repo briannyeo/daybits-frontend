@@ -71,9 +71,9 @@ const Journal = () => {
       <Box
         sx={{ flexGrow: 1 }}
         component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
-        }}
+        // sx={{
+        //   "& .MuiTextField-root": { m: 1, width: "25ch" },
+        // }}
         noValidate
         autoComplete="off"
       >
