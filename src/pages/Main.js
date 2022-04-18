@@ -62,14 +62,7 @@ const Main = () => {
             }
           />
           <Route path="register" element={<Registration />} />
-          <Route
-            path="editprofile"
-            element={
-              <Protected>
-                <Editprofile />
-              </Protected>
-            }
-          />
+          <Route path="editprofile" element={<Editprofile />} />
 
           <Route
             path="community"

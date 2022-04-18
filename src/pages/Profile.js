@@ -13,14 +13,35 @@ const Profile = (props) => {
   const BACKEND = process.env.REACT_APP_BACKEND;
 
   //fetch all profile entries
+  // useEffect(() => {
+  //   fetch(urlcat(BACKEND, "/daybits/register/profile"))
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setProfile(data);
+  //       setLoading(false);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    fetch(urlcat(BACKEND, "/daybits/register/profile"))
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setProfile(data);
-        setLoading(false);
-      });
+    const showProfile = (profile) => {
+      fetch(urlcat(BACKEND, "/daybits/register/profile"), {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(profile),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          //console.log(data);
+          setProfile(data);
+          setLoading(false);
+        })
+        .catch((error) => console.log(error));
+    };
+    showProfile();
   }, []);
 
   return (
@@ -34,23 +55,23 @@ const Profile = (props) => {
         <h3 style={{ marginTop: "30px" }}>
           I want to
           <span style={{ color: "green", fontStyle: "italic" }}>
-            &nbsp; {profile[0].habitstatus} &nbsp;
+            &nbsp; {profile.habitstatus} &nbsp;
           </span>
           my habit of
           <span style={{ color: "green", fontStyle: "italic" }}>
-            &nbsp; {profile[0].habit} &nbsp;
+            &nbsp; {profile.habit} &nbsp;
           </span>
           <br />
           <br />
           Target duration / frequency:
           <span style={{ color: "green", fontStyle: "italic" }}>
-            &nbsp;{profile[0].target} &nbsp;
+            &nbsp;{profile.target} &nbsp;
           </span>
           <br />
           <br />
           My goal is to
           <span style={{ color: "green", fontStyle: "italic" }}>
-            &nbsp;{profile[0].goal} &nbsp;
+            &nbsp;{profile.goal} &nbsp;
           </span>
         </h3>
       )}

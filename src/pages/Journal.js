@@ -38,9 +38,7 @@ const Journal = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.error) {
-          setError(data.error);
-        }
+        console.log("paginated post", data);
       })
       .catch((error) => console.log(error));
   };
