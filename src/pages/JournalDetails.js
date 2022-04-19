@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
-const url = urlcat(BACKEND, "/daybits/journal");
+const url = urlcat(BACKEND, `/daybits/journal/`);
 
 const JournalDetails = () => {
   const { id } = useParams();
@@ -25,18 +25,19 @@ const JournalDetails = () => {
 
   //fetch the journal entry
   useEffect(() => {
-    const showJournal = (journalEntry) => {
+    const showJournal = (id) => {
+      const url = urlcat(BACKEND, `/daybits/journal/${id}`);
       fetch(url, {
         method: "GET",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(journalEntry),
+        body: JSON.stringify(id),
       })
         .then((response) => response.json())
-        .then((data) => {
-          setJournalDetails(data);
+        .then((docs) => {
+          setJournalDetails(docs);
           setLoad(true);
         })
         .catch((error) => console.log(error));
@@ -45,13 +46,6 @@ const JournalDetails = () => {
   }, [load]);
 
   //For creating a comment
-
-  const handleCommentSubmit = (event) => {
-    event.preventDefault();
-    createComment(comment);
-    alert("comment submitted to the community");
-  };
-
   const createComment = (comment) => {
     fetch(url, {
       method: "POST",
@@ -66,6 +60,12 @@ const JournalDetails = () => {
         console.log("comment", data);
       })
       .catch((error) => console.log(error));
+  };
+
+  const handleCommentSubmit = (event) => {
+    event.preventDefault();
+    createComment(comment);
+    alert("comment submitted to the community");
   };
 
   //retrieving all comments

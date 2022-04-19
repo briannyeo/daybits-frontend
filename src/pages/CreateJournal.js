@@ -26,6 +26,7 @@ const Journal = () => {
   const [journalBody, setJournalBody] = useState("");
   const [error, setError] = useState("");
   const [dailyGoalAchived, setDailyGoalAchived] = useState(true);
+  const [createdAt, setCreatedAt] = useState("");
 
   const createJournal = (journalEntry) => {
     fetch(url, {
@@ -43,12 +44,24 @@ const Journal = () => {
       .catch((error) => console.log(error));
   };
 
+  const getStartTime = () => {
+    const today = new Date(); //Date() uses local computer time
+    //today.setUTCHours(0, 0, 0, 0);
+    return today.toDateString();
+  };
+
+  // const getEndTime = () => {
+  //   const d = new Date();
+  //   d.setDate(d.getDate() + 30);
+  //   return d.toDateString();
+  // };
+
   let navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const journalEntry = { title, journalBody, dailyGoalAchived }; //backend
-    createJournal(journalEntry); //LINK to backend
+    const journalEntry = { title, journalBody, dailyGoalAchived, createdAt }; //backend
+    createJournal(journalEntry); //LINK to backend;
     alert("journal entry submitted to the community");
     navigate("/daybits/community");
   };
@@ -59,6 +72,7 @@ const Journal = () => {
 
   const handleChangeBody = (event) => {
     setJournalBody(event.target.value);
+    setCreatedAt(getStartTime()); //setting time journal was written
   };
 
   return (
