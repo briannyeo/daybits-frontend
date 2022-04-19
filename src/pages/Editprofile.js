@@ -2,9 +2,13 @@ import React from "react";
 import { useState } from "react";
 import urlcat from "urlcat";
 import { Link } from "react-router-dom";
-
+import { format, compareAsc } from "date-fns";
+import { addDays } from "date-fns/fp";
 import Profile from "./Profile";
 import "./Editprofile.css";
+import { useNavigate } from "react-router-dom";
+
+const endOfDay = require("date-fns/endOfDay");
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 const url = urlcat(BACKEND, "/daybits/register/profile");
@@ -15,6 +19,20 @@ const Editprofile = () => {
   const [error, setError] = useState("");
   const [target, setTarget] = useState("");
   const [goal, setGoal] = useState("");
+
+  const [startDate, setStartDate] = useState("");
+
+  const getStartTime = () => {
+    const today = new Date(); //Date() uses local computer time
+    //today.setUTCHours(0, 0, 0, 0);
+    return today.toDateString();
+  };
+
+  const getEndTime = () => {
+    const d = new Date();
+    d.setDate(d.getDate() + 30);
+    return d.toDateString();
+  };
 
   const createProfile = (profile) => {
     fetch(url, {
@@ -34,10 +52,14 @@ const Editprofile = () => {
       .catch((error) => console.log(error));
   };
 
+  let navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const profile = { habitstatus, habit, target, goal }; //backend
+    const profile = { habitstatus, habit, target, goal, startDate }; //backend
     createProfile(profile); //LINK to backend
+    navigate("/daybits/profile");
+    console.log(profile);
   };
 
   return (
@@ -89,11 +111,13 @@ const Editprofile = () => {
         />
         <p>{error}</p>
         <br />
-        <button>Save</button>
+        <br />I commit to changing my behavior for 30 days starting from:
+        <button onClick={() => setStartDate(getStartTime())}>
+          <span style={{ color: "red" }}>{`START:  ${getStartTime()}`}</span> to
+          <br />
+          <span style={{ color: "red" }}>{`END:  ${getEndTime()}`}</span>
+        </button>
         <br />
-        <Link to="/daybits/profile">
-          <button>Return to Profile</button>
-        </Link>
       </form>
     </>
   );

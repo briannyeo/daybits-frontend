@@ -66,7 +66,13 @@ const Comjournal = () => {
 
   const handleDelete = (id) => () => {
     const url = urlcat(BACKEND, `/daybits/journal/${id}`);
-    fetch(url, { method: "DELETE" })
+    fetch(url, {
+      method: "DELETE",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }) //add credentails true
       .then((response) => response.json())
       .then((data) => {
         alert("post deleted");
