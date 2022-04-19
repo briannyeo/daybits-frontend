@@ -34,7 +34,7 @@ const JournalRow = (props) => {
             <TableCell align="center">{arrUser[i]}</TableCell>
             <TableCell
               align="center"
-              onClick={() => navigate(`/journal/${arrJournalId[i]}`)}
+              onClick={() => navigate(`/daybits/journal/${arrJournalId[i]}`)}
             >
               {arrTitle[i]}
             </TableCell>
