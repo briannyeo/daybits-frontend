@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import urlcat from "urlcat";
 import { Link } from "react-router-dom";
+import { format, compareAsc } from "date-fns";
+import { addDays } from "date-fns/fp";
 
 import Profile from "./Profile";
 import "./Editprofile.css";
@@ -9,12 +11,27 @@ import "./Editprofile.css";
 const BACKEND = process.env.REACT_APP_BACKEND;
 const url = urlcat(BACKEND, "/daybits/register/profile");
 
+const endOfDay = require("date-fns/endOfDay");
+
 const Editprofile = () => {
   const [habitstatus, setHabitstatus] = useState("");
   const [habit, setHabit] = useState("");
   const [error, setError] = useState("");
   const [target, setTarget] = useState("");
   const [goal, setGoal] = useState("");
+  const [startDate, setStartDate] = useState("");
+
+  const getStartTime = () => {
+    const today = new Date(); //Date() uses local computer time
+    //today.setUTCHours(0, 0, 0, 0);
+    return today.toDateString();
+  };
+
+  const getEndTime = () => {
+    const d = new Date();
+    d.setDate(d.getDate() + 30);
+    return d.toDateString();
+  };
 
   const createProfile = (profile) => {
     fetch(url, {
@@ -36,9 +53,16 @@ const Editprofile = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const profile = { habitstatus, habit, target, goal }; //backend
+    const profile = { habitstatus, habit, target, goal, startDate }; //backend
+    //console.log("profile", profile);
     createProfile(profile); //LINK to backend
   };
+
+  //  <button>
+  //    {`START:  ${getStartTime()}`}
+  //    <br />
+  //    {`END:  ${getEndTime()}`}
+  //  </button>;
 
   return (
     <>
@@ -88,8 +112,12 @@ const Editprofile = () => {
           onChange={(event) => setGoal(event.target.value)}
         />
         <p>{error}</p>
-        <br />
-        <button>Save</button>
+        <br />I commit to changing my behavior for 30 days starting from:
+        <button onClick={() => setStartDate(getStartTime())}>
+          <span style={{ color: "red" }}>{`START:  ${getStartTime()}`}</span> to
+          <br />
+          <span style={{ color: "red" }}>{`END:  ${getEndTime()}`}</span>
+        </button>
         <br />
         <Link to="/daybits/profile">
           <button>Return to Profile</button>
