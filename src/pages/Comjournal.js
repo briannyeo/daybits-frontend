@@ -8,6 +8,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import JournalRow from "../components/JournalRow";
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -111,26 +112,26 @@ const Comjournal = () => {
   // console.log("arrJournalBody", arrJournalBody);
   // console.log("arrUser", arrUser);
 
-  let tableCells = [];
+  // let tableCells = [];
 
-  const createTableCells = () => {
-    for (let i = 0; i < arrJournalBody.length; i++) {
-      tableCells.push(
-        <TableRow key={arrJournalId[i]}>
-          <TableCell align="center">{arrUser[i]}</TableCell>
-          <TableCell align="center">{arrTitle[i]}</TableCell>
-          <TableCell align="center">{arrJournalBody[i]}</TableCell>
-          <TableCell align="center">LIKES TBC</TableCell>
-          <TableCell align="center">COMMENTS TBC</TableCell>
-          <TableCell align="center">
-            <button onClick={handleDelete(arrJournalId[i])}>Delete</button>
-          </TableCell>
-        </TableRow>
-      );
-    }
-  };
+  // const createTableCells = () => {
+  //   for (let i = 0; i < arrJournalBody.length; i++) {
+  //     tableCells.push(
+  //       <TableRow key={arrJournalId[i]}>
+  //         <TableCell align="center">{arrUser[i]}</TableCell>
+  //         <TableCell align="center">{arrTitle[i]}</TableCell>
+  //         <TableCell align="center">{arrJournalBody[i]}</TableCell>
+  //         <TableCell align="center">LIKES TBC</TableCell>
+  //         <TableCell align="center">COMMENTS TBC</TableCell>
+  //         <TableCell align="center">
+  //           <button onClick={handleDelete(arrJournalId[i])}>Delete</button>
+  //         </TableCell>
+  //       </TableRow>
+  //     );
+  //   }
+  // };
 
-  createTableCells();
+  // createTableCells();
   // console.log("tablecells", tableCells);
 
   //ORIGINAL CODE - PUT INSIDE TABLEBODY
@@ -172,7 +173,14 @@ const Comjournal = () => {
               <TableCell align="center">Delete</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>{tableCells}</TableBody>
+          <JournalRow
+            arrTitle={arrTitle}
+            arrUser={arrUser}
+            arrJournalBody={arrJournalBody}
+            arrJournalId={arrJournalId}
+            handleDelete={handleDelete}
+          />
+          {/* <TableBody>{tableCells}</TableBody> */}
         </Table>
       </TableContainer>
       <JournalModal show={show} onHide={() => setShow(false)} />
