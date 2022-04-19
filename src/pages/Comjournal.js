@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import urlcat from "urlcat";
 import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
+
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
@@ -10,19 +10,14 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import JournalRow from "../components/JournalRow";
 
-import { Link, useNavigate } from "react-router-dom";
-
 import "./Comjournal.css";
-import JournalModal from "../components/JournalModal";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 
 const Comjournal = () => {
   const [journallist, setJournallist] = useState([]);
   const [load, setLoad] = useState(false);
-  const [community, setCommunity] = useState("");
-  const [show, setShow] = useState(false);
-  const [error, setError] = useState("");
+
   //fetch all journal entries
 
   useEffect(() => {
@@ -84,16 +79,12 @@ const Comjournal = () => {
       });
   };
 
-  //  setJournallist(
-  //    journallist.filter((entry) => {
-  //      return entry._id !== id;
-  //    })
-  //  );
-
   let arrTitle = [];
   let arrUser = [];
   let arrJournalBody = [];
   let arrJournalId = [];
+
+  console.log(arrTitle);
 
   const createArr = (journallist) => {
     for (let i = 0; i < journallist.length; i++) {
@@ -111,28 +102,6 @@ const Comjournal = () => {
   // console.log("arrTitle", arrTitle);
   // console.log("arrJournalBody", arrJournalBody);
   // console.log("arrUser", arrUser);
-
-  // let tableCells = [];
-
-  // const createTableCells = () => {
-  //   for (let i = 0; i < arrJournalBody.length; i++) {
-  //     tableCells.push(
-  //       <TableRow key={arrJournalId[i]}>
-  //         <TableCell align="center">{arrUser[i]}</TableCell>
-  //         <TableCell align="center">{arrTitle[i]}</TableCell>
-  //         <TableCell align="center">{arrJournalBody[i]}</TableCell>
-  //         <TableCell align="center">LIKES TBC</TableCell>
-  //         <TableCell align="center">COMMENTS TBC</TableCell>
-  //         <TableCell align="center">
-  //           <button onClick={handleDelete(arrJournalId[i])}>Delete</button>
-  //         </TableCell>
-  //       </TableRow>
-  //     );
-  //   }
-  // };
-
-  // createTableCells();
-  // console.log("tablecells", tableCells);
 
   //ORIGINAL CODE - PUT INSIDE TABLEBODY
   // {
@@ -183,7 +152,6 @@ const Comjournal = () => {
           {/* <TableBody>{tableCells}</TableBody> */}
         </Table>
       </TableContainer>
-      <JournalModal show={show} onHide={() => setShow(false)} />
     </>
   );
 };

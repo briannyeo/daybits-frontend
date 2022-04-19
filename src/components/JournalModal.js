@@ -1,30 +1,22 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { useState } from "react";
 
 function JournalModal(props) {
-  //const [show, setShow] = useState(false);
-  //console.log(props.title);
-
+  const { arrTitle, arrJournalBody, arrUser, arrJournalId } = props;
+  console.log("modalArrayTitle", arrTitle);
   return (
     <>
-      {/* <Button variant="primary" onClick={() => setShow(true)}>
-        Custom Width Modal
-      </Button> */}
-
       <Modal
         {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        dialogClassName="modal-98w"
+        dialogClassName="modal-90w"
+        aria-labelledby="example-custom-modal-styling-title"
       >
         <Modal.Header closeButton>
           <Modal.Title id="example-custom-modal-styling-title">
-            {props.title}
+            {props.arrTitle}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>{props.body}</Modal.Body>
+        <Modal.Body>{props.arrJournalBody}</Modal.Body>
       </Modal>
     </>
   );
