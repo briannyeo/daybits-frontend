@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Home from "./Home";
-import Journal from "./Journal";
+import Journal from "./CreateJournal";
 import Planner from "./Planner";
 import Profile from "./Profile";
 import Progress from "./Progress";
@@ -14,7 +14,8 @@ import NoPageFound from "./NoPageFound";
 import App from "../App";
 import { useAtom } from "jotai";
 import { loginAtom } from "../App";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import JournalDetails from "./JournalDetails";
 
 //<Outlet context={[profilecompiled, setProfilecompiled]} />
 
@@ -63,7 +64,7 @@ const Main = () => {
           />
           <Route path="register" element={<Registration />} />
           <Route path="editprofile" element={<Editprofile />} />
-
+          <Route path="journal/:id" element={<JournalDetails />} />
           <Route
             path="community"
             element={

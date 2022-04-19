@@ -1,0 +1,13 @@
+.journalContainer {
+    border: 1px solid red;
+    margin: 2rem;
+}
+
+.journalTitle {
+    border: 1px solid black;
+}
+
+.journalBody {
+    border: 1px solid blue;
+
+}
