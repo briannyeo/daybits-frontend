@@ -15,6 +15,8 @@ import App from "../App";
 import { useAtom } from "jotai";
 import { loginAtom } from "../App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import JournalEntry from "./JournalDetails";
+import JournalDetails from "./JournalDetails";
 
 //<Outlet context={[profilecompiled, setProfilecompiled]} />
 
@@ -63,7 +65,7 @@ const Main = () => {
           />
           <Route path="register" element={<Registration />} />
           <Route path="editprofile" element={<Editprofile />} />
-
+          <Route path="journal/:journaltitle" element={<JournalDetails />} />
           <Route
             path="community"
             element={

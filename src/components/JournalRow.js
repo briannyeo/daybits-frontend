@@ -1,21 +1,30 @@
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
-import JournalModal from "./JournalModal";
+
 import { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const JournalRow = (props) => {
   const { arrTitle, arrUser, arrJournalBody, arrJournalId, handleDelete } =
     props;
 
-  const [show, setShow] = useState(false);
+  //const [show, setShow] = useState(false);
 
-  console.log(arrTitle); //--Correct
+  //console.log(arrTitle); //--Correct
   //   console.log(arrUser);
-  console.log(arrJournalBody); //--correct
+  // console.log(arrJournalBody); //--correct
   //   console.log(arrJournalId);
 
+  const [journalUrl, setJournalUrl] = useState("");
+
+  //   const handleClick = () => {
+  //     Navigate(`/daybits/journal/${journalUrl}`);
+  //   };
+  const navigate = useNavigate();
+
   let tableCells = [];
+  //   console.log(tableCells);
 
   const createTableCells = () => {
     for (let i = 0; i < arrJournalBody.length; i++) {
@@ -23,7 +32,10 @@ const JournalRow = (props) => {
         <>
           <TableRow key={arrJournalId[i]}>
             <TableCell align="center">{arrUser[i]}</TableCell>
-            <TableCell align="center" onClick={() => setShow(true)}>
+            <TableCell
+              align="center"
+              onClick={() => navigate(`/journal/${arrJournalId[i]}`)}
+            >
               {arrTitle[i]}
             </TableCell>
             <TableCell align="center">{arrJournalBody[i]}</TableCell>
@@ -33,14 +45,14 @@ const JournalRow = (props) => {
               <button onClick={handleDelete(arrJournalId[i])}>Delete</button>
             </TableCell>
           </TableRow>
-          <JournalModal
+          {/* <JournalModal
             arrTitle={arrTitle[i]}
             arrUser={arrUser[i]}
             arrJournalBody={arrJournalBody[i]}
             arrJournalId={arrJournalId[i]}
             show={show}
             onHide={() => setShow(false)}
-          />
+          /> */}
         </>
       );
     }

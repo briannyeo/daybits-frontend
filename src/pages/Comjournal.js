@@ -86,6 +86,7 @@ const Comjournal = () => {
 
   console.log(arrTitle);
 
+  //to add to respective arrays
   const createArr = (journallist) => {
     for (let i = 0; i < journallist.length; i++) {
       for (let x = 0; x < journallist[i].journals.length; x++) {
@@ -97,37 +98,17 @@ const Comjournal = () => {
     }
     return;
   };
-
   createArr(journallist);
-  // console.log("arrTitle", arrTitle);
-  // console.log("arrJournalBody", arrJournalBody);
-  // console.log("arrUser", arrUser);
 
-  //ORIGINAL CODE - PUT INSIDE TABLEBODY
-  // {
-  //   journallist.map((entry) => (
-  //     <TableRow
-  //       key={entry._id}
-  //       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-  //     >
-  //       <TableCell component="th" scope="row">
-  //         {entry.username}
-  //       </TableCell>
-  //       <TableCell onClick={() => setShow(true)} align="center">
-  //         {entry.title}{" "}
-  //       </TableCell>
-  //       <TableCell align="center">{entry.journalBody}</TableCell>
-  //       <TableCell align="center">
-  //         <button>Like</button> <br></br>
-  //         LIKES COUNTER - TBC
-  //       </TableCell>
-  //       <TableCell align="center">COMMENTS - TBC</TableCell>
-  //       <TableCell align="center">
-  //         <button onClick={handleDelete(entry._id)}>Delete</button>
-  //       </TableCell>
-  //     </TableRow>
-  //   ));
-  // }
+  // const journalArray = [];
+  // journalArray.push(arrTitle);
+  // journalArray.push(arrUser);
+  // journalArray.push(arrJournalBody);
+  // journalArray.push(arrJournalId);
+
+  // console.log(journalArray);
+  // const journalArray1 = {};
+
   return (
     <>
       <TableContainer component={Paper} style={{ margin: "20px" }}>
