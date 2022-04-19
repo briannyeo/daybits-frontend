@@ -56,7 +56,8 @@ const Progress = () => {
   let arrHabit = [];
   console.log(profile);
   console.log(profile.habit);
-  console.log(profile.journals[0]);
+  //console.log(profile.journals[0]);
+
   const createArrProfile = (profile) => {
     //console.log("first journal", profile.journals[0].title);
     //console.log("habit", profile.habit);

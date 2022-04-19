@@ -4,11 +4,12 @@ import urlcat from "urlcat";
 import { Link } from "react-router-dom";
 import { format, compareAsc } from "date-fns";
 import { addDays } from "date-fns/fp";
+import Profile from "./Profile";
+import "./Editprofile.css";
+import { useNavigate } from "react-router-dom";
 
 const endOfDay = require("date-fns/endOfDay");
 
-import Profile from "./Profile";
-import "./Editprofile.css";
 const BACKEND = process.env.REACT_APP_BACKEND;
 const url = urlcat(BACKEND, "/daybits/register/profile");
 
@@ -51,10 +52,14 @@ const Editprofile = () => {
       .catch((error) => console.log(error));
   };
 
+  let navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const profile = { habitstatus, habit, target, goal }; //backend
-    createProfile(profile); //LINK to backend, startDate
+    const profile = { habitstatus, habit, target, goal, startDate }; //backend
+    createProfile(profile); //LINK to backend
+    navigate("/daybits/profile");
+    console.log(profile);
   };
 
   return (
@@ -113,9 +118,6 @@ const Editprofile = () => {
           <span style={{ color: "red" }}>{`END:  ${getEndTime()}`}</span>
         </button>
         <br />
-       to="/daybits/profile">
-          <button>Return to Profile</button>
-        </Link>
       </form>
     </>
   );

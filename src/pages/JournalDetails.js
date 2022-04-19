@@ -7,7 +7,6 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
-const url = urlcat(BACKEND, `/daybits/journal/`);
 
 const JournalDetails = () => {
   const { id } = useParams();
@@ -16,37 +15,36 @@ const JournalDetails = () => {
   const [journalDetails, setJournalDetails] = useState([]);
   const [load, setLoad] = useState(false);
   const [comment, setComment] = useState("");
-
-  console.log(journalDetails);
+  const [allComment, setAllComment] = useState("");
 
   const handleChangeComment = (event) => {
     setComment(event.target.value);
   };
 
   //fetch the journal entry
+
   useEffect(() => {
-    const showJournal = (id) => {
-      const url = urlcat(BACKEND, `/daybits/journal/${id}`);
-      fetch(url, {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(id),
+    const url = urlcat(BACKEND, `/daybits/journal/${id}`);
+    console.log("url", url);
+    fetch(url, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((docs) => {
+        console.log(docs);
+        setJournalDetails(docs);
+        console.log(journalDetails);
       })
-        .then((response) => response.json())
-        .then((docs) => {
-          setJournalDetails(docs);
-          setLoad(true);
-        })
-        .catch((error) => console.log(error));
-    };
-    showJournal();
-  }, [load]);
+      .catch((error) => console.log(error));
+  }, []);
 
   //For creating a comment
   const createComment = (comment) => {
+    const url = urlcat(BACKEND, `/daybits/comments`);
     fetch(url, {
       method: "POST",
       credentials: "include",
@@ -64,17 +62,38 @@ const JournalDetails = () => {
 
   const handleCommentSubmit = (event) => {
     event.preventDefault();
-    createComment(comment);
+    const objComment = { comment };
+    createComment(objComment);
+    console.log(objComment);
     alert("comment submitted to the community");
   };
 
   //retrieving all comments
+  // useEffect(() => {
+  //   const showComment = (commentEntry) => {
+  //     fetch(urlcat(BACKEND, "/daybits/comment"), {
+  //       method: "GET",
+  //       credentials: "include",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(journalEntry),
+  //     })
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         setJournallist(data);
+  //         setLoad(true);
+  //       })
+  //       .catch((error) => console.log(error));
+  //   };
+  //   showJournal();
+  // }, [load]);
 
   return (
     <div className="journalContainer">
       <h1>This is a journal entry page</h1>
-      <div className="journalTitle">Journal Title</div>
-      <div className="journalBody">Journal Body is here</div>
+      <div className="journalTitle">{journalDetails.title}</div>
+      <div className="journalBody">{journalDetails.journalBody}</div>
       <Box
         sx={{ flexGrow: 1 }}
         component="form"
