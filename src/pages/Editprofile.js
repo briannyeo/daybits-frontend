@@ -7,8 +7,10 @@ import { addDays } from "date-fns/fp";
 import Profile from "./Profile";
 import "./Editprofile.css";
 import { useNavigate } from "react-router-dom";
+import { StayCurrentLandscapeTwoTone } from "@mui/icons-material";
 
-const endOfDay = require("date-fns/endOfDay");
+const dayjs = require("dayjs");
+//import dayjs from 'dayjs' // ES 2015
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 const url = urlcat(BACKEND, "/daybits/register/profile");
@@ -19,8 +21,9 @@ const Editprofile = () => {
   const [error, setError] = useState("");
   const [target, setTarget] = useState("");
   const [goal, setGoal] = useState("");
-
   const [startDate, setStartDate] = useState("");
+
+  console.log(startDate);
 
   const getStartTime = () => {
     const today = new Date(); //Date() uses local computer time
@@ -112,7 +115,7 @@ const Editprofile = () => {
         <p>{error}</p>
         <br />
         <br />I commit to changing my behavior for 30 days starting from:
-        <button onClick={() => setStartDate(getStartTime())}>
+        <button onClick={() => setStartDate(dayjs().format("YYYY-MM-DD"))}>
           <span style={{ color: "red" }}>{`START:  ${getStartTime()}`}</span> to
           <br />
           <span style={{ color: "red" }}>{`END:  ${getEndTime()}`}</span>
