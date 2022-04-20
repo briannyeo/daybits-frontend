@@ -6,10 +6,10 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { Link, useNavigate } from "react-router-dom";
 import "./journal.css";
-
 import urlcat from "urlcat";
 import TextField from "@mui/material/TextField";
 import { Checkbox, FormControlLabel } from "@mui/material";
+
 const BACKEND = process.env.REACT_APP_BACKEND;
 const url = urlcat(BACKEND, "/daybits/journal");
 

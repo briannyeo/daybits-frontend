@@ -5,17 +5,19 @@ import "./JournalDetails.css";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import Comments from "../components/Comments";
+import dayjs from "dayjs";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 
 const JournalDetails = () => {
   const { id } = useParams();
-  console.log("id is", id);
+  //console.log("id is", id); returns back journal ID
 
   const [journalDetails, setJournalDetails] = useState([]);
   const [load, setLoad] = useState(false);
   const [comment, setComment] = useState("");
-  const [allComment, setAllComment] = useState("");
+  const [allComments, setAllComments] = useState("");
 
   const handleChangeComment = (event) => {
     setComment(event.target.value);
@@ -25,7 +27,7 @@ const JournalDetails = () => {
 
   useEffect(() => {
     const url = urlcat(BACKEND, `/daybits/journal/${id}`);
-    console.log("url", url);
+    //console.log("url", url);
     fetch(url, {
       method: "GET",
       credentials: "include",
@@ -35,9 +37,9 @@ const JournalDetails = () => {
     })
       .then((response) => response.json())
       .then((docs) => {
-        console.log(docs);
+        //console.log(docs);
         setJournalDetails(docs);
-        console.log(journalDetails);
+        //console.log(journalDetails);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -62,32 +64,37 @@ const JournalDetails = () => {
 
   const handleCommentSubmit = (event) => {
     event.preventDefault();
-    const objComment = { comment };
-    createComment(objComment);
-    console.log(objComment);
+    const strComment = { comment };
+    strComment.journalId = id;
+    strComment.dateCommented = dayjs().format("DD-MMM-YYYY");
+    createComment(strComment);
+    setLoad(true);
+    console.log(strComment);
     alert("comment submitted to the community");
   };
 
-  //retrieving all comments
-  // useEffect(() => {
-  //   const showComment = (commentEntry) => {
-  //     fetch(urlcat(BACKEND, "/daybits/comment"), {
-  //       method: "GET",
-  //       credentials: "include",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(journalEntry),
-  //     })
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         setJournallist(data);
-  //         setLoad(true);
-  //       })
-  //       .catch((error) => console.log(error));
-  //   };
-  //   showJournal();
-  // }, [load]);
+  //retrieving all comments for JournalId
+  useEffect(() => {
+    const showComment = (comments) => {
+      fetch(urlcat(BACKEND, `/daybits/comments/${id}`), {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setAllComments(data);
+          setLoad(false);
+        })
+        .catch((error) => console.log(error));
+    };
+    //console.log(id);
+    showComment(id);
+  }, [id, load]);
+
+  console.log(allComments);
 
   return (
     <div className="journalContainer">
@@ -116,6 +123,22 @@ const JournalDetails = () => {
         </Grid>
       </Box>
       <button onClick={handleCommentSubmit}>Submit</button>
+      <>
+        {allComments ? (
+          <>
+            {allComments.map((e, index) => (
+              <Comments
+                key={index}
+                comment={e.comment}
+                author={e.author}
+                dateCommented={e.dateCommented}
+              />
+            ))}
+          </>
+        ) : (
+          <div></div>
+        )}
+      </>
     </div>
   );
 };
