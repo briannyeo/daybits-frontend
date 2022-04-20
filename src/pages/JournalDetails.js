@@ -62,9 +62,10 @@ const JournalDetails = () => {
 
   const handleCommentSubmit = (event) => {
     event.preventDefault();
-    const objComment = { comment };
-    createComment(objComment);
-    console.log(objComment);
+    const strComment = { comment };
+    strComment.journalId = id;
+    createComment(strComment);
+    console.log(strComment);
     alert("comment submitted to the community");
   };
 
