@@ -36,16 +36,16 @@ const Planner = () => {
   console.log(rangeEndDate);
 
   //MYDATE
-  // const [date, setDate] = useState([
-  //   new Date(rangeStartYear, rangeStartMonth, rangeStartDate),
-  //   new Date(rangeEndYear, rangeEndMonth, rangeEndDate),
-  // ]);
+  const [date, setDate] = useState([
+    new Date(rangeStartYear, rangeStartMonth - 1, rangeStartDate - 1),
+    new Date(rangeEndYear, rangeEndMonth - 1, rangeEndDate - 1),
+  ]);
 
   //SAMPLE DATE
-  const [date, setDate] = useState([
-    new Date(2021, 6, 1),
-    new Date(2021, 6, 10),
-  ]);
+  // const [date, setDate] = useState([
+  //   new Date(2021, 6, 1), //2021 July 1
+  //   new Date(2021, 6, 10), //2021 July 10
+  // ]);
 
   console.log("setDate", date);
 
@@ -69,11 +69,32 @@ const Planner = () => {
     };
     showPlanner();
   }, []);
-
   console.log("show Planner", planner);
-  // const onChange = date => {
-  //   setDate(date)
-  // }
+  let dateSuccess = [];
+
+  const checkSuccess = () => {
+    for (let i = 0; i < planner.journals.length; i++) {
+      if (planner.journals[i].dailyGoalAchieved === true) {
+        dateSuccess.push(
+          dayjs(planner.journals[i].createdAt).format("DD-MM-YYYY")
+        );
+      }
+    }
+    console.log("checksuccess", dateSuccess);
+
+    // const onChange = date => {
+    //   setDate(date)
+    // }
+  };
+
+  const onClick = () => {
+    //hi can print
+    console.log("hi");
+  };
+  if (load) {
+    checkSuccess();
+  }
+  //const markSuccess = ["24-04-2022", "25-04-2022", "26-04-2022"];
 
   return (
     <>
@@ -92,14 +113,23 @@ const Planner = () => {
           </p>
         )}
       </div>
-      ;
       <Calendar
-        onChange={setDate}
-        value={date}
+        //onChange={setDate}
         selectRange={true}
         defaultValue={date}
+        tileClassName={({ date, view }) => {
+          if (dateSuccess.find((x) => x === dayjs(date).format("DD-MM-YYYY"))) {
+            return "highlightSuccess";
+          }
+        }}
+        onClick={onClick()}
       />
-      ;
+      <p>
+        Legend:<br></br>
+        Purple dates: The date range you have committed to changing your habit
+        <br></br>
+        Green highlighted dates: Dates you succeeded!
+      </p>
     </>
   );
 };
