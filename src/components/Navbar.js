@@ -11,27 +11,46 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { loginAtom } from "../App";
+import urlcat from "urlcat";
+const BACKEND = process.env.REACT_APP_BACKEND;
+const logoutUrl = urlcat(BACKEND, "/daybits/register/logout");
 
-const pages = [
-  "home",
-  "journal",
-  "community",
-  "planner",
-  "profile",
-  "progress",
-];
-
+const pages = ["home", "journal", "community", "planner", "progress"];
 const pages1 = ["home"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Account"];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();
+  const [login, setLogin] = useAtom(loginAtom);
 
-  const [login, _] = useAtom(loginAtom);
+  console.log(login);
+
+  //To handle logout button
+  const handleLogout = (event) => {
+    event.preventDefault();
+    fetch(logoutUrl, {
+      method: "POST",
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === "success") {
+          alert("logout success! please come again");
+          //window.location.reload();
+          setLogin(false);
+          navigate("/daybits/home");
+          //code to delete the cookie here
+        } else {
+          alert("logout failed");
+        }
+      })
+      .catch((error) => console.log(error));
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -152,6 +171,19 @@ const Navbar = () => {
                       </Typography>
                     </MenuItem>
                   ))}
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">
+                      <p
+                        style={{
+                          color: "#0b58CA",
+                          textDecoration: "underline",
+                        }}
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </p>
+                    </Typography>
+                  </MenuItem>
                 </Menu>
               </Box>
             </Toolbar>
