@@ -28,7 +28,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [login, setLogin] = useAtom(loginAtom);
 
-  console.log(login);
+  //console.log(login);
 
   //To handle logout button
   const handleLogout = (event) => {

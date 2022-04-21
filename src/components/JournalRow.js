@@ -38,12 +38,10 @@ const JournalRow = (props) => {
             >
               {arrTitle[i]}
             </TableCell>
-            <TableCell align="center">{arrJournalBody[i]}</TableCell>
-            <TableCell align="center">LIKES TBC</TableCell>
-            <TableCell align="center">COMMENTS TBC</TableCell>
-            <TableCell align="center">
+
+            {/* <TableCell align="center">
               <button onClick={handleDelete(arrJournalId[i])}>Delete</button>
-            </TableCell>
+            </TableCell> */}
           </TableRow>
           {/* <JournalModal
             arrTitle={arrTitle[i]}
