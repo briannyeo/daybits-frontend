@@ -90,8 +90,6 @@ const Comjournal = () => {
   let arrJournalBody = [];
   let arrJournalId = [];
 
-  console.log(arrTitle);
-
   //to add to respective arrays
   const createArr = (journallist) => {
     for (let i = 0; i < journallist.length; i++) {

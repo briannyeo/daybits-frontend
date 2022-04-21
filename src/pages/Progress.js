@@ -9,104 +9,118 @@ import dayjs from "dayjs"; // ES 2015
 const BACKEND = process.env.REACT_APP_BACKEND;
 
 const Progress = () => {
-  const [profile, setProfile] = useState([]);
-  const [countSuccess, setCountSuccess] = useState(0);
-  const [countFail, setCountFail] = useState(0);
-  const [daysLeft, setDaysLeft] = useState("");
+  const [progress, setProgress] = useState([]);
+  // const [countSuccess, setCountSuccess] = useState(0);
+  // const [countFail, setCountFail] = useState(0);
+  // const [daysLeft, setDaysLeft] = useState("");
   const [load, setLoad] = useState(false);
   const [error, setError] = useState("");
 
   //fetch all user + journal data
 
   useEffect(() => {
-    const showProfile = (profile) => {
+    const showProgress = (progress) => {
       fetch(urlcat(BACKEND, "/daybits/register/progress"), {
         method: "GET",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(profile),
+        body: JSON.stringify(progress),
       })
         .then((response) => response.json())
         .then((data) => {
-          setProfile(data);
+          setProgress(data);
+
+          setLoad(true);
         })
-        .catch((error) => setError(error));
+        .catch((error) => console.log(error));
     };
-    showProfile();
+    showProgress();
   }, []);
 
-  // const getEndTime = () => {
-  //   const d = new Date();
-  //   d.setDate(d.getDate() + 30);
-  //   return d.toDateString();
-  // };
+  let countSuccess = [];
+  let countFail = [];
+  let daysLeft = [];
 
-  const endDate = dayjs(profile.startDate).add(30, "day").format("DD-MMM-YYYY");
+  //X days closer to goal - current date minus start date
+  const dateProgress = Date.parse(dayjs().format("DD-MMM-YYYY"));
+  console.log("dateProgress", dateProgress);
+
+  const dateStarted = Date.parse(
+    dayjs(progress.startDate).format("DD-MMM-YYYY")
+  );
+  console.log("dateStarted", dateStarted);
+
+  const daysRemaining = Math.floor((dateProgress - dateStarted) / 86400000);
+  console.log("days remaining", daysRemaining);
+  daysLeft.push(daysRemaining);
+  //setDaysLeft(daysRemaining);
+
+  const endDate = dayjs(progress.startDate)
+    .add(30, "day")
+    .format("DD-MMM-YYYY");
 
   let navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate("/daybits/journal");
-  };
-
-  const createArrProgress = (profile) => {
-    console.log("profile", profile);
-    console.log(profile.habit);
-    console.log(profile.journals.length);
+  const createArrProgress = (progress) => {
+    console.log("progress", progress);
+    console.log(progress.habit);
+    console.log(progress.journals.length);
 
     let count = 0;
     let counter = 0;
 
-    for (let i = 0; i < profile.journals.length; i++) {
+    for (let i = 0; i < progress.journals.length; i++) {
       //No. of days succeeded = counting number of days the 'daily goal achieved' was true
 
-      // console.log("JOURNAL NUMBER", profile.journals[i].title);
-      // console.log("JOURNAL NUMBER", profile.journals[i].dailyGoalAchieved);
-
-      if (profile.journals[i].dailyGoalAchieved === true) {
+      if (progress.journals[i].dailyGoalAchieved === true) {
         count += 1;
         console.log("count of TRUE", count);
-        setCountSuccess(count);
+        countSuccess.push(count);
+        //setCountSuccess(count);
         // console.log("CountSuccess in state", countSuccess);
       }
       //No. of days missed = counting number of days missed (if journal was written but daily goal achieved was false)
       if (
-        profile.journals[i].title &&
-        profile.journals[i].dailyGoalAchieved === false
+        progress.journals[i].title &&
+        progress.journals[i].dailyGoalAchieved === false
       ) {
         counter += 1;
         console.log("counter of FALSE", counter);
-        setCountFail(counter);
+        countFail.push(counter);
+        //setCountFail(counter);
         // console.log("CountFail in state", countFail);
       }
-
-      //X days closer to goal - current date minus start date
-      const dateProgress = Date.parse(dayjs().format("DD-MMM-YYYY"));
-      console.log("dateProgress", dateProgress);
-
-      const dateStarted = Date.parse(
-        dayjs(profile.startDate).format("DD-MMM-YYYY")
-      );
-      console.log("dateStarted", dateStarted);
-
-      const daysRemaining = Math.floor((dateProgress - dateStarted) / 86400000);
-      console.log("days remaining", daysRemaining);
-      setDaysLeft(daysRemaining);
     }
 
-    return 0;
+    return;
   };
 
-  const handleTest = () => {
-    createArrProgress(profile);
-    setLoad(true);
-  };
+  if (load) {
+    createArrProgress(progress);
+  }
 
+  // const handleTest = () => {
+  //   createArrProgress(progress);
+  //   //setLoad(true);
+  // };
+
+  // <div>
+  //   <h2 style={{ marginTop: "20px" }}>My Progress</h2>
+  //   <br></br>
+  //   <button onClick={handleTest} style={{ fontSize: "150%" }}>
+  //     Click to refresh your Progress for Today!
+  //   </button>
+  //   <br></br>
+  // </div>;
+
+  const handleClick = () => {
+    navigate("/daybits/journal");
+  };
   return (
     <div>
-      {load ? (
+      {
         <div>
           <h2 style={{ marginTop: "20px" }}>My Progress</h2>
           <br></br>
@@ -114,19 +128,23 @@ const Progress = () => {
           <br></br>
           <h3>
             No. of days succeeded:{" "}
-            <span style={{ color: "green" }}>{countSuccess}</span>
+            <span style={{ color: "green" }}>
+              {countSuccess[countSuccess.length - 1]}
+            </span>
           </h3>{" "}
           <br></br>
           <h3>
             No. of days missed:{" "}
-            <span style={{ color: "red" }}>{countFail}</span>
+            <span style={{ color: "red" }}>
+              {countFail[countFail.length - 1]}
+            </span>
           </h3>
           <br></br>
           <h3>
             You are <span style={{ color: "blue" }}>{daysLeft}</span> days
             closer to{" "}
-            <span style={{ color: "blue" }}>{profile.habitstatus}ing</span> your{" "}
-            <span style={{ color: "blue" }}>{profile.habit}</span>
+            <span style={{ color: "blue" }}>{progress.habitstatus}ing</span>{" "}
+            your <span style={{ color: "blue" }}>{progress.habit}</span>
           </h3>
           <br></br>
           <h3>
@@ -138,16 +156,7 @@ const Progress = () => {
             Write in your journal today!
           </button>
         </div>
-      ) : (
-        <div>
-          <h2 style={{ marginTop: "20px" }}>My Progress</h2>
-          <br></br>
-          <button onClick={handleTest} style={{ fontSize: "150%" }}>
-            Click to refresh your Progress for Today!
-          </button>
-          <br></br>
-        </div>
-      )}
+      }
     </div>
   );
 };
