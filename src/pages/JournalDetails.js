@@ -94,7 +94,7 @@ const JournalDetails = () => {
     showComment(id);
   }, [id, load]);
 
-  console.log(allComments);
+  //console.log(allComments);
 
   return (
     <div className="journalContainer">

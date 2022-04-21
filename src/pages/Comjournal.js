@@ -17,9 +17,9 @@ const BACKEND = process.env.REACT_APP_BACKEND;
 const Comjournal = () => {
   const [journallist, setJournallist] = useState([]);
   const [load, setLoad] = useState(false);
+  const [comments, setComments] = useState([]);
 
   //fetch all journal entries
-
   useEffect(() => {
     const showJournal = (journalEntry) => {
       fetch(urlcat(BACKEND, "/daybits/journal"), {
@@ -39,30 +39,6 @@ const Comjournal = () => {
     };
     showJournal();
   }, [load]);
-
-  //fetch communitydata - comments and likes
-  //STUCK HERE - likes needs to read from communityschema, not sure how to link to journaltitle (in userdata schema)
-  // useEffect(() => {
-  //   fetch(urlcat(BACKEND, "/daybits/journal/community"))
-  //     .then((response) => response.json())
-  //     .then((data) => setCommunity(data));
-  // }, []);
-
-  //code for Likes update in backend
-  // const handleUpdate = (entry) => () => {
-  //   const url = urlcat(BACKEND, `/daybits/journal/${entry._id}`);
-  //   const newEntry = { ...journallist, likes: entry.likes + 1 }; //adds 1
-
-  //   fetch(url, {
-  //     method: "PUT",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(newEntry),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => setJournallist(data));
-  // };
 
   const handleDelete = (id) => () => {
     const url = urlcat(BACKEND, `/daybits/journal/${id}`);
@@ -89,6 +65,7 @@ const Comjournal = () => {
   let arrUser = [];
   let arrJournalBody = [];
   let arrJournalId = [];
+  console.log("arrJournalID:", arrJournalId);
 
   //to add to respective arrays
   const createArr = (journallist) => {
@@ -102,6 +79,65 @@ const Comjournal = () => {
     }
     return;
   };
+
+  //FETCH FROM COMMENT SCHEMA
+  //fetch all comments
+  useEffect(() => {
+    const showComments = (comments) => {
+      fetch(urlcat(BACKEND, "/daybits/comments"), {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(comments),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setComments(data);
+          setLoad(true);
+        })
+        .catch((error) => console.log(error));
+    };
+    showComments();
+  }, []);
+
+  console.log("comments", comments);
+  //MATCH COMMENT SCHEMA JOURNALID TO JOURNAL SCHEMA JOURNAL ID (arrJournalId)
+
+  // const countingComments = (journalId) => {
+  //   let count = 0;
+  //   let counting = 0;
+
+  //   // const words = [
+  //   //   "spray",
+  //   //   "limit",
+  //   //   "elite",
+  //   //   "exuberant",
+  //   //   "destruction",
+  //   //   "present",
+  //   // ];
+
+  //   // const result = words.filter((e) => e.length > 6);
+
+  //   // for (let y = 0; y < comments.length; y++) {
+  //   //   if (comments[y].journalId === arrJournalId[y]) {
+  //   //     count += 1;
+  //   //   }
+  //   // }
+
+  //   //COUNT
+  //   counting = count;
+  //   return;
+  // };
+
+  // if (load) {
+  //   countingComments();
+  //   console.log("counting", counting);
+  // }
+  console.log("journallist:", journallist);
+  // console.log("arrJournalComments:", arrJournalComments);
+
   createArr(journallist);
 
   // const journalArray = [];
@@ -119,12 +155,12 @@ const Comjournal = () => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Posted by</TableCell>
-              <TableCell align="center">Title</TableCell>
-              <TableCell align="center">Body</TableCell>
-              <TableCell align="center">Likes</TableCell>
-              <TableCell align="center">Comments</TableCell>
-              <TableCell align="center">Delete</TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="center">
+                Posted by
+              </TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="center">
+                Title
+              </TableCell>
             </TableRow>
           </TableHead>
           <JournalRow
