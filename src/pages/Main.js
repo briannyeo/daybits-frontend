@@ -45,14 +45,7 @@ const Main = () => {
               </Protected>
             }
           />
-          <Route
-            path="planner"
-            element={
-              <Protected>
-                <Planner />
-              </Protected>
-            }
-          />
+          <Route path="planner" element={<Planner />} />
           <Route path="profile" element={<Profile />} />
           <Route
             path="progress"
