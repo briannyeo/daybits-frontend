@@ -37,10 +37,10 @@ const Login = () => {
       .then((data) => {
         if (data.status === "success") {
           setLogin(true); //check that the cookie.user exists? should be on index page
-          alert("success! please click on the nav bar to proceed into the app");
+          alert("Login successful. Welcome to Daybits!");
           navigate("/daybits/profile");
         } else {
-          alert("login failed, please try again, or register as a new user");
+          alert("Login failed. Please try again or register as a new user");
         }
       })
       .catch((error) => console.log(error));
@@ -50,25 +50,6 @@ const Login = () => {
     event.preventDefault();
     const userInfo = { username, password };
     checkUser(userInfo); //LINK to backend
-  };
-
-  const handleLogout = (event) => {
-    event.preventDefault();
-    fetch(logoutUrl, {
-      method: "POST",
-      credentials: "include",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.status === "success") {
-          alert("logout success! please come again");
-          window.location.reload();
-          //code to delete the cookie here
-        } else {
-          alert("logout failed");
-        }
-      })
-      .catch((error) => console.log(error));
   };
 
   // Generate JSX code for error message
@@ -108,11 +89,6 @@ const Login = () => {
     </div>
   );
 
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password",
-  };
-
   return (
     <div className="app">
       <div className="login-form">
@@ -128,14 +104,6 @@ const Login = () => {
               New User? Click here
             </button>
           </Link>{" "}
-          <button
-            style={{ margin: "10px" }}
-            type="button"
-            className="btn btn-info"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
         </div>
       </div>
     </div>

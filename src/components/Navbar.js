@@ -40,13 +40,13 @@ const Navbar = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          alert("logout success! please come again");
+          alert("You have successfully logged out!");
           //window.location.reload();
           setLogin(false);
           navigate("/daybits/home");
           //code to delete the cookie here
         } else {
-          alert("logout failed");
+          alert("Logout failed, please try again");
         }
       })
       .catch((error) => console.log(error));
@@ -230,15 +230,7 @@ const Navbar = () => {
                   sx={{
                     display: { xs: "block", md: "none" },
                   }}
-                >
-                  {pages1.map((page) => (
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">
-                        <Link to={`/daybits/${page}`}>{page}</Link>
-                      </Typography>
-                    </MenuItem>
-                  ))}
-                </Menu>
+                ></Menu>
               </Box>
               <Typography
                 variant="h6"
@@ -260,38 +252,6 @@ const Navbar = () => {
                     </Button>
                   </Link>
                 ))}
-              </Box>
-
-              <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="User" src="../images/user.png" />
-                  </IconButton>
-                </Tooltip>
-                <Menu
-                  sx={{ mt: "45px" }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
-                >
-                  {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">
-                        <Link to={`/daybits/${setting}`}>{setting}</Link>
-                      </Typography>
-                    </MenuItem>
-                  ))}
-                </Menu>
               </Box>
             </Toolbar>
           </Container>
