@@ -7,6 +7,16 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import { Link, useNavigate } from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
+import Input from "@mui/material/Input";
+import FilledInput from "@mui/material/FilledInput";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import InputAdornment from "@mui/material/InputAdornment";
+import FormHelperText from "@mui/material/FormHelperText";
+import FormControl from "@mui/material/FormControl";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 const url = urlcat(BACKEND, "/daybits/register");
@@ -21,13 +31,13 @@ const Registration = () => {
     setUsername(event.target.value);
   };
 
-  const handleChangepassword = (event) => {
-    setPassword(event.target.value);
-  };
+  // const handleChangepassword = (event) => {
+  //   setPassword(event.target.value);
+  // };
 
-  const handleChangeconfirmpw = (event) => {
-    setConfirmpw(event.target.value);
-  };
+  // const handleChangeconfirmpw = (event) => {
+  //   setConfirmpw(event.target.value);
+  // };
 
   const createUser = (userInfo) => {
     fetch(url, {
@@ -48,17 +58,72 @@ const Registration = () => {
 
   let navigate = useNavigate();
 
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   if (password === confirmpw) {
+  //     const userInfo = { username, password }; //backend
+  //     console.log(userInfo);
+  //     createUser(userInfo); //LINK to backend
+  //     alert("new account created - proceed to sign in");
+  //     navigate("/daybits/home");
+  //   } else {
+  //     alert("passwords do not match");
+  //   }
+  // };
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (password === confirmpw) {
-      const userInfo = { username, password }; //backend
-      console.log(userInfo);
-      createUser(userInfo); //LINK to backend
-      alert("new account created - proceed to sign in");
-      navigate("/daybits/home");
-    } else {
-      alert("passwords do not match");
-    }
+
+    const userInfo = { username, password }; //backend
+    console.log(userInfo);
+    createUser(userInfo); //LINK to backend
+    alert("new account created - proceed to sign in");
+    navigate("/daybits/home");
+  };
+
+  //DO NOT DELETE - original text field password
+  // <TextField
+  //   id="outlined-multiline-static"
+  //   label="Password"
+  //   multiline
+  //   maxRows={4}
+  //   value={password}
+  //   onChange={handleChangepassword}
+  // />;
+
+  // <Grid item xs={12}>
+  //   <TextField
+  //     id="outlined-multiline-static"
+  //     label="Confirm Password"
+  //     multiline
+  //     maxRows={4}
+  //     value={confirmpw}
+  //     onChange={handleChangeconfirmpw}
+  //   />
+  // </Grid>;
+
+  //FIRST PASSWORD
+  const [values, setValues] = React.useState({
+    amount: "",
+    password: "",
+    weight: "",
+    weightRange: "",
+    showPassword: false,
+  });
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+    setPassword(event.target.value);
+  };
+
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
   };
 
   return (
@@ -85,24 +150,30 @@ const Registration = () => {
           />
         </Grid>
         <Grid item xs={12}>
-          <TextField
-            id="outlined-multiline-static"
-            label="Password"
-            multiline
-            maxRows={4}
-            value={password}
-            onChange={handleChangepassword}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="outlined-multiline-static"
-            label="Confirm Password"
-            multiline
-            maxRows={4}
-            value={confirmpw}
-            onChange={handleChangeconfirmpw}
-          />
+          <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+            <InputLabel htmlFor="outlined-adornment-password">
+              Password
+            </InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-password"
+              type={values.showPassword ? "text" : "password"}
+              value={values.password}
+              onChange={handleChange("password")}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              label="Password"
+            />
+          </FormControl>
         </Grid>
       </Box>
 
