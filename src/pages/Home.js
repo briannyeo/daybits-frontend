@@ -1,10 +1,11 @@
 import React from "react";
-import Owldemo1 from "../components/Owldemo1";
+import DaybitCarousel from "../components/Carousel";
+import "./Home.css";
 
 const Home = () => {
   return (
-    <div>
-      <Owldemo1 />
+    <div className="homeContainer">
+      <DaybitCarousel />
     </div>
   );
 };
