@@ -17,6 +17,13 @@ import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Rammetto+One&display=swap"
+  rel="stylesheet"
+></link>;
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 const url = urlcat(BACKEND, "/daybits/register");
@@ -26,6 +33,12 @@ const Registration = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [confirmpw, setConfirmpw] = useState("");
+
+  const rammetto = createTheme({
+    typography: {
+      fontFamily: ["Rammetto One", "sans-serif"].join(","),
+    },
+  });
 
   const handleChangeusername = (event) => {
     setUsername(event.target.value);
@@ -128,15 +141,19 @@ const Registration = () => {
 
   return (
     <div>
-      <h1>Registration</h1>
+      <Typography
+        style={{ fontFamily: "Rammetto One, cursive" }}
+        component="h1"
+        variant="h5"
+      >
+        Create an Account
+      </Typography>
       <Box
-        sx={{ flexGrow: 1 }}
+        sx={{ flexGrow: 1, "& .MuiTextField-root": { m: 1, width: "25ch" } }}
         component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
-        }}
         noValidate
         autoComplete="off"
+        onSubmit={handleSubmit}
       >
         <Grid container spacing={1}></Grid>
         <Grid item xs={12}>
@@ -147,6 +164,7 @@ const Registration = () => {
             maxRows={4}
             value={username}
             onChange={handleChangeusername}
+            required
           />
         </Grid>
         <Grid item xs={12}>
@@ -159,6 +177,7 @@ const Registration = () => {
               type={values.showPassword ? "text" : "password"}
               value={values.password}
               onChange={handleChange("password")}
+              required
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -173,11 +192,18 @@ const Registration = () => {
               }
               label="Password"
             />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              style={{ backgroundColor: "#FE7965" }}
+            >
+              Sign In
+            </Button>
           </FormControl>
         </Grid>
       </Box>
-
-      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 };

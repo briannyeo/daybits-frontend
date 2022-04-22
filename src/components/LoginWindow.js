@@ -154,7 +154,6 @@ export default function LoginWindow() {
                 autoComplete="current-password"
                 color="warning"
                 onChange={(event) => setPassword(event.target.value)}
-                className="changeFont"
               />
 
               <Button
