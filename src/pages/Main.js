@@ -16,10 +16,8 @@ import { useAtom } from "jotai";
 import { loginAtom } from "../App";
 import { Routes, Route } from "react-router-dom";
 import JournalDetails from "./JournalDetails";
+import Account from "./Account";
 
-//<Outlet context={[profilecompiled, setProfilecompiled]} />
-
-//<Route path="journal" element={login ? <Journal /> : <NoPageFound />} />;
 const Protected = ({ children }) => {
   const [login, _] = useAtom(loginAtom);
   if (login) {
@@ -56,13 +54,35 @@ const Main = () => {
             }
           />
           <Route path="register" element={<Registration />} />
-          <Route path="editprofile" element={<Editprofile />} />
-          <Route path="journal/:id" element={<JournalDetails />} />
+          <Route
+            path="editprofile"
+            element={
+              <Protected>
+                <Editprofile />
+              </Protected>
+            }
+          />
+          <Route
+            path="journal/:id"
+            element={
+              <Protected>
+                <JournalDetails />
+              </Protected>
+            }
+          />
           <Route
             path="community"
             element={
               <Protected>
                 <Comjournal />
+              </Protected>
+            }
+          />
+          <Route
+            path="account"
+            element={
+              <Protected>
+                <Account />
               </Protected>
             }
           />
