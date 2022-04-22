@@ -1,5 +1,6 @@
 import React, { Profiler } from "react";
 import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
 import { useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
 import urlcat from "urlcat";
@@ -45,36 +46,51 @@ const Profile = (props) => {
   }, []);
 
   return (
-    <div className="container">
-      <Link to="/daybits/editprofile">
-        <button>Edit</button>
-      </Link>
-      {loading ? (
-        <p>loading</p>
-      ) : (
-        <h3 style={{ marginTop: "30px" }}>
-          I want to
-          <span style={{ color: "green", fontStyle: "italic" }}>
-            &nbsp; {profile.habitstatus} &nbsp;
-          </span>
-          my habit of
-          <span style={{ color: "green", fontStyle: "italic" }}>
-            &nbsp; {profile.habit} &nbsp;
-          </span>
-          <br />
-          <br />
-          Target duration / frequency:
-          <span style={{ color: "green", fontStyle: "italic" }}>
-            &nbsp;{profile.target} &nbsp;
-          </span>
-          <br />
-          <br />
-          My goal is to
-          <span style={{ color: "green", fontStyle: "italic" }}>
-            &nbsp;{profile.goal} &nbsp;
-          </span>
-        </h3>
-      )}
+    <div className="profileContainer">
+      <div className="profileContent">
+        {loading ? (
+          <p>loading</p>
+        ) : (
+          <>
+            <h3 style={{ marginTop: "30px" }}>
+              I want to
+              <span style={{ color: "green", fontStyle: "italic" }}>
+                &nbsp; {profile.habitstatus} &nbsp;
+              </span>
+              my habit of
+              <span style={{ color: "green", fontStyle: "italic" }}>
+                &nbsp; {profile.habit} &nbsp;
+              </span>
+              <br />
+              <br />
+              Target duration / frequency:
+              <span style={{ color: "green", fontStyle: "italic" }}>
+                &nbsp;{profile.target} &nbsp;
+              </span>
+              <br />
+              <br />
+              My goal is to
+              <span style={{ color: "green", fontStyle: "italic" }}>
+                &nbsp;{profile.goal} &nbsp;
+              </span>
+            </h3>
+            <Link style={{ textDecoration: "none" }} to="/daybits/editprofile">
+              <Button
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                style={{
+                  fontFamily: "Montserrat",
+                  backgroundColor: "#FE7965",
+                  color: "white",
+                  marginTop: "3em",
+                }}
+              >
+                Edit
+              </Button>
+            </Link>
+          </>
+        )}
+      </div>
     </div>
   );
 };
