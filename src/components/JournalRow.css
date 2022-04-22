@@ -1,0 +1,10 @@
+#journalTitleRow {
+    
+}
+
+#journalTitleRow:hover {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    
+}

@@ -4,6 +4,7 @@ import TableBody from "@mui/material/TableBody";
 
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import "./JournalRow.css";
 
 const JournalRow = (props) => {
   const { arrTitle, arrUser, arrJournalBody, arrJournalId, handleDelete } =
@@ -33,8 +34,10 @@ const JournalRow = (props) => {
           <TableRow key={arrJournalId[i]}>
             <TableCell align="center">{arrUser[i]}</TableCell>
             <TableCell
+              id="journalTitleRow"
               align="center"
               onClick={() => navigate(`/daybits/journal/${arrJournalId[i]}`)}
+              style={{}}
             >
               {arrTitle[i]}
             </TableCell>
