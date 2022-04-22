@@ -34,12 +34,6 @@ const Registration = () => {
   const [error, setError] = useState("");
   const [confirmpw, setConfirmpw] = useState("");
 
-  const rammetto = createTheme({
-    typography: {
-      fontFamily: ["Rammetto One", "sans-serif"].join(","),
-    },
-  });
-
   const handleChangeusername = (event) => {
     setUsername(event.target.value);
   };
@@ -139,71 +133,85 @@ const Registration = () => {
     event.preventDefault();
   };
 
+  const registration = createTheme({
+    typography: {
+      fontFamily: "Montserrat, sans-serif;",
+      fontWeightLight: 400,
+    },
+    palette: {
+      primary: {
+        main: "#f57c00",
+      },
+    },
+  });
+
   return (
     <div>
-      <Typography
-        style={{ fontFamily: "Rammetto One, cursive" }}
-        component="h1"
-        variant="h5"
-      >
-        Create an Account
-      </Typography>
-      <Box
-        sx={{ flexGrow: 1, "& .MuiTextField-root": { m: 1, width: "25ch" } }}
-        component="form"
-        noValidate
-        autoComplete="off"
-        onSubmit={handleSubmit}
-      >
-        <Grid container spacing={1}></Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="outlined-multiline-flexible"
-            label="Username"
-            multiline
-            maxRows={4}
-            value={username}
-            onChange={handleChangeusername}
-            required
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">
-              Password
-            </InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
-              type={values.showPassword ? "text" : "password"}
-              value={values.password}
-              onChange={handleChange("password")}
-              required
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Password"
+      <ThemeProvider theme={registration}>
+        <Typography
+          style={{ fontFamily: "Rammetto One, cursive" }}
+          component="h1"
+          variant="h5"
+        >
+          Create an Account
+        </Typography>
+        <Box
+          sx={{ flexGrow: 1, "& .MuiTextField-root": { m: 1, width: "25ch" } }}
+          component="form"
+          noValidate
+          autoComplete="off"
+          onSubmit={handleSubmit}
+        >
+          <Grid container spacing={1}></Grid>
+          <Grid item xs={12}>
+            <TextField
+              id="outlined-multiline-flexible"
+              label="Username"
+              multiline
+              maxRows={4}
+              value={username}
+              onChange={handleChangeusername}
+              color="warning"
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              style={{ backgroundColor: "#FE7965" }}
-            >
-              Sign In
-            </Button>
-          </FormControl>
-        </Grid>
-      </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-password">
+                Password
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password"
+                type={values.showPassword ? "text" : "password"}
+                value={values.password}
+                onChange={handleChange("password")}
+                required
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Password"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                style={{ backgroundColor: "#FE7965" }}
+              >
+                Sign In
+              </Button>
+            </FormControl>
+          </Grid>
+        </Box>
+      </ThemeProvider>
     </div>
   );
 };
