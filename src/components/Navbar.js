@@ -88,7 +88,7 @@ const Navbar = () => {
                 sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
               >
                 <Link to={`/daybits/home`}>
-                  <img src={daybitslogo} style={{ maxWidth: "7rem" }} />
+                  <img src={daybitslogo} style={{ maxWidth: "5rem" }} />
                 </Link>
               </Typography>
 
@@ -198,24 +198,23 @@ const Navbar = () => {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">
-                        <Link to={`/daybits/${setting}`}>{setting}</Link>
-                      </Typography>
-                    </MenuItem>
-                  ))}
                   <MenuItem onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">
-                      <p
-                        style={{
-                          color: "#0b58CA",
-                          textDecoration: "underline",
-                        }}
-                        onClick={handleLogout}
-                      >
-                        Logout
+                      <p onClick={() => navigate("/daybits/profile")}>
+                        Profile
                       </p>
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">
+                      <p onClick={() => navigate("/daybits/account")}>
+                        Account
+                      </p>
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">
+                      <p onClick={handleLogout}>Logout</p>
                     </Typography>
                   </MenuItem>
                 </Menu>

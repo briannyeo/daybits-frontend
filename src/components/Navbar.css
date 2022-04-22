@@ -1,7 +1,12 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Rammetto+One&display=swap');
 
 .navBar {
     font-family: 'Rammetto One', cursive;
     font-size: 1.25rem;
 }
+
+p{
+    font-family:  'Montserrat', sans-serif;
+    color: #21140B;
+}
+
