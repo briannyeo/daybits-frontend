@@ -9,6 +9,13 @@ import "./journal.css";
 import urlcat from "urlcat";
 import TextField from "@mui/material/TextField";
 import { Checkbox, FormControlLabel } from "@mui/material";
+import "./createJournal.css";
+import Button from "@mui/material/Button";
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Rammetto+One&display=swap"
+  rel="stylesheet"
+></link>;
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 const url = urlcat(BACKEND, "/daybits/journal");
@@ -76,52 +83,75 @@ const Journal = () => {
   };
 
   return (
-    <div>
+    <div className="journalEntryContainer">
       <h1>Create a Journal Entry</h1>
-      <Box
-        sx={{ flexGrow: 1 }}
-        component="form"
-        // sx={{
-        //   "& .MuiTextField-root": { m: 1, width: "25ch" },
-        // }}
-        noValidate
-        autoComplete="off"
-      >
-        <Grid container spacing={1}></Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="outlined-multiline-flexible"
-            label="Journal Title"
-            multiline
-            maxRows={4}
-            value={title}
-            onChange={handleChangeTitle}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="outlined-multiline-static"
-            label="Journal Entry"
-            multiline
-            required
-            rows={20}
-            value={journalBody}
-            onChange={handleChangeBody}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={dailyGoalAchived}
-                onChange={(e) => setDailyGoalAchived(e.target.checked)}
-              />
-            }
-            label="I completed my daily goal today"
-          />
-        </Grid>
-      </Box>
-      <button onClick={handleSubmit}>Submit</button>
+      <div className="journalEntryContent">
+        <Box
+          sx={{
+            flexGrow: 1,
+            "& .MuiTextField-root": { m: 1, width: "55ch" },
+          }}
+          component="form"
+          // sx={{
+          // ,
+          // }}
+          noValidate
+          autoComplete="off"
+        >
+          <Grid container spacing={1}></Grid>
+          <Grid item xs={12}>
+            <TextField
+              InputProps={{ style: { fontFamily: "Montserrat" } }}
+              id="outlined-multiline-flexible"
+              label="Journal Title"
+              multiline
+              maxRows={4}
+              value={title}
+              onChange={handleChangeTitle}
+              color="warning"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              InputProps={{ style: { fontFamily: "Montserrat" } }}
+              id="outlined-multiline-static"
+              label="Journal Entry"
+              multiline
+              required
+              rows={15}
+              value={journalBody}
+              onChange={handleChangeBody}
+              color="warning"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={dailyGoalAchived}
+                  onChange={(e) => setDailyGoalAchived(e.target.checked)}
+                  style={{
+                    color: "#BAAB57",
+                  }}
+                />
+              }
+              label="I completed my daily goal today"
+            />
+          </Grid>
+        </Box>
+        <Button
+          onClick={handleSubmit}
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+          style={{
+            fontFamily: "Montserrat",
+            backgroundColor: "#FE7965",
+            color: "white",
+          }}
+        >
+          Submit
+        </Button>
+      </div>
     </div>
   );
 };

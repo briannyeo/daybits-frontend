@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Rammetto+One&display=swap');
+
+.journalEntryContainer {
+    margin-top: 5rem;
+    background-color: white;
+    padding:2rem;
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    border-radius: 5%;
+
+}
+
+h1 {
+    font-family: 'Rammetto One', cursive;
+    color: #5d4a41;
+
+}
+
+.journalEntryContent {
+    margin-top: 2rem;
+}
