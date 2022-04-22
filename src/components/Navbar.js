@@ -144,7 +144,10 @@ const Navbar = () => {
                 DAYBITS
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                <Link to={`/daybits/journal`}>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={`/daybits/journal`}
+                >
                   <Button
                     className="navBarButtons"
                     style={{ textDecoration: "none", marginRight: "2em" }}
@@ -154,7 +157,10 @@ const Navbar = () => {
                     <div className="navBar">Journal</div>
                   </Button>
                 </Link>
-                <Link to={`/daybits/community`}>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={`/daybits/community`}
+                >
                   <Button
                     className="navBar"
                     style={{ textDecoration: "none", marginRight: "2em" }}
@@ -164,7 +170,10 @@ const Navbar = () => {
                     <div className="navBar">Community</div>
                   </Button>
                 </Link>
-                <Link to={`/daybits/planner`}>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={`/daybits/planner`}
+                >
                   <Button
                     className="navBarButtons"
                     style={{ textDecoration: "none", marginRight: "2em" }}
