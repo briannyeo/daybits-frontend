@@ -233,7 +233,9 @@ const Navbar = () => {
                 component="div"
                 sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
               >
-                <img src={daybitslogo} style={{ maxWidth: "7rem" }} />
+                <Link to={`/daybits/home`}>
+                  <img src={daybitslogo} style={{ maxWidth: "7rem" }} />
+                </Link>
               </Typography>
 
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
