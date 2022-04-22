@@ -101,11 +101,6 @@ const Progress = () => {
     createArrProgress(progress);
   }
 
-  // const handleTest = () => {
-  //   createArrProgress(progress);
-  //   //setLoad(true);
-  // };
-
   // <div>
   //   <h2 style={{ marginTop: "20px" }}>My Progress</h2>
   //   <br></br>
@@ -120,43 +115,40 @@ const Progress = () => {
   };
   return (
     <div>
-      {
-        <div>
-          <h2 style={{ marginTop: "20px" }}>My Progress</h2>
-          <br></br>
-          <br></br>
-          <br></br>
-          <h3>
-            No. of days succeeded:{" "}
-            <span style={{ color: "green" }}>
-              {countSuccess[countSuccess.length - 1]}
-            </span>
-          </h3>{" "}
-          <br></br>
-          <h3>
-            No. of days missed:{" "}
-            <span style={{ color: "red" }}>
-              {countFail[countFail.length - 1]}
-            </span>
-          </h3>
-          <br></br>
-          <h3>
-            You are <span style={{ color: "blue" }}>{daysLeft}</span> days
-            closer to{" "}
-            <span style={{ color: "blue" }}>{progress.habitstatus}ing</span>{" "}
-            your <span style={{ color: "blue" }}>{progress.habit}</span>
-          </h3>
-          <br></br>
-          <h3>
-            Your challenge ends on:{" "}
-            <span style={{ color: "blue" }}>{endDate}</span>
-          </h3>
-          <br></br>
-          <button style={{ fontSize: "150%" }} onClick={handleClick}>
-            Write in your journal today!
-          </button>
-        </div>
-      }
+      <div>
+        <h2 style={{ marginTop: "20px" }}>My Progress</h2>
+        <br></br>
+        <br></br>
+        <br></br>
+        <h4>
+          No. of days succeeded:{" "}
+          <span style={{ color: "green" }}>
+            {countSuccess[countSuccess.length - 1]}
+          </span>
+        </h4>{" "}
+        <br></br>
+        <h4>
+          No. of days missed:{" "}
+          <span style={{ color: "red" }}>
+            {countFail[countFail.length - 1]}
+          </span>
+        </h4>
+        <br></br>
+        <h4>
+          You are <span style={{ color: "blue" }}>{daysLeft}</span> days closer
+          to <span style={{ color: "blue" }}>{progress.habitstatus}ing</span>{" "}
+          your <span style={{ color: "blue" }}>{progress.habit}</span>
+        </h4>
+        <br></br>
+        <h4>
+          Your challenge ends on:{" "}
+          <span style={{ color: "blue" }}>{endDate}</span>
+        </h4>
+        <br></br>
+        <button style={{ fontSize: "150%" }} onClick={handleClick}>
+          Write in your journal today!
+        </button>
+      </div>
     </div>
   );
 };

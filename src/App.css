@@ -60,3 +60,16 @@
     transform: rotate(360deg);
   }
 }
+
+.card {
+  display: flex;
+  flex-direction: row;
+  border: 0 !important;
+  background-color: transparent !important;
+}
+
+.cardEach {
+  margin: 20px;
+  width: min-content;
+  background-color: bisque !important;
+}
