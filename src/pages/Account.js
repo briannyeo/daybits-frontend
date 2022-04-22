@@ -41,10 +41,12 @@ const Account = () => {
   let arrJournalId = [];
 
   const createArr = (userJournals) => {
-    for (let i = 0; i < userJournals.journals.length; i++) {
-      arrJournalId.push(userJournals.journals[i]._id);
-      arrTitle.push(userJournals.journals[i].title);
-      arrJournalBody.push(userJournals.journals[i].journalBody);
+    if (load) {
+      for (let i = 0; i < userJournals.journals.length; i++) {
+        arrJournalId.push(userJournals.journals[i]._id);
+        arrTitle.push(userJournals.journals[i].title);
+        arrJournalBody.push(userJournals.journals[i].journalBody);
+      }
     }
     return;
   };
