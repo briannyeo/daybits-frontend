@@ -224,78 +224,79 @@ const Navbar = () => {
           </Container>
         </AppBar>
       ) : (
-        <AppBar style={{ backgroundColor: "#5CBEC6" }} position="static">
-          <Container maxWidth="xl">
-            <Toolbar disableGutters>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
-              >
-                <Link to={`/daybits/home`}>
-                  <img src={daybitslogo} style={{ maxWidth: "7rem" }} />
-                </Link>
-              </Typography>
+        <></>
+        // <AppBar style={{ backgroundColor: "#5CBEC6" }} position="static">
+        //   <Container maxWidth="xl">
+        //     <Toolbar disableGutters>
+        //       <Typography
+        //         variant="h6"
+        //         noWrap
+        //         component="div"
+        //         sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+        //       >
+        //         <Link to={`/daybits/home`}>
+        //           <img src={daybitslogo} style={{ maxWidth: "7rem" }} />
+        //         </Link>
+        //       </Typography>
 
-              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleOpenNavMenu}
-                  color="inherit"
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorElNav}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "left",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
-                  }}
-                  open={Boolean(anchorElNav)}
-                  onClose={handleCloseNavMenu}
-                  sx={{
-                    display: { xs: "block", md: "none" },
-                  }}
-                >
-                  {pages1.map((page) => (
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">
-                        <Link
-                          style={{ textDecoration: "none" }}
-                          to={`/daybits/${page}`}
-                        >
-                          {page}
-                        </Link>
-                      </Typography>
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </Box>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-              >
-                DAYBITS
-              </Typography>
-              <Box
-                sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
-              ></Box>
-            </Toolbar>
-          </Container>
-        </AppBar>
-      )}{" "}
+        //       <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+        //         <IconButton
+        //           size="large"
+        //           aria-label="account of current user"
+        //           aria-controls="menu-appbar"
+        //           aria-haspopup="true"
+        //           onClick={handleOpenNavMenu}
+        //           color="inherit"
+        //         >
+        //           <MenuIcon />
+        //         </IconButton>
+        //         <Menu
+        //           id="menu-appbar"
+        //           anchorEl={anchorElNav}
+        //           anchorOrigin={{
+        //             vertical: "bottom",
+        //             horizontal: "left",
+        //           }}
+        //           keepMounted
+        //           transformOrigin={{
+        //             vertical: "top",
+        //             horizontal: "left",
+        //           }}
+        //           open={Boolean(anchorElNav)}
+        //           onClose={handleCloseNavMenu}
+        //           sx={{
+        //             display: { xs: "block", md: "none" },
+        //           }}
+        //         >
+        //           {pages1.map((page) => (
+        //             <MenuItem key={page} onClick={handleCloseNavMenu}>
+        //               <Typography textAlign="center">
+        //                 <Link
+        //                   style={{ textDecoration: "none" }}
+        //                   to={`/daybits/${page}`}
+        //                 >
+        //                   {page}
+        //                 </Link>
+        //               </Typography>
+        //             </MenuItem>
+        //           ))}
+        //         </Menu>
+        //       </Box>
+        //       <Typography
+        //         variant="h6"
+        //         noWrap
+        //         component="div"
+        //         sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+        //       >
+        //         DAYBITS
+        //       </Typography>
+        //       <Box
+        //         sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+        //       ></Box>
+        //     </Toolbar>
+        //   </Container>
+        // </AppBar>
+      )}
     </>
   );
 };

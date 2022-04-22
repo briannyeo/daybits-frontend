@@ -20,6 +20,8 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import daybitslogo from "../images/daybitslogo.png";
+
 <link
   href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Rammetto+One&display=swap"
   rel="stylesheet"
@@ -148,6 +150,9 @@ const Registration = () => {
   return (
     <div>
       <ThemeProvider theme={registration}>
+        <Link to={`/daybits/home`}>
+          <img src={daybitslogo} style={{ maxWidth: "15rem" }} />
+        </Link>
         <Typography
           style={{ fontFamily: "Rammetto One, cursive" }}
           component="h1"
@@ -204,7 +209,7 @@ const Registration = () => {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                style={{ backgroundColor: "#FE7965" }}
+                style={{ backgroundColor: "#FE7965", color: "white" }}
               >
                 Sign In
               </Button>

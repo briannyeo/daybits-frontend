@@ -18,6 +18,8 @@ import urlcat from "urlcat";
 import { useAtom } from "jotai";
 import { loginAtom } from "../App";
 import "./LoginWindow.css";
+import daybitslogo from "../images/daybitslogo.png";
+
 <link
   href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Rammetto+One&display=swap"
   rel="stylesheet"
@@ -40,18 +42,6 @@ function Copyright(props) {
     </Typography>
   );
 }
-
-const rammetto = createTheme({
-  typography: {
-    fontFamily: ["Rammetto One", "sans-serif"].join(","),
-  },
-});
-
-const montserrat = createTheme({
-  typography: {
-    fontFamily: ["Montserrat", "sans-serif"].join(","),
-  },
-});
 
 export default function LoginWindow() {
   const BACKEND = process.env.REACT_APP_BACKEND;
@@ -102,6 +92,17 @@ export default function LoginWindow() {
       <div className="error">{errorMessages.message}</div>
     );
 
+  const montserrat = createTheme({
+    typography: {
+      fontFamily: "Montserrat",
+    },
+    palette: {
+      primary: {
+        main: "#FFFFF",
+      },
+    },
+  });
+
   return (
     <>
       <ThemeProvider theme={montserrat}>
@@ -115,9 +116,10 @@ export default function LoginWindow() {
               alignItems: "center",
             }}
           >
-            <Avatar sx={{ m: 1 }} style={{ backgroundColor: "#52793C" }}>
-              <LockOutlinedIcon />
-            </Avatar>
+            <Link to={`/daybits/home`}>
+              <img src={daybitslogo} style={{ maxWidth: "15rem" }} />
+            </Link>
+
             <Typography
               style={{ fontFamily: "Rammetto One, cursive" }}
               component="h1"
@@ -161,7 +163,7 @@ export default function LoginWindow() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                style={{ backgroundColor: "#FE7965" }}
+                style={{ backgroundColor: "#FE7965", color: "white" }}
               >
                 Sign In
               </Button>
