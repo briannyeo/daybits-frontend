@@ -15,10 +15,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { loginAtom } from "../App";
 import urlcat from "urlcat";
+import userlogo from "../images/account.png";
+import writejournal from "../images/writejournal.png";
+import community from "../images/community.png";
+import planner from "../images/planner.png";
+import daybitslogo from "../images/daybitslogo.png";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import "./Navbar.css";
+
 const BACKEND = process.env.REACT_APP_BACKEND;
 const logoutUrl = urlcat(BACKEND, "/daybits/register/logout");
 
-const pages = ["home", "journal", "community", "planner", "progress"];
+const pages = ["home", "journal", "community", "planner"];
 const pages1 = ["home"];
 const settings = ["Profile", "Account"];
 
@@ -70,7 +78,7 @@ const Navbar = () => {
   return (
     <>
       {login ? (
-        <AppBar position="static">
+        <AppBar style={{ backgroundColor: "#5CBEC6" }} position="static">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
               <Typography
@@ -79,7 +87,9 @@ const Navbar = () => {
                 component="div"
                 sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
               >
-                LOGO
+                <Link to={`/daybits/home`}>
+                  <img src={daybitslogo} style={{ maxWidth: "7rem" }} />
+                </Link>
               </Typography>
 
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -114,7 +124,12 @@ const Navbar = () => {
                   {pages.map((page) => (
                     <MenuItem key={page} onClick={handleCloseNavMenu}>
                       <Typography textAlign="center">
-                        <Link to={`/daybits/${page}`}>{page}</Link>
+                        <Link
+                          style={{ textDecoration: "none" }}
+                          to={`/daybits/${page}`}
+                        >
+                          {page}
+                        </Link>
                       </Typography>
                     </MenuItem>
                   ))}
@@ -126,26 +141,45 @@ const Navbar = () => {
                 component="div"
                 sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
               >
-                LOGO
+                DAYBITS
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                {pages.map((page) => (
-                  <Link to={`/daybits/${page}`}>
-                    <Button
-                      key={page}
-                      onClick={handleCloseNavMenu}
-                      sx={{ my: 2, color: "white", display: "block" }}
-                    >
-                      {page}
-                    </Button>
-                  </Link>
-                ))}
+                <Link to={`/daybits/journal`}>
+                  <Button
+                    className="navBarButtons"
+                    style={{ textDecoration: "none", marginRight: "2em" }}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    <div className="navBar">Journal</div>
+                  </Button>
+                </Link>
+                <Link to={`/daybits/community`}>
+                  <Button
+                    className="navBar"
+                    style={{ textDecoration: "none", marginRight: "2em" }}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    <div className="navBar">Community</div>
+                  </Button>
+                </Link>
+                <Link to={`/daybits/planner`}>
+                  <Button
+                    className="navBarButtons"
+                    style={{ textDecoration: "none", marginRight: "2em" }}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    <div className="navBar">Planner</div>
+                  </Button>
+                </Link>
               </Box>
 
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="User" src="../images/user.png" />
+                    <AccountCircleIcon style={{ fontSize: "3rem" }} />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -190,7 +224,7 @@ const Navbar = () => {
           </Container>
         </AppBar>
       ) : (
-        <AppBar position="static">
+        <AppBar style={{ backgroundColor: "#5CBEC6" }} position="static">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
               <Typography
@@ -199,7 +233,7 @@ const Navbar = () => {
                 component="div"
                 sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
               >
-                LOGO
+                <img src={daybitslogo} style={{ maxWidth: "7rem" }} />
               </Typography>
 
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -230,7 +264,20 @@ const Navbar = () => {
                   sx={{
                     display: { xs: "block", md: "none" },
                   }}
-                ></Menu>
+                >
+                  {pages1.map((page) => (
+                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center">
+                        <Link
+                          style={{ textDecoration: "none" }}
+                          to={`/daybits/${page}`}
+                        >
+                          {page}
+                        </Link>
+                      </Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
               </Box>
               <Typography
                 variant="h6"
@@ -238,21 +285,11 @@ const Navbar = () => {
                 component="div"
                 sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
               >
-                LOGO
+                DAYBITS
               </Typography>
-              <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                {pages1.map((page) => (
-                  <Link to={`/daybits/${page}`}>
-                    <Button
-                      key={page}
-                      onClick={handleCloseNavMenu}
-                      sx={{ my: 2, color: "white", display: "block" }}
-                    >
-                      {page}
-                    </Button>
-                  </Link>
-                ))}
-              </Box>
+              <Box
+                sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+              ></Box>
             </Toolbar>
           </Container>
         </AppBar>
