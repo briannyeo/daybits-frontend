@@ -9,6 +9,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import JournalRow from "../components/JournalRow";
+import dayjs from "dayjs"; // ES 2015
 
 import "./Comjournal.css";
 
@@ -65,7 +66,12 @@ const Comjournal = () => {
   let arrUser = [];
   let arrJournalBody = [];
   let arrJournalId = [];
+  let arrJournalDate = [];
+  let arrComments = [];
+
   console.log("arrJournalID:", arrJournalId);
+  console.log("journalist is", journallist);
+  console.log("arrJournalDate", arrJournalDate);
 
   //to add to respective arrays
   const createArr = (journallist) => {
@@ -75,6 +81,9 @@ const Comjournal = () => {
         arrJournalBody.push(journallist[i].journals[x].journalBody);
         arrUser.push(journallist[i].username);
         arrJournalId.push(journallist[i].journals[x]._id);
+        arrJournalDate.push(
+          dayjs(journallist[i].journals[x].createdAt).format("DD-MM-YYYY")
+        );
       }
     }
     return;
@@ -169,6 +178,7 @@ const Comjournal = () => {
             arrJournalBody={arrJournalBody}
             arrJournalId={arrJournalId}
             handleDelete={handleDelete}
+            arrJournalDate={arrJournalDate}
           />
           {/* <TableBody>{tableCells}</TableBody> */}
         </Table>
