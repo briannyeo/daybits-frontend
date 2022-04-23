@@ -1,2 +1,11 @@
 /* NOTE FOR SOME REASON IT'S ONLY READING FROM JOURNAL.CSS
 SO THE react calendar CSS IS IN JOURNAL.CSS */
+
+
+.plannerPageContainer {
+    display:flex;
+    justify-content: space-between;
+}
+.plannerContainer {
+
+}

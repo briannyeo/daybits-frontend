@@ -2,7 +2,7 @@ import { setDate } from "date-fns";
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 //import "react-calendar/dist/Calendar.css";
-//import "./Planner.css";
+import "./Planner.css";
 import urlcat from "urlcat";
 import dayjs from "dayjs"; // ES 2015
 import Plannercard from "../components/Plannercard";
@@ -157,60 +157,62 @@ const Planner = () => {
 
   return (
     <>
-      <br></br>
-      <br></br>
-      <div className="plannerContainer">
-        <div className="calendar-container">
-          <Calendar
-            onClickDay={setDateNow}
-            selectRange={false}
-            value={date}
-            tileClassName={({ date }) => {
-              if (
-                dateSuccess.find((x) => x === dayjs(date).format("DD-MM-YYYY"))
-              ) {
-                return "highlightSuccess";
-              }
-            }}
-          />
-        </div>
-
-        <p
-          style={{
-            textAlign: "left",
-            color: "white",
-            fontWeight: "bold",
-          }}
-        >
-          <br></br>
-          <br></br>
-          Legend:<br></br>
-          <span style={{ color: "purple" }}>Purple dates</span>: 30-days habit
-          change
-          <br></br>
-          <span style={{ background: "lightseagreen" }}>
-            Green highlighted dates
-          </span>
-          : Dates you succeeded!
-        </p>
-        <p style={{ textAlign: "left", color: "white" }}>
-          Click on the dates to see journal entries for that day
-        </p>
-        {journalNowTitle.length > 0 ? (
-          <div className="card">
-            <Plannercard
-              journalNowTitle={journalNowTitle}
-              journalNowBody={journalNowBody}
+      <div className="plannerPageContainer">
+        <div className="plannerContainer">
+          <div className="calendar-container">
+            <Calendar
+              onClickDay={setDateNow}
+              selectRange={false}
+              value={date}
+              tileClassName={({ date }) => {
+                if (
+                  dateSuccess.find(
+                    (x) => x === dayjs(date).format("DD-MM-YYYY")
+                  )
+                ) {
+                  return "highlightSuccess";
+                }
+              }}
             />
           </div>
-        ) : (
-          <p style={{ textAlign: "left", color: "white" }}>
-            No Journal Entries on selected date
+
+          <p
+            style={{
+              textAlign: "left",
+              color: "white",
+              fontWeight: "bold",
+            }}
+          >
+            <br></br>
+            <br></br>
+            Legend:<br></br>
+            <span style={{ color: "purple" }}>Purple dates</span>: 30-days habit
+            change
+            <br></br>
+            <span style={{ background: "lightseagreen" }}>
+              Green highlighted dates
+            </span>
+            : Dates you succeeded!
           </p>
-        )}
-      </div>
-      <div className="progress">
-        <Progress />
+          <p style={{ textAlign: "left", color: "white" }}>
+            Click on the dates to see journal entries for that day
+          </p>
+          {journalNowTitle.length > 0 ? (
+            <div className="card">
+              <Plannercard
+                journalNowTitle={journalNowTitle}
+                journalNowBody={journalNowBody}
+              />
+            </div>
+          ) : (
+            <p style={{ textAlign: "left", color: "white" }}>
+              No Journal Entries on selected date
+            </p>
+          )}
+        </div>
+        <div className="progress">
+          <Progress />
+        </div>
       </div>
     </>
   );
