@@ -7,41 +7,18 @@ import urlcat from "urlcat";
 import dayjs from "dayjs"; // ES 2015
 import Plannercard from "../components/Plannercard";
 import Progress from "./Progress";
+import { Filter } from "@mui/icons-material";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
+const FAKE_DATE = [new Date(1970, 1, 1), new Date(1970, 1, 1)];
 
 const Planner = () => {
   const [planner, setPlanner] = useState([]);
-  const [load, setLoad] = useState(false);
-  const [dateNow, setDateNow] = useState(new Date());
-
-  //const date = [];
-  const rangeStart = dayjs(planner.startDate).format("YYYYMMDD");
-  const rangeStartYear = parseInt(rangeStart.slice(0, 4), 10);
-  const rangeStartMonth = parseInt(rangeStart.slice(4, 6), 10);
-  const rangeStartDate = parseInt(rangeStart.slice(6, 8), 10);
-
-  // console.log("rangeStart", rangeStart);
-  // console.log(rangeStartYear);
-  // console.log(rangeStartMonth);
-  // console.log(rangeStartDate);
-
-  const rangeEnd = dayjs(planner.startDate).add(30, "day").format("YYYYMMDD");
-
-  const rangeEndYear = parseInt(rangeEnd.slice(0, 4), 10);
-  const rangeEndMonth = parseInt(rangeEnd.slice(4, 6), 10);
-  const rangeEndDate = parseInt(rangeEnd.slice(6, 8), 10);
-
-  // console.log("rangeEnd", rangeEnd);
-  // console.log(rangeEndYear);
-  // console.log(rangeEndMonth);
-  // console.log(rangeEndDate);
-
+  const [status, setStatus] = useState("idle");
+  const [dateNow, setDateNow] = useState("");
+  const [dateJournal, setDateJournal] = useState(new Date());
   //MYDATE
-  const [date, setDate] = useState([
-    new Date(rangeStartYear, rangeStartMonth - 1, rangeStartDate - 1),
-    new Date(rangeEndYear, rangeEndMonth - 1, rangeEndDate - 1),
-  ]);
+  const [date, setDate] = useState(FAKE_DATE); //FAKE DATE
 
   //SAMPLE DATE
   // const [date, setDate] = useState([
@@ -49,10 +26,11 @@ const Planner = () => {
   //   new Date(2021, 6, 10), //2021 July 10
   // ]);
 
-  console.log("setDate", date);
+  //console.log("setDate", date);
 
   //Retrieve startdate from user
   useEffect(() => {
+    //setStatus("loading");
     const showPlanner = (planner) => {
       fetch(urlcat(BACKEND, "/daybits/register/planner"), {
         method: "GET",
@@ -65,13 +43,13 @@ const Planner = () => {
         .then((response) => response.json())
         .then((data) => {
           setPlanner(data);
-          setLoad(true);
+          setStatus("success");
         })
         .catch((error) => console.log(error));
     };
     showPlanner();
   }, []);
-  console.log("show Planner", planner);
+
   let dateSuccess = [];
 
   const checkSuccess = () => {
@@ -85,25 +63,29 @@ const Planner = () => {
     //console.log("checksuccess", dateSuccess);
   };
 
-  // console.log("datenow", dayjs(dateNow).format("DD-MMM-YYYY"));
-  // console.log(
-  //   "datejournalcreeatedAt",
-  //   dayjs(planner.journals[0].createdAt).format("DD-MMM-YYYY")
-  // );
-
   const journalNowTitle = [];
   const journalNowBody = [];
 
   const grabJournal = () => {
     //loop through all journal created at. find dateNOw === journalcreatedAt
+
+    console.log("datenow in grabjournal", dayjs(dateNow).format("DD-MMM-YYYY"));
+    //console.log("planner in for loop", planner.journals[i].createdAt);
+    // console.log(
+    //   " plannercreatedAt",
+    //   dayjs(planner.journals[i].createdAt).format("DD-MMM-YYYY")
+    // );
+
     for (let i = 0; i < planner.journals.length; i++) {
+      //dateNow set ON CHANGE
       if (
         dayjs(dateNow).format("DD-MMM-YYYY") ===
         dayjs(planner.journals[i].createdAt).format("DD-MMM-YYYY")
       ) {
-        console.log("yes");
+        // console.log("yes");
+
         console.log(planner.journals[i].title);
-        console.log(planner.journals[i].body);
+        console.log(planner.journals[i].journalBody);
         journalNowTitle.push(planner.journals[i].title);
         journalNowBody.push(planner.journals[i].journalBody);
       }
@@ -112,12 +94,47 @@ const Planner = () => {
     //map into modal with journal title and body
   };
 
-  if (load) {
+  //console.log("date", date);
+  if (status === "success" && date[0].getFullYear() === 1970) {
+    console.log("show Planner", planner);
+
+    //SETTING RANGE START AND END
+    //const date = [];
+    const rangeStart = dayjs(planner.startDate).format("YYYYMMDD");
+    const rangeStartYear = parseInt(rangeStart.slice(0, 4), 10);
+    const rangeStartMonth = parseInt(rangeStart.slice(4, 6), 10);
+    const rangeStartDate = parseInt(rangeStart.slice(6, 8), 10);
+
+    console.log("rangeStart", rangeStart);
+    // console.log(rangeStartYear);
+    // console.log(rangeStartMonth);
+    // console.log(rangeStartDate);
+
+    const rangeEnd = dayjs(planner.startDate).add(30, "day").format("YYYYMMDD");
+
+    const rangeEndYear = parseInt(rangeEnd.slice(0, 4), 10);
+    const rangeEndMonth = parseInt(rangeEnd.slice(4, 6), 10);
+    const rangeEndDate = parseInt(rangeEnd.slice(6, 8), 10);
+
+    setDate([
+      new Date(rangeStartYear, rangeStartMonth - 1, rangeStartDate),
+      new Date(rangeEndYear, rangeEndMonth - 1, rangeEndDate),
+    ]);
+
+    // console.log("rangeEnd", rangeEnd);
+    // console.log(rangeEndYear);
+    // console.log(rangeEndMonth);
+    // console.log(rangeEndDate);
+
+    // console.log("journalNowTitle", journalNowTitle);
+    // console.log("journalNowBody", journalNowBody);
+  }
+
+  if (dateNow) {
     checkSuccess();
     grabJournal();
-    console.log("journalNowTitle", journalNowTitle);
-    console.log("journalNowBody", journalNowBody);
   }
+  console.log("datenow", dateNow);
   //const markSuccess = ["24-04-2022", "25-04-2022", "26-04-2022"];
 
   //<Plannercard journalNowTitle={journalNowTitle} />;
@@ -137,6 +154,7 @@ const Planner = () => {
   //     </p>
   //   )}
   // </div>;
+
   return (
     <>
       <br></br>
@@ -144,7 +162,7 @@ const Planner = () => {
       <div className="plannerContainer">
         <div className="calendar-container">
           <Calendar
-            onChange={setDateNow}
+            onClickDay={setDateNow}
             selectRange={false}
             value={date}
             tileClassName={({ date }) => {

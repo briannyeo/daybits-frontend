@@ -45,15 +45,15 @@ const Progress = () => {
 
   //X days closer to goal - current date minus start date
   const dateProgress = Date.parse(dayjs().format("DD-MMM-YYYY"));
-  console.log("dateProgress", dateProgress);
+  //console.log("dateProgress", dateProgress);
 
   const dateStarted = Date.parse(
     dayjs(progress.startDate).format("DD-MMM-YYYY")
   );
-  console.log("dateStarted", dateStarted);
+  //console.log("dateStarted", dateStarted);
 
   const daysRemaining = Math.floor((dateProgress - dateStarted) / 86400000);
-  console.log("days remaining", daysRemaining);
+  //console.log("days remaining", daysRemaining);
   daysLeft.push(daysRemaining);
   //setDaysLeft(daysRemaining);
 
@@ -64,9 +64,9 @@ const Progress = () => {
   let navigate = useNavigate();
 
   const createArrProgress = (progress) => {
-    console.log("progress", progress);
-    console.log(progress.habit);
-    console.log(progress.journals.length);
+    // console.log("progress", progress);
+    // console.log(progress.habit);
+    // console.log(progress.journals.length);
 
     let count = 0;
     let counter = 0;
@@ -76,7 +76,7 @@ const Progress = () => {
 
       if (progress.journals[i].dailyGoalAchieved === true) {
         count += 1;
-        console.log("count of TRUE", count);
+        // console.log("count of TRUE", count);
         countSuccess.push(count);
         //setCountSuccess(count);
         // console.log("CountSuccess in state", countSuccess);
@@ -87,7 +87,7 @@ const Progress = () => {
         progress.journals[i].dailyGoalAchieved === false
       ) {
         counter += 1;
-        console.log("counter of FALSE", counter);
+        //console.log("counter of FALSE", counter);
         countFail.push(counter);
         //setCountFail(counter);
         // console.log("CountFail in state", countFail);
