@@ -9,3 +9,11 @@ SO THE react calendar CSS IS IN JOURNAL.CSS */
 .plannerContainer {
 
 }
+
+.legendBox {
+    background-color: white;
+}
+
+.cardsContainer {
+    background-color: blue;
+}

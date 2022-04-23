@@ -176,13 +176,7 @@ const Planner = () => {
             />
           </div>
 
-          <p
-            style={{
-              textAlign: "left",
-              color: "white",
-              fontWeight: "bold",
-            }}
-          >
+          <div className="legendBox">
             <br></br>
             <br></br>
             Legend:<br></br>
@@ -193,22 +187,24 @@ const Planner = () => {
               Green highlighted dates
             </span>
             : Dates you succeeded!
-          </p>
-          <p style={{ textAlign: "left", color: "white" }}>
-            Click on the dates to see journal entries for that day
-          </p>
-          {journalNowTitle.length > 0 ? (
-            <div className="card">
-              <Plannercard
-                journalNowTitle={journalNowTitle}
-                journalNowBody={journalNowBody}
-              />
-            </div>
-          ) : (
             <p style={{ textAlign: "left", color: "white" }}>
-              No Journal Entries on selected date
+              Click on the dates to see journal entries for that day
             </p>
-          )}
+          </div>
+          <div className="cardsContainer">
+            {journalNowTitle.length > 0 ? (
+              <div className="card">
+                <Plannercard
+                  journalNowTitle={journalNowTitle}
+                  journalNowBody={journalNowBody}
+                />
+              </div>
+            ) : (
+              <p style={{ textAlign: "left", color: "white" }}>
+                No Journal Entries on selected date
+              </p>
+            )}
+          </div>
         </div>
         <div className="progress">
           <Progress />
