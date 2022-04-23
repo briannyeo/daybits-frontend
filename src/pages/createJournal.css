@@ -17,6 +17,12 @@ h1 {
 
 }
 
+h2 {
+    font-family: 'Rammetto One', cursive;
+    color: #5d4a41;
+
+}
+
 .journalEntryContent {
     margin-top: 2rem;
 }

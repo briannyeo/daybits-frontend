@@ -1,22 +1,25 @@
 .journalDetailsContainer {
     margin-top: 5rem;
     background-color: white;
-    padding:2rem;
+    padding:1rem;
     position: absolute;
     left: 50%;
     top: 45%;
     transform: translate(-50%, -50%);
     border-radius: 20px;
     width: 80%;
-    overflow-y: scroll;
+    max-height: 89vh;
 
 }
 
+.journalDetailsContent {
+    margin-top: 1rem;
+}
+
 .journalTitle {
-    border: 1px solid black;
-    border-radius: 20px;
+ border-radius: 20px;
     margin: 2rem;
-    padding: 1.5rem;
+
     font-size: 1.5rem;
     font-weight: bold;
     white-space: initial;
@@ -24,8 +27,16 @@
 }
 
 .journalBody {
-    border: 1px solid blue;
-    border-radius: 20px;
-    overflow: scroll;
+    overflow-y: scroll;
+    max-height: 16vh;
+    margin-bottom: 2rem;
+;
+
+}
+
+.commentsComponent{
+    margin-top: 1.5rem;
+    overflow-y: scroll;
+    max-height: 30vh;
 
 }

@@ -11,13 +11,52 @@ export default function Comments(props) {
   const { comment, author, dateCommented } = props;
 
   return (
-    <Card sx={{ maxWidth: 275 }}>
+    <Card
+      sx={{
+        maxWidth: "100%",
+        maxHeight: 200,
+        backgroundColor: "#fffaf3",
+        boxShadow: "none",
+        margin: "0.5rem",
+      }}
+    >
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {author}
+        <Typography
+          sx={{
+            fontSize: 12,
+            fontFamily: "Montserrat",
+            textAlign: "justify",
+            textJustify: "interword",
+          }}
+          color="#927569"
+          gutterBottom
+        >
+          By: {author}
         </Typography>
-        <Typography variant="body2">{comment}</Typography>
-        <Typography variant="subtitle1">Date:{dateCommented}</Typography>
+        <Typography
+          sx={{
+            fontSize: 12,
+            fontFamily: "Montserrat",
+            textAlign: "justify",
+            textJustify: "interword",
+          }}
+          color="#927569"
+          variant="subtitle1"
+        >
+          Date: {dateCommented}
+        </Typography>
+        <Typography
+          sx={{
+            fontSize: "1rem",
+            fontFamily: "Montserrat",
+            marginTop: "1rem",
+            textAlign: "justify",
+            textJustify: "interword",
+          }}
+          variant="body2"
+        >
+          {comment}
+        </Typography>
       </CardContent>
     </Card>
   );

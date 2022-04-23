@@ -5,10 +5,10 @@ import "./JournalDetails.css";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import { Button } from "@mui/material";
 import Comments from "../components/Comments";
 import dayjs from "dayjs";
 import "./JournalDetails.css";
-import { AlignHorizontalLeft } from "@mui/icons-material";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 
@@ -71,7 +71,8 @@ const JournalDetails = () => {
     strComment.dateCommented = dayjs().format("DD-MMM-YYYY");
     createComment(strComment);
     setLoad(true);
-    console.log(strComment);
+    //console.log(strComment);
+    setComment("");
     alert("comment submitted to the community");
   };
 
@@ -96,7 +97,7 @@ const JournalDetails = () => {
     showComment(id);
   }, [id, load]);
 
-  //console.log(allComments);
+  console.log(journalDetails);
 
   return (
     <div class="journalDetailsContainer">
@@ -106,6 +107,7 @@ const JournalDetails = () => {
           sx={{
             flexGrow: 1,
             "& .MuiTextField-root": { m: 1, width: "55ch" },
+            margin: "1rem",
           }}
           component="form"
           noValidate
@@ -116,37 +118,42 @@ const JournalDetails = () => {
             sx={{
               whiteSpace: "normal",
               fontSize: "1.5rem",
-              fontWeight: "700",
-              width: "100%",
-              border: "1px solid black",
-              overflowY: "scroll",
-              paddingLeft: "2rem",
-              alignContent: "flex-start",
+              fontWeight: "bold",
+              width: "96%",
+              overflowX: "scroll",
+              margin: "1.5rem",
+              textAlign: "left",
             }}
           >
             {journalDetails.title}
           </Box>
+          <div className="journalBody">
+            <Box
+              component="div"
+              sx={{
+                fontSize: "1rem",
+                fontWeight: "400",
+                width: "96%",
+                margin: "1rem",
+                fontFamily: "Montserrat",
+                marginBottom: "2rem",
+                textAlign: "left",
+              }}
+            >
+              {journalDetails.journalBody}
+            </Box>
+          </div>
 
+          <h2>Comments</h2>
           <Box
-            component="div"
             sx={{
-              whiteSpace: "normal",
-              fontSize: "1rem",
-              fontWeight: "700",
-              width: "80%",
-              border: "1px solid black",
-              overflowY: "scroll",
-              paddingLeft: "2rem",
+              flexGrow: 1,
+              "& .MuiTextField-root": { m: 1, width: "40ch" },
+              display: "flex",
+              justifyContent: "center",
+              fontFamily: "Montserrat",
             }}
-          >
-            {journalDetails.journalBody}
-          </Box>
-          <Box
-            sx={{ flexGrow: 1 }}
             component="form"
-            // sx={{
-            //   "& .MuiTextField-root": { m: 1, width: "25ch" },
-            // }}
             noValidate
             autoComplete="off"
           >
@@ -156,14 +163,27 @@ const JournalDetails = () => {
                 label="Enter a comment"
                 multiline
                 required
-                rows={3}
+                rows={2}
                 value={comment}
                 onChange={handleChangeComment}
               />
             </Grid>
+            <Button
+              onClick={handleCommentSubmit}
+              variant="contained"
+              sx={{ mt: 2.75, mb: 0 }}
+              style={{
+                fontFamily: "Montserrat",
+                backgroundColor: "#FE7965",
+                color: "white",
+                height: "3rem",
+              }}
+            >
+              Submit
+            </Button>
           </Box>
-          <button onClick={handleCommentSubmit}>Submit</button>
-          <>
+
+          <div className="commentsComponent">
             {allComments ? (
               <>
                 {allComments.map((e, index) => (
@@ -178,7 +198,7 @@ const JournalDetails = () => {
             ) : (
               <div></div>
             )}
-          </>
+          </div>
         </Box>
       </div>
     </div>
