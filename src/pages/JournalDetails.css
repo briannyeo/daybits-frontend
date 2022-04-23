@@ -6,14 +6,26 @@
     left: 50%;
     top: 45%;
     transform: translate(-50%, -50%);
-    border-radius: 5%;
+    border-radius: 20px;
+    width: 80%;
+    overflow-y: scroll;
+
 }
 
 .journalTitle {
     border: 1px solid black;
+    border-radius: 20px;
+    margin: 2rem;
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    white-space: initial;
+    
 }
 
 .journalBody {
     border: 1px solid blue;
+    border-radius: 20px;
+    overflow: scroll;
 
 }
