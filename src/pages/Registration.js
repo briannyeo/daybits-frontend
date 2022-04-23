@@ -76,45 +76,12 @@ const Registration = () => {
 
   let navigate = useNavigate();
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   if (password === confirmpw) {
-  //     const userInfo = { username, password }; //backend
-  //     console.log(userInfo);
-  //     createUser(userInfo); //LINK to backend
-  //     alert("new account created - proceed to sign in");
-  //     navigate("/daybits/home");
-  //   } else {
-  //     alert("passwords do not match");
-  //   }
-  // };
   const handleSubmit = (event) => {
     event.preventDefault();
     const userInfo = { username, password }; //backend
     console.log(userInfo);
     createUser(userInfo); //LINK to backend
   };
-
-  //DO NOT DELETE - original text field password
-  // <TextField
-  //   id="outlined-multiline-static"
-  //   label="Password"
-  //   multiline
-  //   maxRows={4}
-  //   value={password}
-  //   onChange={handleChangepassword}
-  // />;
-
-  // <Grid item xs={12}>
-  //   <TextField
-  //     id="outlined-multiline-static"
-  //     label="Confirm Password"
-  //     multiline
-  //     maxRows={4}
-  //     value={confirmpw}
-  //     onChange={handleChangeconfirmpw}
-  //   />
-  // </Grid>;
 
   //FIRST PASSWORD
   const [values, setValues] = React.useState({

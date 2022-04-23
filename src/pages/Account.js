@@ -50,10 +50,10 @@ const Account = () => {
     }
     return;
   };
-  console.log("arrTitle:", arrTitle);
-  console.log("userJournals", userJournals);
-  console.log(arrUser);
-  console.log("load", load);
+  // console.log("arrTitle:", arrTitle);
+  // console.log("userJournals", userJournals);
+  // console.log(arrUser);
+  // console.log("load", load);
   createArr(userJournals);
   //BUG that prevents refresh of data???
 

@@ -20,11 +20,6 @@ import { loginAtom } from "../App";
 import "./LoginWindow.css";
 import daybitslogo from "../images/daybitslogo.png";
 
-<link
-  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Rammetto+One&display=swap"
-  rel="stylesheet"
-></link>;
-
 export default function LoginWindow() {
   const BACKEND = process.env.REACT_APP_BACKEND;
   const url = urlcat(BACKEND, "/daybits/register/home");
