@@ -294,4 +294,5 @@ body {
 
 .progress {
   width: 500px;
+  height: fit-content;
 }

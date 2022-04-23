@@ -58,11 +58,20 @@ const Registration = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        if (data.status === "success") {
+          alert("new account created - proceed to sign in");
+          navigate("/daybits/home");
+        }
         if (data.error) {
           setError(data.error);
         }
+        if (data.status === "failed") {
+          alert("username taken. please choose another username");
+        }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   let navigate = useNavigate();
@@ -81,12 +90,9 @@ const Registration = () => {
   // };
   const handleSubmit = (event) => {
     event.preventDefault();
-
     const userInfo = { username, password }; //backend
     console.log(userInfo);
     createUser(userInfo); //LINK to backend
-    alert("new account created - proceed to sign in");
-    navigate("/daybits/home");
   };
 
   //DO NOT DELETE - original text field password
