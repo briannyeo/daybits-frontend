@@ -25,24 +25,6 @@ import daybitslogo from "../images/daybitslogo.png";
   rel="stylesheet"
 ></link>;
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Daybits
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 export default function LoginWindow() {
   const BACKEND = process.env.REACT_APP_BACKEND;
   const url = urlcat(BACKEND, "/daybits/register/home");
@@ -185,7 +167,6 @@ export default function LoginWindow() {
               </Grid>
             </Box>
           </Box>
-          <Copyright sx={{ mt: 8, mb: 4 }} />
         </Container>
       </ThemeProvider>
     </>
