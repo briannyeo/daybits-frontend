@@ -70,10 +70,10 @@ const Comjournal = () => {
   let arrComments = [];
   let arrAchievedGoal = [];
 
-  console.log("arrJournalID:", arrJournalId);
-  console.log("journalist is", journallist);
-  console.log("arrJournalDate", arrJournalDate);
-  console.log("arrAchievedgoal", arrAchievedGoal);
+  // console.log("arrJournalID:", arrJournalId);
+  // console.log("journalist is", journallist);
+  // console.log("arrJournalDate", arrJournalDate);
+  // console.log("arrAchievedgoal", arrAchievedGoal);
 
   //to add to respective arrays
   const createArr = (journallist) => {
@@ -86,7 +86,6 @@ const Comjournal = () => {
         arrJournalDate.push(
           dayjs(journallist[i].journals[x].createdAt).format("DD-MM-YYYY")
         );
-        ////console.log(journallist[i].journals[x].dailyGoalAchieved);
         arrAchievedGoal.push(journallist[i].journals[x].dailyGoalAchieved);
       }
     }
@@ -114,42 +113,6 @@ const Comjournal = () => {
     };
     showComments();
   }, []);
-
-  console.log("comments", comments);
-  //MATCH COMMENT SCHEMA JOURNALID TO JOURNAL SCHEMA JOURNAL ID (arrJournalId)
-
-  // const countingComments = (journalId) => {
-  //   let count = 0;
-  //   let counting = 0;
-
-  //   // const words = [
-  //   //   "spray",
-  //   //   "limit",
-  //   //   "elite",
-  //   //   "exuberant",
-  //   //   "destruction",
-  //   //   "present",
-  //   // ];
-
-  //   // const result = words.filter((e) => e.length > 6);
-
-  //   // for (let y = 0; y < comments.length; y++) {
-  //   //   if (comments[y].journalId === arrJournalId[y]) {
-  //   //     count += 1;
-  //   //   }
-  //   // }
-
-  //   //COUNT
-  //   counting = count;
-  //   return;
-  // };
-
-  // if (load) {
-  //   countingComments();
-  //   console.log("counting", counting);
-  // }
-  console.log("journallist:", journallist);
-  // console.log("arrJournalComments:", arrJournalComments);
 
   createArr(journallist);
 
