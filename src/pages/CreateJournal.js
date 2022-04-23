@@ -32,7 +32,7 @@ const Journal = () => {
   const [title, setTitle] = useState("");
   const [journalBody, setJournalBody] = useState("");
   const [error, setError] = useState("");
-  const [dailyGoalAchived, setDailyGoalAchived] = useState(true);
+  const [dailyGoalAchieved, setDailyGoalAchieved] = useState(true);
   const [createdAt, setCreatedAt] = useState("");
 
   const createJournal = (journalEntry) => {
@@ -67,7 +67,7 @@ const Journal = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const journalEntry = { title, journalBody, dailyGoalAchived, createdAt }; //backend
+    const journalEntry = { title, journalBody, dailyGoalAchieved, createdAt }; //backend
     createJournal(journalEntry); //LINK to backend;
     alert("journal entry submitted to the community");
     navigate("/daybits/community");
@@ -130,8 +130,8 @@ const Journal = () => {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={dailyGoalAchived}
-                  onChange={(e) => setDailyGoalAchived(e.target.checked)}
+                  checked={dailyGoalAchieved}
+                  onChange={(e) => setDailyGoalAchieved(e.target.checked)}
                   style={{
                     color: "#BAAB57",
                   }}
