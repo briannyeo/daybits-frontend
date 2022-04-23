@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Comments from "../components/Comments";
 import dayjs from "dayjs";
+import "./JournalDetails.css";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 
@@ -97,48 +98,50 @@ const JournalDetails = () => {
   //console.log(allComments);
 
   return (
-    <div className="journalContainer">
-      <h1>This is a journal entry page</h1>
-      <div className="journalTitle">{journalDetails.title}</div>
-      <div className="journalBody">{journalDetails.journalBody}</div>
-      <Box
-        sx={{ flexGrow: 1 }}
-        component="form"
-        // sx={{
-        //   "& .MuiTextField-root": { m: 1, width: "25ch" },
-        // }}
-        noValidate
-        autoComplete="off"
-      >
-        <Grid item xs={12}>
-          <TextField
-            id="outlined-multiline-static"
-            label="Enter a comment"
-            multiline
-            required
-            rows={20}
-            value={comment}
-            onChange={handleChangeComment}
-          />
-        </Grid>
-      </Box>
-      <button onClick={handleCommentSubmit}>Submit</button>
-      <>
-        {allComments ? (
-          <>
-            {allComments.map((e, index) => (
-              <Comments
-                key={index}
-                comment={e.comment}
-                author={e.author}
-                dateCommented={e.dateCommented}
-              />
-            ))}
-          </>
-        ) : (
-          <div></div>
-        )}
-      </>
+    <div className="journalDetailsContainer">
+      <h1>Journal Details</h1>
+      <div className="journalDetailsContents">
+        <div className="journalTitle">{journalDetails.title}</div>
+        <div className="journalBody">{journalDetails.journalBody}</div>
+        <Box
+          sx={{ flexGrow: 1 }}
+          component="form"
+          // sx={{
+          //   "& .MuiTextField-root": { m: 1, width: "25ch" },
+          // }}
+          noValidate
+          autoComplete="off"
+        >
+          <Grid item xs={12}>
+            <TextField
+              id="outlined-multiline-static"
+              label="Enter a comment"
+              multiline
+              required
+              rows={20}
+              value={comment}
+              onChange={handleChangeComment}
+            />
+          </Grid>
+        </Box>
+        <button onClick={handleCommentSubmit}>Submit</button>
+        <>
+          {allComments ? (
+            <>
+              {allComments.map((e, index) => (
+                <Comments
+                  key={index}
+                  comment={e.comment}
+                  author={e.author}
+                  dateCommented={e.dateCommented}
+                />
+              ))}
+            </>
+          ) : (
+            <div></div>
+          )}
+        </>
+      </div>
     </div>
   );
 };
