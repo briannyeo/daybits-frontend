@@ -7,8 +7,14 @@ import { Navigate, useNavigate } from "react-router-dom";
 import "./JournalRow.css";
 
 const JournalRow = (props) => {
-  const { arrTitle, arrUser, arrJournalBody, arrJournalId, handleDelete } =
-    props;
+  const {
+    arrTitle,
+    arrUser,
+    arrJournalBody,
+    arrJournalId,
+    handleDelete,
+    arrJournalDate,
+  } = props;
 
   //const [show, setShow] = useState(false);
 
@@ -41,6 +47,7 @@ const JournalRow = (props) => {
             >
               {arrTitle[i]}
             </TableCell>
+            <TableCell align="center">{arrJournalDate[i]}</TableCell>
 
             {/* <TableCell align="center">
               <button onClick={handleDelete(arrJournalId[i])}>Delete</button>
