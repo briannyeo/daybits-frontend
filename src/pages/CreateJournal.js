@@ -81,6 +81,7 @@ const Journal = () => {
     setJournalBody(event.target.value);
     setCreatedAt(getStartTime()); //setting time journal was written
   };
+  const CHARACTER_LIMIT = 100;
 
   return (
     <div className="journalEntryContainer">
@@ -92,9 +93,6 @@ const Journal = () => {
             "& .MuiTextField-root": { m: 1, width: "55ch" },
           }}
           component="form"
-          // sx={{
-          // ,
-          // }}
           noValidate
           autoComplete="off"
         >
@@ -102,6 +100,10 @@ const Journal = () => {
           <Grid item xs={12}>
             <TextField
               InputProps={{ style: { fontFamily: "Montserrat" } }}
+              inputProps={{
+                maxlength: CHARACTER_LIMIT,
+              }}
+              helperText={`${title.length}/${CHARACTER_LIMIT}`}
               id="outlined-multiline-flexible"
               label="Journal Title"
               multiline
