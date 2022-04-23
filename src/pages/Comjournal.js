@@ -68,10 +68,12 @@ const Comjournal = () => {
   let arrJournalId = [];
   let arrJournalDate = [];
   let arrComments = [];
+  let arrAchievedGoal = [];
 
   console.log("arrJournalID:", arrJournalId);
   console.log("journalist is", journallist);
   console.log("arrJournalDate", arrJournalDate);
+  console.log("arrAchievedgoal", arrAchievedGoal);
 
   //to add to respective arrays
   const createArr = (journallist) => {
@@ -84,6 +86,8 @@ const Comjournal = () => {
         arrJournalDate.push(
           dayjs(journallist[i].journals[x].createdAt).format("DD-MM-YYYY")
         );
+        ////console.log(journallist[i].journals[x].dailyGoalAchieved);
+        arrAchievedGoal.push(journallist[i].journals[x].dailyGoalAchieved);
       }
     }
     return;
@@ -170,6 +174,12 @@ const Comjournal = () => {
               <TableCell style={{ fontWeight: "bold" }} align="center">
                 Title
               </TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="center">
+                Posted On:
+              </TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="center">
+                Goal Achieved
+              </TableCell>
             </TableRow>
           </TableHead>
           <JournalRow
@@ -179,6 +189,7 @@ const Comjournal = () => {
             arrJournalId={arrJournalId}
             handleDelete={handleDelete}
             arrJournalDate={arrJournalDate}
+            arrAchievedGoal={arrAchievedGoal}
           />
           {/* <TableBody>{tableCells}</TableBody> */}
         </Table>

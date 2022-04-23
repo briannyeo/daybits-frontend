@@ -5,6 +5,8 @@ import TableBody from "@mui/material/TableBody";
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import "./JournalRow.css";
+import tick from "../images/accept.png";
+import cross from "../images/cancel.png";
 
 const JournalRow = (props) => {
   const {
@@ -14,6 +16,7 @@ const JournalRow = (props) => {
     arrJournalId,
     handleDelete,
     arrJournalDate,
+    arrAchievedGoal,
   } = props;
 
   //const [show, setShow] = useState(false);
@@ -48,7 +51,21 @@ const JournalRow = (props) => {
               {arrTitle[i]}
             </TableCell>
             <TableCell align="center">{arrJournalDate[i]}</TableCell>
-
+            <TableCell align="center">
+              {arrAchievedGoal[i] ? (
+                <img
+                  style={{ maxWidth: "1rem", maxHeight: "1rem" }}
+                  src={tick}
+                  alt="tick"
+                />
+              ) : (
+                <img
+                  src={cross}
+                  style={{ maxWidth: "1rem", maxHeight: "1rem" }}
+                  alt="cross"
+                />
+              )}
+            </TableCell>
             {/* <TableCell align="center">
               <button onClick={handleDelete(arrJournalId[i])}>Delete</button>
             </TableCell> */}
