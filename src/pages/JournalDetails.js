@@ -8,6 +8,7 @@ import TextField from "@mui/material/TextField";
 import Comments from "../components/Comments";
 import dayjs from "dayjs";
 import "./JournalDetails.css";
+import { AlignHorizontalLeft } from "@mui/icons-material";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 
@@ -98,49 +99,87 @@ const JournalDetails = () => {
   //console.log(allComments);
 
   return (
-    <div className="journalDetailsContainer">
+    <div class="journalDetailsContainer">
       <h1>Journal Details</h1>
-      <div className="journalDetailsContents">
-        <div className="journalTitle">{journalDetails.title}</div>
-        <div className="journalBody">{journalDetails.journalBody}</div>
+      <div class="journalDetailsContent">
         <Box
-          sx={{ flexGrow: 1 }}
+          sx={{
+            flexGrow: 1,
+            "& .MuiTextField-root": { m: 1, width: "55ch" },
+          }}
           component="form"
-          // sx={{
-          //   "& .MuiTextField-root": { m: 1, width: "25ch" },
-          // }}
           noValidate
           autoComplete="off"
         >
-          <Grid item xs={12}>
-            <TextField
-              id="outlined-multiline-static"
-              label="Enter a comment"
-              multiline
-              required
-              rows={20}
-              value={comment}
-              onChange={handleChangeComment}
-            />
-          </Grid>
+          <Box
+            component="div"
+            sx={{
+              whiteSpace: "normal",
+              fontSize: "1.5rem",
+              fontWeight: "700",
+              width: "100%",
+              border: "1px solid black",
+              overflowY: "scroll",
+              paddingLeft: "2rem",
+              alignContent: "flex-start",
+            }}
+          >
+            {journalDetails.title}
+          </Box>
+
+          <Box
+            component="div"
+            sx={{
+              whiteSpace: "normal",
+              fontSize: "1rem",
+              fontWeight: "700",
+              width: "80%",
+              border: "1px solid black",
+              overflowY: "scroll",
+              paddingLeft: "2rem",
+            }}
+          >
+            {journalDetails.journalBody}
+          </Box>
+          <Box
+            sx={{ flexGrow: 1 }}
+            component="form"
+            // sx={{
+            //   "& .MuiTextField-root": { m: 1, width: "25ch" },
+            // }}
+            noValidate
+            autoComplete="off"
+          >
+            <Grid item xs={12}>
+              <TextField
+                id="outlined-multiline-static"
+                label="Enter a comment"
+                multiline
+                required
+                rows={3}
+                value={comment}
+                onChange={handleChangeComment}
+              />
+            </Grid>
+          </Box>
+          <button onClick={handleCommentSubmit}>Submit</button>
+          <>
+            {allComments ? (
+              <>
+                {allComments.map((e, index) => (
+                  <Comments
+                    key={index}
+                    comment={e.comment}
+                    author={e.author}
+                    dateCommented={e.dateCommented}
+                  />
+                ))}
+              </>
+            ) : (
+              <div></div>
+            )}
+          </>
         </Box>
-        <button onClick={handleCommentSubmit}>Submit</button>
-        <>
-          {allComments ? (
-            <>
-              {allComments.map((e, index) => (
-                <Comments
-                  key={index}
-                  comment={e.comment}
-                  author={e.author}
-                  dateCommented={e.dateCommented}
-                />
-              ))}
-            </>
-          ) : (
-            <div></div>
-          )}
-        </>
       </div>
     </div>
   );
