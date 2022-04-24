@@ -175,7 +175,14 @@ const Planner = () => {
                 }
               }}
             />
-            <div className="legendBox">
+            <div
+              className="legendBox"
+              style={{
+                alignItems: "left",
+                textAlign: "left",
+                marginTop: "0.5rem",
+              }}
+            >
               Legend: <br></br>
               <span style={{ color: "purple" }}>Purple dates</span>: 30-days
               habit change
@@ -184,8 +191,8 @@ const Planner = () => {
                 Green highlighted dates
               </span>
               : Dates you succeeded!
-              <p style={{ textAlign: "left", color: "white" }}>
-                Click on the dates to see journal entries for that day
+              <p style={{ textAlign: "left", color: "black" }}>
+                Click on the dates to see!
               </p>
             </div>
           </div>
