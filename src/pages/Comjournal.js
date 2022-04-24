@@ -126,8 +126,8 @@ const Comjournal = () => {
   // const journalArray1 = {};
 
   return (
-    <>
-      <TableContainer component={Paper} style={{ margin: "20px" }}>
+    <div className="comJournalContainer">
+      <TableContainer component={Paper} style={{ marginRight: "1rem" }}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -157,7 +157,7 @@ const Comjournal = () => {
           {/* <TableBody>{tableCells}</TableBody> */}
         </Table>
       </TableContainer>
-    </>
+    </div>
   );
 };
 

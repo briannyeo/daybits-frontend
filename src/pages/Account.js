@@ -82,6 +82,7 @@ const Account = () => {
   //createArr(userJournals);
   return (
     <>
+      <h2 style={{ marginTop: "2rem" }}>All Your Posts </h2>
       <TableContainer component={Paper} style={{ margin: "20px" }}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>

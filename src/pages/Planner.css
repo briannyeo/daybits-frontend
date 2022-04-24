@@ -3,17 +3,46 @@ SO THE react calendar CSS IS IN JOURNAL.CSS */
 
 
 .plannerPageContainer {
-    display:flex;
-    justify-content: space-between;
+display:flex;
+flex-direction: column;
+align-items: center;
+margin-top: 3rem;
+background-color: white;
+padding:2rem;
+position: absolute;
+left: 50%;
+top: 45%;
+transform: translate(-50%, -50%);
+border-radius: 5%;
+width: 80%;
 }
+
 .plannerContainer {
+flex-direction: row;
+justify-content: center;
+width: 80%;
+
 
 }
 
+.progress{
+    width: 60%;
+    justify-content: center;
+    background-color: white;
+}
 .legendBox {
     background-color: white;
 }
-
 .cardsContainer {
-    background-color: blue;
+    background-color: white;
+    justify-content: center;
+    max-width: 60%;
+    max-height: 50%;
+    overflow-y: scroll;
+}
+
+.card {
+    flex-direction: column;
+    overflow-y: scroll;
+
 }

@@ -1,4 +1,4 @@
-import { setDate } from "date-fns";
+// import { setDate } from "date-fns";
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 //import "react-calendar/dist/Calendar.css";
@@ -7,7 +7,7 @@ import urlcat from "urlcat";
 import dayjs from "dayjs"; // ES 2015
 import Plannercard from "../components/Plannercard";
 import Progress from "./Progress";
-import { Filter } from "@mui/icons-material";
+import JournalModal from "../components/JournalModal";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 const FAKE_DATE = [new Date(1970, 1, 1), new Date(1970, 1, 1)];
@@ -25,7 +25,6 @@ const Planner = () => {
   //   new Date(2021, 6, 1), //2021 July 1
   //   new Date(2021, 6, 10), //2021 July 10
   // ]);
-
   //console.log("setDate", date);
 
   //Retrieve startdate from user
@@ -84,8 +83,8 @@ const Planner = () => {
       ) {
         // console.log("yes");
 
-        console.log(planner.journals[i].title);
-        console.log(planner.journals[i].journalBody);
+        // console.log(planner.journals[i].title);
+        // console.log(planner.journals[i].journalBody);
         journalNowTitle.push(planner.journals[i].title);
         journalNowBody.push(planner.journals[i].journalBody);
       }
@@ -96,7 +95,7 @@ const Planner = () => {
 
   //console.log("date", date);
   if (status === "success" && date[0].getFullYear() === 1970) {
-    console.log("show Planner", planner);
+    //console.log("show Planner", planner);
 
     //SETTING RANGE START AND END
     //const date = [];
@@ -105,7 +104,7 @@ const Planner = () => {
     const rangeStartMonth = parseInt(rangeStart.slice(4, 6), 10);
     const rangeStartDate = parseInt(rangeStart.slice(6, 8), 10);
 
-    console.log("rangeStart", rangeStart);
+    // console.log("rangeStart", rangeStart);
     // console.log(rangeStartYear);
     // console.log(rangeStartMonth);
     // console.log(rangeStartDate);
@@ -134,30 +133,32 @@ const Planner = () => {
     checkSuccess();
     grabJournal();
   }
-  console.log("datenow", dateNow);
+  //console.log("datenow", dateNow);
   //const markSuccess = ["24-04-2022", "25-04-2022", "26-04-2022"];
 
-  //<Plannercard journalNowTitle={journalNowTitle} />;
-
-  //DONT REMOVE - optional wording on top of calendar
-  // <div>
-  //   {date.length > 0 ? (
-  //     <p className="text-center">
-  //       <span className="bold">Start:</span> {date[0].toDateString()}
-  //       &nbsp;|&nbsp;
-  //       <span className="bold">End:</span> {date[1].toDateString()}
-  //     </p>
-  //   ) : (
-  //     <p className="text-center">
-  //       <span className="bold">Default selected date:</span>{" "}
-  //       {date.toDateString()}
-  //     </p>
-  //   )}
-  // </div>;
+  //HANDLE MODAL
+  const [open, setOpen] = React.useState(true);
 
   return (
     <>
       <div className="plannerPageContainer">
+        {/* <div className="startEnd">
+          {date.length > 0 ? (
+            <h2 className="text-center">
+              <span className="bold">Start:</span> {date[0].toDateString()}
+              &nbsp;|&nbsp;
+              <span className="bold">End:</span> {date[1].toDateString()}
+            </h2>
+          ) : (
+            <p className="text-center">
+              <span className="bold">Default selected date:</span>{" "}
+              {date.toDateString()}
+            </p>
+          )}
+        </div> */}
+        <div className="progress">
+          <Progress />
+        </div>
         <div className="plannerContainer">
           <div className="calendar-container">
             <Calendar
@@ -174,40 +175,33 @@ const Planner = () => {
                 }
               }}
             />
-          </div>
-
-          <div className="legendBox">
-            <br></br>
-            <br></br>
-            Legend:<br></br>
-            <span style={{ color: "purple" }}>Purple dates</span>: 30-days habit
-            change
-            <br></br>
-            <span style={{ background: "lightseagreen" }}>
-              Green highlighted dates
-            </span>
-            : Dates you succeeded!
-            <p style={{ textAlign: "left", color: "white" }}>
-              Click on the dates to see journal entries for that day
-            </p>
+            <div className="legendBox">
+              Legend: <br></br>
+              <span style={{ color: "purple" }}>Purple dates</span>: 30-days
+              habit change
+              <br></br>
+              <span style={{ background: "lightseagreen" }}>
+                Green highlighted dates
+              </span>
+              : Dates you succeeded!
+              <p style={{ textAlign: "left", color: "white" }}>
+                Click on the dates to see journal entries for that day
+              </p>
+            </div>
           </div>
           <div className="cardsContainer">
             {journalNowTitle.length > 0 ? (
               <div className="card">
+                <h3>Journal Entry: </h3>
                 <Plannercard
                   journalNowTitle={journalNowTitle}
                   journalNowBody={journalNowBody}
                 />
               </div>
             ) : (
-              <p style={{ textAlign: "left", color: "white" }}>
-                No Journal Entries on selected date
-              </p>
+              <h3>No Journal Entry Found...</h3>
             )}
           </div>
-        </div>
-        <div className="progress">
-          <Progress />
         </div>
       </div>
     </>

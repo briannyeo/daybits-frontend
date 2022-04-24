@@ -5,7 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import urlcat from "urlcat";
 //const dayjs = require("dayjs");
 import dayjs from "dayjs"; // ES 2015
-
+import "./Progress.css";
+import Button from "@mui/material/Button";
 const BACKEND = process.env.REACT_APP_BACKEND;
 
 const Progress = () => {
@@ -101,54 +102,43 @@ const Progress = () => {
     createArrProgress(progress);
   }
 
-  // <div>
-  //   <h2 style={{ marginTop: "20px" }}>My Progress</h2>
-  //   <br></br>
-  //   <button onClick={handleTest} style={{ fontSize: "150%" }}>
-  //     Click to refresh your Progress for Today!
-  //   </button>
-  //   <br></br>
-  // </div>;
-
   const handleClick = () => {
     navigate("/daybits/journal");
   };
+
   return (
-    <div>
-      <div>
-        <h2 style={{ marginTop: "20px" }}>My Progress</h2>
-        <br></br>
-        <br></br>
-        <br></br>
-        <h4>
-          No. of days succeeded:{" "}
-          <span style={{ color: "green" }}>
-            {countSuccess[countSuccess.length - 1]}
-          </span>
-        </h4>{" "}
-        <br></br>
-        <h4>
-          No. of days missed:{" "}
-          <span style={{ color: "red" }}>
-            {countFail[countFail.length - 1]}
-          </span>
-        </h4>
-        <br></br>
-        <h4>
-          You are <span style={{ color: "blue" }}>{daysLeft}</span> days closer
-          to <span style={{ color: "blue" }}>{progress.habitstatus}ing</span>{" "}
-          your <span style={{ color: "blue" }}>{progress.habit}</span>
-        </h4>
-        <br></br>
-        <h4>
-          Your challenge ends on:{" "}
-          <span style={{ color: "blue" }}>{endDate}</span>
-        </h4>
-        <br></br>
-        <button style={{ fontSize: "150%" }} onClick={handleClick}>
-          Write in your journal today!
-        </button>
-      </div>
+    <div className="progressContainer">
+      <h2 style={{ marginTop: "1rem" }}>My Progress</h2>
+      <h3>
+        No. of days succeeded:{" "}
+        <span style={{ color: "green" }}>
+          {countSuccess[countSuccess.length - 1]}
+        </span>
+      </h3>
+      <h3>
+        No. of days missed:{" "}
+        <span style={{ color: "red" }}>{countFail[countFail.length - 1]}</span>
+      </h3>
+      <h3>
+        You are <span style={{ color: "blue" }}>{daysLeft}</span> days closer to{" "}
+        <span style={{ color: "blue" }}>{progress.habitstatus}ing</span> your{" "}
+        <span style={{ color: "blue" }}>{progress.habit}</span>
+      </h3>
+      <h3>
+        Your challenge ends on: <span style={{ color: "blue" }}>{endDate}</span>
+      </h3>
+      <Button
+        onClick={handleClick}
+        variant="contained"
+        sx={{ mt: 3, mb: 2 }}
+        style={{
+          fontFamily: "Montserrat",
+          backgroundColor: "#FE7965",
+          color: "white",
+        }}
+      >
+        Write Journal!
+      </Button>
     </div>
   );
 };
