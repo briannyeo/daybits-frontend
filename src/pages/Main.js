@@ -19,6 +19,7 @@ import JournalDetails from "./JournalDetails";
 import Account from "./Account";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { green } from "@mui/material/colors";
+import UserPosts from "./UserPosts";
 <link
   href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Rammetto+One&display=swap"
   rel="stylesheet"
@@ -95,6 +96,14 @@ const Main = () => {
               element={
                 <Protected>
                   <JournalDetails />
+                </Protected>
+              }
+            />
+            <Route
+              path="user/:id"
+              element={
+                <Protected>
+                  <UserPosts />
                 </Protected>
               }
             />
