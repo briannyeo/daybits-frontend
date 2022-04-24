@@ -7,6 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import UserRow from "../components/UserRow";
+import dayjs from "dayjs"; // ES 2015
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 
@@ -39,6 +40,8 @@ const Account = () => {
   let arrUser = userJournals.username;
   let arrJournalBody = [];
   let arrJournalId = [];
+  let arrJournalDate = [];
+  let arrAchievedGoal = [];
 
   const createArr = (userJournals) => {
     if (load) {
@@ -46,17 +49,24 @@ const Account = () => {
         arrJournalId.push(userJournals.journals[i]._id);
         arrTitle.push(userJournals.journals[i].title);
         arrJournalBody.push(userJournals.journals[i].journalBody);
+        arrJournalDate.push(
+          dayjs(userJournals.journals[i].createdAt).format("DD-MM-YYYY")
+        );
+        arrAchievedGoal.push(userJournals.journals[i].dailyGoalAchieved);
       }
     }
     return;
   };
-  // console.log("arrTitle:", arrTitle);
-  // console.log("userJournals", userJournals);
-  // console.log(arrUser);
-  // console.log("load", load);
-  createArr(userJournals);
-  //BUG that prevents refresh of data???
 
+  if (load) {
+    console.log("load", load);
+
+    createArr(userJournals);
+  }
+  //BUG that prevents refresh of data???
+  console.log("arrTitle:", arrTitle);
+  console.log("userJournals", userJournals);
+  console.log(arrUser);
   //delete journal entry
   const handleDelete = (id) => () => {
     const url = urlcat(BACKEND, `/daybits/journal/${id}`);
@@ -88,10 +98,13 @@ const Account = () => {
           <TableHead>
             <TableRow>
               <TableCell style={{ fontWeight: "bold" }} align="center">
-                {arrUser}'s posts
+                Title
               </TableCell>
               <TableCell style={{ fontWeight: "bold" }} align="center">
-                Title
+                Posted On:
+              </TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="center">
+                Goal Achieved
               </TableCell>
               <TableCell style={{ fontWeight: "bold" }} align="center">
                 Click to Delete
@@ -104,6 +117,8 @@ const Account = () => {
             arrJournalBody={arrJournalBody}
             arrJournalId={arrJournalId}
             handleDelete={handleDelete}
+            arrJournalDate={arrJournalDate}
+            arrAchievedGoal={arrAchievedGoal}
           />
         </Table>
       </TableContainer>

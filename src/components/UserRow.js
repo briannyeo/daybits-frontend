@@ -5,10 +5,19 @@ import { Button } from "@mui/material";
 
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import tick from "../images/accept.png";
+import cross from "../images/cancel.png";
 
 const UserRow = (props) => {
-  const { arrTitle, arrUser, arrJournalBody, arrJournalId, handleDelete } =
-    props;
+  const {
+    arrTitle,
+    arrUser,
+    arrJournalBody,
+    arrJournalId,
+    handleDelete,
+    arrJournalDate,
+    arrAchievedGoal,
+  } = props;
 
   const [journalUrl, setJournalUrl] = useState("");
 
@@ -25,7 +34,6 @@ const UserRow = (props) => {
       tableCells.push(
         <>
           <TableRow key={arrJournalId[i]}>
-            <TableCell align="center">{arrUser}</TableCell>
             <TableCell
               id="journalTitleRow"
               align="center"
@@ -33,6 +41,22 @@ const UserRow = (props) => {
               style={{}}
             >
               {arrTitle[i]}
+            </TableCell>
+            <TableCell align="center">{arrJournalDate[i]}</TableCell>
+            <TableCell align="center">
+              {arrAchievedGoal[i] ? (
+                <img
+                  style={{ maxWidth: "1rem", maxHeight: "1rem" }}
+                  src={tick}
+                  alt="tick"
+                />
+              ) : (
+                <img
+                  src={cross}
+                  style={{ maxWidth: "1rem", maxHeight: "1rem" }}
+                  alt="cross"
+                />
+              )}
             </TableCell>
             <TableCell align="center">
               <Button

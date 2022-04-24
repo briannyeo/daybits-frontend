@@ -161,6 +161,10 @@ const Planner = () => {
         </div>
         <div className="plannerContainer">
           <div className="calendar-container">
+            <p style={{ textAlign: "left", color: "black" }}>
+              Click on the dates to see the journal entries for that day!
+            </p>
+
             <Calendar
               onClickDay={setDateNow}
               selectRange={false}
@@ -191,9 +195,6 @@ const Planner = () => {
                 Green highlighted dates
               </span>
               : Dates you succeeded!
-              <p style={{ textAlign: "left", color: "black" }}>
-                Click on the dates to see!
-              </p>
             </div>
           </div>
           <div className="cardsContainer">

@@ -108,37 +108,25 @@ const Progress = () => {
 
   return (
     <div className="progressContainer">
-      <h2 style={{ marginTop: "1rem" }}>My Progress</h2>
-      <h3>
+      <h2 style={{ marginTop: "1rem" }}>My Planner</h2>
+      <h4>
         No. of days succeeded:{" "}
         <span style={{ color: "green" }}>
           {countSuccess[countSuccess.length - 1]}
         </span>
-      </h3>
-      <h3>
+      </h4>
+      <h4>
         No. of days missed:{" "}
         <span style={{ color: "red" }}>{countFail[countFail.length - 1]}</span>
-      </h3>
-      <h3>
+      </h4>
+      <h4>
         You are <span style={{ color: "blue" }}>{daysLeft}</span> days closer to{" "}
-        <span style={{ color: "blue" }}>{progress.habitstatus}ing</span> your{" "}
-        <span style={{ color: "blue" }}>{progress.habit}</span>
-      </h3>
-      <h3>
+        <span style={{ color: "blue" }}>{progress.habitstatus}ing</span> your
+        habit of <span style={{ color: "blue" }}>{progress.habit}</span>
+      </h4>
+      <h4>
         Your challenge ends on: <span style={{ color: "blue" }}>{endDate}</span>
-      </h3>
-      <Button
-        onClick={handleClick}
-        variant="contained"
-        sx={{ mt: 3, mb: 2 }}
-        style={{
-          fontFamily: "Montserrat",
-          backgroundColor: "#FE7965",
-          color: "white",
-        }}
-      >
-        Write Journal!
-      </Button>
+      </h4>
     </div>
   );
 };
