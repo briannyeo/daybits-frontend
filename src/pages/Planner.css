@@ -41,6 +41,7 @@ width: 80%;
     max-width: 60%;
     max-height: 50%;
     overflow-y: scroll;
+    margin-left: 1.5rem;
 }
 
 .card {
