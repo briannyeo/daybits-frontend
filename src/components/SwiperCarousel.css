@@ -1,28 +1,41 @@
 .infoContainer {
     margin-top: 5rem;
     /* background-color: rgba(255,255,255,0.5); */
-
     position: absolute;
     left: 50%;
     top: 45%;
     transform: translate(-50%, -50%);
     display: flex;
-    width: 40%;
-    height:100%;
+    width: 50%;
+    max-height:100%;
     flex-direction: column;
+}
+
+.infoContainer1 {
+    /* background-color: rgba(255,255,255,0.5); */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    max-height:100%;
 }
 
 .infoHeader {
 margin: 1rem;
 margin-top: 6rem;
 }
+.infoHeader1 {
+    margin: 1rem;
+    margin-top: 3rem;
+    }
 
 .infoBody {
-    margin: 2rem;
-    /* overflow-y: scroll; */
+
+  
 }
 
 .infoBody2 {
     margin: 2rem;
-    /* overflow-y: scroll; */
+  
 }
