@@ -46,9 +46,8 @@ const UserPosts = () => {
   let arrJournalBody = [];
   let arrJournalId = [];
   let arrJournalDate = [];
-  let arrComments = [];
   let arrAchievedGoal = [];
-  console.log(journallist);
+  //   console.log(journallist);
 
   // console.log("arrJournalID:", arrJournalId);
   // console.log("journalist is", journallist);

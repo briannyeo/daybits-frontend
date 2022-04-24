@@ -8,3 +8,9 @@
     cursor: pointer;
     
 }
+
+#userRow:hover {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
