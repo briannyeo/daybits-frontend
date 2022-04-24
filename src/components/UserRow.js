@@ -1,6 +1,7 @@
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
+import { Button } from "@mui/material";
 
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -34,7 +35,18 @@ const UserRow = (props) => {
               {arrTitle[i]}
             </TableCell>
             <TableCell align="center">
-              <button onClick={handleDelete(arrJournalId[i])}>Delete</button>
+              <Button
+                onClick={handleDelete(arrJournalId[i])}
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                style={{
+                  fontFamily: "Montserrat",
+                  backgroundColor: "#FE7965",
+                  color: "white",
+                }}
+              >
+                Delete
+              </Button>
             </TableCell>
           </TableRow>
           {/* <JournalModal
