@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# Daybits
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Daybits is your companion tool to build or break the habits that will truly change your life in meaningful and positive ways.
 
-## Available Scripts
+*You’ll never change your life until you change something you do daily. The secret of your success is found in your daily routine. 
+-John C. Maxwell*
 
-In the project directory, you can run:
+## About Daybits
 
-### `npm start`
+- 📆 **30 days**
+- 🏆 **Set Habit Changing Goals**
+- 📝 **Journal Daily**
+- 👨‍👩‍👧‍👦 **Stay accountable with the Daybits Community**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## The Science behind Daybits
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Daybits was designed on the back of the concept - Self-directed neuroplasticity (a term coined by [Dr. Jeffrey Schwartz](https://jeffreymschwartz.com/) and [Dr. Rick Hanson](https://www.rickhanson.net/books/hardwiring-happiness/)
 
-### `npm test`
+- Self-directed neuroplasticity provides evidence for how people can intentionally rewire their brains to create positive habits thorugh **active reflection** and **positive reinforcement**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Daybits facilitates the process of self-directed neuroplasticity by encouraging active reflection through 📝 **daily journaling**
 
-### `npm run build`
+- The 👨‍👩‍👧‍👦 **Daybits community** provides encouragement and support that completes the habit loop with positive reinforcement
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technical Details
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. MERN stack (MongoDB, ExpressJS, ReactJS, NodeJS)
+2. Schema:
+    1. Journal Model
+    2. Comments Model
+    3. User Model with authentication
+3. Includes all major CRUD functions
+    1. Users can create and edit their profiles (to set their habits and goals)
+    2. Users can create and delete their journal entries
+    3. Users can create comments on other users' journal entries
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Other framework / tools used:
+- [Swiper](https://www.npmjs.com/package/swiper) was used for the *home* page
+- [Material UI](https://mui.com/material-ui/getting-started/installation/)
+- [Bootstrap](https://getbootstrap.com/)
+- [React calendar](https://www.npmjs.com/package/react-calendar) was used in the *planner* page
+- [Dayjs](https://day.js.org/)
+- [Jotai](https://jotai.org/) was used to pass the *login* state to all the components in the frontend
+- [React markdown](https://www.npmjs.com/package/react-markdown)
 
-### `npm run eject`
+## Project Process:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This was a group project done by a 2-person group - Brian and Krystle.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**General approach to the project**: 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Inspired by our personal desires to add more positive habits in our lives (e.g., exercising more), we sought to create a web app that would allow us to create and stick to a habit.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+This led us to start with creating a [wireframe](https://www.figma.com/file/jUX2e4blUZtYgq7XQXFT84/Habit-Tracker-Project-3?node-id=0%3A1)
 
-## Learn More
+We started with working on both the frontend and backend together as we wanted to be aligned on the routes in the frontend, and which pages/routes needed to have corresponding GET and POST routes in the backend.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Then we worked on separate pages on the app, checking in everyday to git pull and merge to ensure that our code was aligned and to reduce merge conflicts.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Possible future development areas
 
-### Code Splitting
+- Allow users to *like* the journal entries of other users
+- Display the number of *comments* for each journal entry in the community page
+- Create an admin function that can moderate the *comments*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Installation instructions:
+1. `git clone` the [frontend](https://github.com/briannyeo/frontend-daybits) and the [backend](https://github.com/briannyeo/backend-daybits)
+2. `npm install`
 
-### Analyzing the Bundle Size
+### This project is hosted on Github
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Frontend:https://github.com/briannyeo/frontend-daybits
 
-### Making a Progressive Web App
+Backend: https://github.com/briannyeo/backend-daybits
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### This app is deployed on:
 
-### Advanced Configuration
+Frontend: https://daybits-frontend.vercel.app/daybits
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Backend: https://daybits-backend.herokuapp.com/
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
