@@ -52,7 +52,8 @@ const Profile = (props) => {
           <p>loading</p>
         ) : (
           <>
-            <h3 style={{ marginTop: "30px" }}>
+            <h1>My Profile</h1>
+            <h3 style={{ marginTop: "3rem" }}>
               I want to
               <span style={{ color: "green", fontStyle: "italic" }}>
                 &nbsp; {profile.habitstatus} &nbsp;

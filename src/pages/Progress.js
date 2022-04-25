@@ -120,12 +120,13 @@ const Progress = () => {
         <span style={{ color: "red" }}>{countFail[countFail.length - 1]}</span>
       </h4>
       <h4>
-        You are <span style={{ color: "blue" }}>{daysLeft}</span> days closer to{" "}
-        <span style={{ color: "blue" }}>{progress.habitstatus}ing</span> your
-        habit of <span style={{ color: "blue" }}>{progress.habit}</span>
+        You are <span style={{ color: "#5CBFC6" }}>{daysLeft}</span> days closer
+        to <span style={{ color: "#5CBFC6" }}>{progress.habitstatus}ing</span>{" "}
+        your habit of <span style={{ color: "#5CBFC6" }}>{progress.habit}</span>
       </h4>
       <h4>
-        Your challenge ends on: <span style={{ color: "blue" }}>{endDate}</span>
+        Your challenge ends on:{" "}
+        <span style={{ color: "#5CBFC6" }}>{endDate}</span>
       </h4>
     </div>
   );

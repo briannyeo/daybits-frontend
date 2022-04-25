@@ -207,7 +207,7 @@ const Planner = () => {
                 />
               </div>
             ) : (
-              <h3>No Journal Entry Found...</h3>
+              <h2>No Journal Entry Found...</h2>
             )}
           </div>
         </div>
