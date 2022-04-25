@@ -61,10 +61,7 @@ export default function App() {
               <div className="infoBody">
                 30 days <br />
                 Set your Goals <br />
-                Journal Daily <br />
-                Stay accountable with the Daybits
-                <br />
-                community
+                Journal Daily <br /> Stay accountable with the Daybits community
               </div>
             </div>
           </SwiperSlide>
@@ -136,9 +133,7 @@ export default function App() {
               <div className="infoBody">
                 30 days <br />
                 Set your Goals <br />
-                Journal Daily <br />
-                Stay accountable with the Daybits
-                <br />
+                Journal Daily <br />• Stay accountable with the Daybits
                 community
               </div>
             </div>
