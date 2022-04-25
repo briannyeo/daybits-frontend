@@ -1,7 +1,8 @@
 .journalDetailsContainer {
     margin-top: 5rem;
+
     background-color: white;
-    padding:1rem;
+    padding:3rem 1rem 1rem 1rem ;
     position: absolute;
     left: 50%;
     top: 45%;
@@ -31,14 +32,13 @@
 .journalBody {
   
     max-height: 16vh;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
 ;
 
 }
 
 .commentsComponent{
-    margin-top: 1.5rem;
-    
+    margin-top: 2rem;
     max-height: 30vh;
 
 }

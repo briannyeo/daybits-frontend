@@ -3,14 +3,14 @@
 }
 
 #journalTitleRow:hover {
-    color: blue;
+    color: #5CBFC6;
     text-decoration: underline;
     cursor: pointer;
     
 }
 
 #userRow:hover {
-    color: blue;
+    color: #5CBFC6;
     text-decoration: underline;
     cursor: pointer;
 }

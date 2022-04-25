@@ -13,6 +13,10 @@ import dayjs from "dayjs"; // ES 2015
 
 import "./Comjournal.css";
 
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Rammetto+One&display=swap"
+  rel="stylesheet"
+></link>;
 const BACKEND = process.env.REACT_APP_BACKEND;
 
 const Comjournal = () => {
@@ -127,20 +131,35 @@ const Comjournal = () => {
 
   return (
     <div className="comJournalContainer">
-      <TableContainer component={Paper} style={{ marginRight: "1rem" }}>
+      <TableContainer
+        component={Paper}
+        style={{ marginRight: "1rem", fontFamily: "Montserrat" }}
+      >
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
+              <TableCell
+                style={{ fontWeight: "bold", fontFamily: "Montserrat" }}
+                align="center"
+              >
                 Posted by
               </TableCell>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
+              <TableCell
+                style={{ fontWeight: "bold", fontFamily: "Montserrat" }}
+                align="center"
+              >
                 Title
               </TableCell>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
+              <TableCell
+                style={{ fontWeight: "bold", fontFamily: "Montserrat" }}
+                align="center"
+              >
                 Posted On:
               </TableCell>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
+              <TableCell
+                style={{ fontWeight: "bold", fontFamily: "Montserrat" }}
+                align="center"
+              >
                 Goal Achieved
               </TableCell>
             </TableRow>

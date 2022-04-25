@@ -145,7 +145,7 @@ const JournalDetails = () => {
             </Box>
           </div>
 
-          <h2>Comments</h2>
+          <h3 style={{ fontWeight: "bold" }}>Comments</h3>
           <Box
             sx={{
               flexGrow: 1,

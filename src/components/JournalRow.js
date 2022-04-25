@@ -40,11 +40,12 @@ const JournalRow = (props) => {
     for (let i = 0; i < arrJournalBody.length; i++) {
       tableCells.push(
         <>
-          <TableRow key={arrJournalId[i]}>
+          <TableRow key={arrJournalId[i]} style={{ fontFamily: "Montserrat" }}>
             <TableCell
               id="userRow"
               onClick={() => navigate(`/daybits/user/${arrUser[i]}`)}
               align="center"
+              style={{ fontFamily: "Montserrat" }}
             >
               {arrUser[i]}
             </TableCell>
@@ -52,11 +53,13 @@ const JournalRow = (props) => {
               id="journalTitleRow"
               align="center"
               onClick={() => navigate(`/daybits/journal/${arrJournalId[i]}`)}
-              style={{}}
+              style={{ fontFamily: "Montserrat" }}
             >
               {arrTitle[i]}
             </TableCell>
-            <TableCell align="center">{arrJournalDate[i]}</TableCell>
+            <TableCell align="center" style={{ fontFamily: "Montserrat" }}>
+              {arrJournalDate[i]}
+            </TableCell>
             <TableCell align="center">
               {arrAchievedGoal[i] ? (
                 <img
