@@ -184,7 +184,7 @@ const Registration = () => {
                 sx={{ mt: 3, mb: 2 }}
                 style={{ backgroundColor: "#FE7965", color: "white" }}
               >
-                Sign In
+                Sign Up
               </Button>
             </FormControl>
           </Grid>

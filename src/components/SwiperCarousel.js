@@ -32,7 +32,9 @@ export default function App() {
           grabCursor={true}
         >
           <SwiperSlide>
-            <LoginWindow />
+            <div className="loginWindow">
+              <LoginWindow />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="infoContainer">
@@ -42,9 +44,9 @@ export default function App() {
               <div className="infoBody">
                 Daybits is your companion tool to build or break the habits that
                 will truly change your life in meaningful and positive ways.
-              </div>
-              <div className="infoBody2">
                 <i>
+                  <br />
+                  <br />
                   "You’ll never change your life until you change something you
                   do daily. The secret of your success is found in your daily
                   routine."
@@ -68,27 +70,28 @@ export default function App() {
           <SwiperSlide>
             <div className="infoContainer1">
               <div className="infoHeader1">
-                <h1>The Science behind Daybits</h1>
+                <h1>The Science Behind Daybits</h1>
               </div>
               <div className="infoBody">
-                Daybits was designed on the back of the concept - Self-directed
-                neuroplasticity. Coined by researcher Dr. Jeffrey Schwartz and
-                then popularized by Dr. Rick Hanson, a psychologist and senior
-                fellow at UC Berkeley’s Greater Good Science Center and author
-                of “Hardwiring Happiness.”, self-directed neuroplasticity
-                provides evidence for how people can intentionally rewire their
-                brains to create positive habits. People do this primarily
-                through active reflection. <br />
-                The habit loop is reinforced when there is a response and reward
-                following the behaviour. Daybits seeks to help people change and
-                reinforce new habit loops by making people accountable for their
-                behaviour for 30 consecutive days through journaling and
-                reflection. The repetition helps to train people’s brains to
-                stick with the habits, while the encouragement from the daybits
-                community helps to provide the dopamine kick that completes the
-                new habit loop. <br />
+                <i>Daybits</i> was designed on the back of the concept -
+                Self-directed neuroplasticity. Coined by researcher Dr. Jeffrey
+                Schwartz and then popularized by Dr. Rick Hanson, a psychologist
+                and senior fellow at UC Berkeley’s Greater Good Science Center
+                and author of “Hardwiring Happiness.”, self-directed
+                neuroplasticity provides evidence for how people can
+                intentionally rewire their brains to create positive habits.
+                People do this primarily through active reflection. <br />
                 <br />
-                Daybits offers a powerful, science-based method to break
+                The habit loop is reinforced when there is a response and reward
+                following the behaviour. <i>Daybits</i> seeks to help people
+                change and reinforce new habit loops by making people
+                accountable for their behaviour for 30 consecutive days through
+                journaling and reflection. The repetition helps to train
+                people’s brains to stick with the habits, while the
+                encouragement from the <i>Daybits</i> community helps to provide
+                the dopamine kick that completes the new habit loop. <br />
+                <br />
+                <i>Daybits</i> offers a powerful, science-based method to break
                 undesirable habits and create new, healthy ones.
               </div>
             </div>
@@ -111,12 +114,12 @@ export default function App() {
               <div className="infoHeaderLogin">
                 <h1>Why Daybits?</h1>
               </div>
-              <div className="infoBodyLogin">
+              <div className="infoBody">
                 Daybits is your companion tool to build or break the habits that
                 will truly change your life in meaningful and positive ways.
-              </div>
-              <div className="infoBody2Login">
                 <i>
+                  <br />
+                  <br />
                   "You’ll never change your life until you change something you
                   do daily. The secret of your success is found in your daily
                   routine."
@@ -141,27 +144,28 @@ export default function App() {
           <SwiperSlide>
             <div className="infoContainer1Login">
               <div className="infoHeader1Login">
-                <h1>The Science behind Daybits</h1>
+                <h1>The Science Behind Daybits</h1>
               </div>
-              <div className="infoBody2Login">
-                Daybits was designed on the back of the concept - Self-directed
-                neuroplasticity. Coined by researcher Dr. Jeffrey Schwartz and
-                then popularized by Dr. Rick Hanson, a psychologist and senior
-                fellow at UC Berkeley’s Greater Good Science Center and author
-                of “Hardwiring Happiness.”, self-directed neuroplasticity
-                provides evidence for how people can intentionally rewire their
-                brains to create positive habits. People do this primarily
-                through active reflection. <br />
-                The habit loop is reinforced when there is a response and reward
-                following the behaviour. Daybits seeks to help people change and
-                reinforce new habit loops by making people accountable for their
-                behaviour for 30 consecutive days through journaling and
-                reflection. The repetition helps to train people’s brains to
-                stick with the habits, while the encouragement from the daybits
-                community helps to provide the dopamine kick that completes the
-                new habit loop. <br />
+              <div className="infoBody1Login">
+                <i>Daybits</i> was designed on the back of the concept -
+                Self-directed neuroplasticity. Coined by researcher Dr. Jeffrey
+                Schwartz and then popularized by Dr. Rick Hanson, a psychologist
+                and senior fellow at UC Berkeley’s Greater Good Science Center
+                and author of “Hardwiring Happiness.”, self-directed
+                neuroplasticity provides evidence for how people can
+                intentionally rewire their brains to create positive habits.
+                People do this primarily through active reflection. <br />
                 <br />
-                Daybits offers a powerful, science-based method to break
+                The habit loop is reinforced when there is a response and reward
+                following the behaviour. <i>Daybits</i> seeks to help people
+                change and reinforce new habit loops by making people
+                accountable for their behaviour for 30 consecutive days through
+                journaling and reflection. The repetition helps to train
+                people’s brains to stick with the habits, while the
+                encouragement from the <i>Daybits</i> community helps to provide
+                the dopamine kick that completes the new habit loop. <br />
+                <br />
+                <i>Daybits</i> offers a powerful, science-based method to break
                 undesirable habits and create new, healthy ones.
               </div>
             </div>

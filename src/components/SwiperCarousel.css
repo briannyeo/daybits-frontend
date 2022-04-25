@@ -1,12 +1,12 @@
 /******CAROUSEL CSS***************/
 .swiper {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
   }
   
   .swiper-slide {
     text-align: center;
-    font-size: 18px;
+    font-size: 20px;
     /* background: #fff; */
   
     /* Center slide text vertically */
@@ -24,7 +24,7 @@
     align-items: center;
   }
 
-  .swiper-button-prev {
+.swiper-button-prev {
     color: #FFFF; 
 }
 
@@ -32,88 +32,99 @@
     color: #FFFF; 
 }
 
+.swiper-pagination-bullet-active {
+    background-color: #FFFF !important;
+}
 
 
+
+/******************************LOGOUT CAROUSEL*****************/
+.loginWindow {
+    margin-bottom: 6rem;
+}
 
 .infoContainer {
-    margin-top: 5rem;
-    /* background-color: rgba(255,255,255,0.5); */
+   
     position: absolute;
     left: 50%;
     top: 45%;
     transform: translate(-50%, -50%);
     display: flex;
-    width: 50%;
-    max-height:100%;
+    width: 45%;
+    height:50%;
     flex-direction: column;
-}
-
-.infoContainer1 {
-    /* background-color: rgba(255,255,255,0.5); */
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    max-height:100%;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 50px;
 }
 
 .infoHeader {
-margin: 1rem;
-margin-top: 6rem;
+margin: 9rem 0 1rem 0
 }
+.infoBody {
+margin: 3rem;
+}
+
+.infoContainer1 {
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height:80%;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 50px;
+    
+}
+
 .infoHeader1 {
     margin: 1rem;
-    margin-top: 3rem;
+    margin-top: 7rem;
     }
 
-.infoBody {
-
-}
-
-.infoBody2 {
+.infoBody1 {
     margin: 2rem;
 }
 
 /******************************LOGIN CAROUSEL*****************/
 
-.infoContainerLogin{
-    /* margin-top: 5rem; */
-    /* background-color: rgba(255,255,255,0.5); */
+.infoContainerLogin {
+   
     position: absolute;
     left: 50%;
     top: 45%;
     transform: translate(-50%, -50%);
     display: flex;
-    width: 50%;
-    max-height:100%;
+    width: 45%;
+    height:50%;
     flex-direction: column;
-}   
-
-.infoContainer1Login {
-    /* background-color: rgba(255,255,255,0.5); */
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -5%);
-    width: 50%;
-    max-height:100%;
-
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 50px;
 }
 
 .infoHeaderLogin {
-margin: 1rem;
-margin-top: 6rem;
+margin: 7rem 0 1rem 0
 }
+.infoBodyLogin {
+margin: 3rem;
+}
+
+.infoContainer1Login {
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height:70%;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 50px;
+    
+}
+
 .infoHeader1Login {
     margin: 1rem;
-    margin-top: 3rem;
+    margin-top: 5rem;
     }
 
-.infoBodyLogin {
-
-}
-
-.infoBody2Login {
-    margin-top: 5rem;
+.infoBody1Login {
+    margin: 2rem;
 }
