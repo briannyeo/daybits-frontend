@@ -20,10 +20,10 @@ const Plannercard = (props) => {
         sx={{
           maxWidth: "100%",
           maxHeight: 200,
-          backgroundColor: "#fffaf3",
+          border: "1px solid #FF7965",
           boxShadow: "none",
           margin: "0.5rem",
-          flexDirection: "column",
+          padding: "0",
         }}
       >
         <CardContent>

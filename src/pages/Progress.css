@@ -1,8 +1,14 @@
 .progressContainer {
     padding: 0.5rem;
+    width: 100%;
 }
 
 .infoline {
     margin: 1rem;
     font-size: 1rem;
+}
+
+.progressInfo {
+    margin-top: 3rem;
+    margin-bottom: 5rem;
 }

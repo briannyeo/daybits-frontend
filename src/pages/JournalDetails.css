@@ -8,7 +8,9 @@
     transform: translate(-50%, -50%);
     border-radius: 20px;
     width: 80%;
-    max-height: 89vh;
+    height: 60%;
+    max-height: 80%;
+    overflow-y: auto;
 
 }
 
@@ -27,7 +29,7 @@
 }
 
 .journalBody {
-    overflow-y: scroll;
+  
     max-height: 16vh;
     margin-bottom: 2rem;
 ;
@@ -36,7 +38,7 @@
 
 .commentsComponent{
     margin-top: 1.5rem;
-    overflow-y: scroll;
+    
     max-height: 30vh;
 
 }

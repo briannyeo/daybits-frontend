@@ -109,25 +109,31 @@ const Progress = () => {
   return (
     <div className="progressContainer">
       <h2 style={{ marginTop: "1rem" }}>My Planner</h2>
-      <h4>
-        No. of days succeeded:{" "}
-        <span style={{ color: "green" }}>
-          {countSuccess[countSuccess.length - 1]}
-        </span>
-      </h4>
-      <h4>
-        No. of days missed:{" "}
-        <span style={{ color: "red" }}>{countFail[countFail.length - 1]}</span>
-      </h4>
-      <h4>
-        You are <span style={{ color: "#5CBFC6" }}>{daysLeft}</span> days closer
-        to <span style={{ color: "#5CBFC6" }}>{progress.habitstatus}ing</span>{" "}
-        your habit of <span style={{ color: "#5CBFC6" }}>{progress.habit}</span>
-      </h4>
-      <h4>
-        Your challenge ends on:{" "}
-        <span style={{ color: "#5CBFC6" }}>{endDate}</span>
-      </h4>
+      <div className="progressInfo">
+        <h4>
+          No. of days succeeded:{" "}
+          <span style={{ color: "green" }}>
+            {countSuccess[countSuccess.length - 1]}
+          </span>
+        </h4>
+        <h4>
+          No. of days missed:{" "}
+          <span style={{ color: "red" }}>
+            {countFail[countFail.length - 1]}
+          </span>
+        </h4>
+        <h4>
+          You are <span style={{ color: "#5CBFC6" }}>{daysLeft}</span> days
+          closer to{" "}
+          <span style={{ color: "#5CBFC6" }}>{progress.habitstatus}ing</span>{" "}
+          your habit of{" "}
+          <span style={{ color: "#5CBFC6" }}>{progress.habit}</span>
+        </h4>
+        <h4>
+          Your challenge ends on:{" "}
+          <span style={{ color: "#5CBFC6" }}>{endDate}</span>
+        </h4>
+      </div>
     </div>
   );
 };

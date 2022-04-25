@@ -188,10 +188,10 @@ const Planner = () => {
               }}
             >
               Legend: <br></br>
-              <span style={{ color: "purple" }}>Purple dates</span>: 30-days
+              <span style={{ color: "#6f48eb" }}>Purple dates</span>: 30-days
               habit change
               <br></br>
-              <span style={{ background: "lightseagreen" }}>
+              <span style={{ background: "#BDD0a4" }}>
                 Green highlighted dates
               </span>
               : Dates you succeeded!
@@ -200,14 +200,13 @@ const Planner = () => {
           <div className="cardsContainer">
             {journalNowTitle.length > 0 ? (
               <div className="card">
-                <h3>Journal Entry: </h3>
                 <Plannercard
                   journalNowTitle={journalNowTitle}
                   journalNowBody={journalNowBody}
                 />
               </div>
             ) : (
-              <h2>No Journal Entry Found...</h2>
+              <div className="noEntryFound">No Journal Entry Found...</div>
             )}
           </div>
         </div>

@@ -121,7 +121,7 @@ const JournalDetails = () => {
               fontSize: "1.5rem",
               fontWeight: "bold",
               width: "96%",
-              overflowX: "scroll",
+
               margin: "1.5rem",
               textAlign: "left",
             }}
