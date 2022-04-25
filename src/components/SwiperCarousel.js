@@ -107,15 +107,15 @@ export default function App() {
           grabCursor={true}
         >
           <SwiperSlide>
-            <div className="infoContainer">
-              <div className="infoHeader">
+            <div className="infoContainerLogin">
+              <div className="infoHeaderLogin">
                 <h1>Why Daybits?</h1>
               </div>
-              <div className="infoBody">
+              <div className="infoBodyLogin">
                 Daybits is your companion tool to build or break the habits that
                 will truly change your life in meaningful and positive ways.
               </div>
-              <div className="infoBody2">
+              <div className="infoBody2Login">
                 <i>
                   "You’ll never change your life until you change something you
                   do daily. The secret of your success is found in your daily
@@ -126,24 +126,24 @@ export default function App() {
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="infoContainer">
-              <div className="infoHeader">
+            <div className="infoContainerLogin">
+              <div className="infoHeaderLogin">
                 <h1>About Daybits</h1>
               </div>
-              <div className="infoBody">
+              <div className="infoBodyLogin">
                 30 days <br />
                 Set your Goals <br />
-                Journal Daily <br />• Stay accountable with the Daybits
-                community
+                Journal Daily <br />
+                Stay accountable with the Daybits community
               </div>
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="infoContainer1">
-              <div className="infoHeader1">
+            <div className="infoContainer1Login">
+              <div className="infoHeader1Login">
                 <h1>The Science behind Daybits</h1>
               </div>
-              <div className="infoBody">
+              <div className="infoBody2Login">
                 Daybits was designed on the back of the concept - Self-directed
                 neuroplasticity. Coined by researcher Dr. Jeffrey Schwartz and
                 then popularized by Dr. Rick Hanson, a psychologist and senior
