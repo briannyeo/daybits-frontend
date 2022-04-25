@@ -11,6 +11,7 @@ import TextField from "@mui/material/TextField";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import "./createJournal.css";
 import Button from "@mui/material/Button";
+import ReactMarkdown from "react-markdown";
 
 <link
   href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Rammetto+One&display=swap"

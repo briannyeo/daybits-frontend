@@ -9,6 +9,7 @@ import { Button } from "@mui/material";
 import Comments from "../components/Comments";
 import dayjs from "dayjs";
 import "./JournalDetails.css";
+import ReactMarkdown from "react-markdown";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 
@@ -140,7 +141,7 @@ const JournalDetails = () => {
                 textAlign: "left",
               }}
             >
-              {journalDetails.journalBody}
+              <ReactMarkdown>{journalDetails.journalBody}</ReactMarkdown>
             </Box>
           </div>
 
