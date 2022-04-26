@@ -78,8 +78,8 @@ const Editprofile = () => {
           <option value="-">Select an option</option>
           <option value="break">Break</option>
           <option value="build">Build</option>
-        </select>
-        my habit of
+        </select>{" "}
+        my habit of{" "}
         <input
           style={{ textAlign: "center" }}
           type="text"
@@ -90,7 +90,7 @@ const Editprofile = () => {
         />
         <br />
         <br />
-        Target frequency / duration:
+        Target frequency / duration per day:{" "}
         <input
           style={{ textAlign: "center" }}
           type="text"
@@ -102,7 +102,7 @@ const Editprofile = () => {
         />
         <br />
         <br />
-        Long-term goal:
+        Long-term goal:{" "}
         <input
           style={{ textAlign: "center" }}
           type="text"
@@ -115,7 +115,10 @@ const Editprofile = () => {
         <p>{error}</p>
         <br />
         <br />I commit to changing my behavior for 30 days starting from:
-        <button onClick={() => setStartDate(dayjs().format("YYYY-MM-DD"))}>
+        <button
+          style={{ padding: "0.2rem" }}
+          onClick={() => setStartDate(dayjs().format("YYYY-MM-DD"))}
+        >
           <span style={{ color: "red" }}>{`START:  ${getStartTime()}`}</span> to
           <br />
           <span style={{ color: "red" }}>{`END:  ${getEndTime()}`}</span>

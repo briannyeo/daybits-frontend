@@ -122,7 +122,7 @@ const JournalDetails = () => {
               fontWeight: "bold",
               width: "96%",
 
-              margin: "1.5rem",
+              margin: "1rem",
               textAlign: "left",
             }}
           >

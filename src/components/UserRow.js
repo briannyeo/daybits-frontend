@@ -38,11 +38,13 @@ const UserRow = (props) => {
               id="journalTitleRow"
               align="center"
               onClick={() => navigate(`/daybits/journal/${arrJournalId[i]}`)}
-              style={{}}
+              style={{ fontFamily: "Montserrat" }}
             >
               {arrTitle[i]}
             </TableCell>
-            <TableCell align="center">{arrJournalDate[i]}</TableCell>
+            <TableCell style={{ fontFamily: "Montserrat" }} align="center">
+              {arrJournalDate[i]}
+            </TableCell>
             <TableCell align="center">
               {arrAchievedGoal[i] ? (
                 <img
@@ -58,7 +60,7 @@ const UserRow = (props) => {
                 />
               )}
             </TableCell>
-            <TableCell align="center">
+            <TableCell style={{ fontFamily: "Montserrat" }} align="center">
               <Button
                 onClick={handleDelete(arrJournalId[i])}
                 variant="contained"

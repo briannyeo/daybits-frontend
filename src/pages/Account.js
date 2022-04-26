@@ -8,12 +8,16 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import UserRow from "../components/UserRow";
 import dayjs from "dayjs"; // ES 2015
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import "./Account.css";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 
 const Account = () => {
   const [userJournals, setUserJournals] = useState("");
   const [load, setLoad] = useState(false);
+  const navigate = useNavigate();
 
   //fetch all journal entries of particular user
   useEffect(() => {
@@ -89,39 +93,75 @@ const Account = () => {
       });
   };
 
+  console.log(arrTitle);
+
   //createArr(userJournals);
   return (
     <>
-      <h2 style={{ marginTop: "2rem" }}>All Your Posts </h2>
-      <TableContainer component={Paper} style={{ margin: "20px" }}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
-                Title
-              </TableCell>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
-                Posted On:
-              </TableCell>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
-                Goal Achieved
-              </TableCell>
-              <TableCell style={{ fontWeight: "bold" }} align="center">
-                Click to Delete
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <UserRow
-            arrTitle={arrTitle}
-            arrUser={arrUser}
-            arrJournalBody={arrJournalBody}
-            arrJournalId={arrJournalId}
-            handleDelete={handleDelete}
-            arrJournalDate={arrJournalDate}
-            arrAchievedGoal={arrAchievedGoal}
-          />
-        </Table>
-      </TableContainer>
+      {arrTitle.length !== 0 ? (
+        <>
+          <h2 style={{ marginTop: "2rem" }}>All Your Posts </h2>
+          <TableContainer component={Paper} style={{ margin: "20px" }}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell
+                    style={{ fontWeight: "bold", fontFamily: "Montserrat" }}
+                    align="center"
+                  >
+                    Title
+                  </TableCell>
+                  <TableCell
+                    style={{ fontWeight: "bold", fontFamily: "Montserrat" }}
+                    align="center"
+                  >
+                    Posted On:
+                  </TableCell>
+                  <TableCell
+                    style={{ fontWeight: "bold", fontFamily: "Montserrat" }}
+                    align="center"
+                  >
+                    Goal Achieved
+                  </TableCell>
+                  <TableCell
+                    style={{ fontWeight: "bold", fontFamily: "Montserrat" }}
+                    align="center"
+                  >
+                    Click to Delete
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <UserRow
+                arrTitle={arrTitle}
+                arrUser={arrUser}
+                arrJournalBody={arrJournalBody}
+                arrJournalId={arrJournalId}
+                handleDelete={handleDelete}
+                arrJournalDate={arrJournalDate}
+                arrAchievedGoal={arrAchievedGoal}
+              />
+            </Table>
+          </TableContainer>
+        </>
+      ) : (
+        <div className="emptyContainer">
+          <div className="emptyTitle">
+            <h2>Nothing to see here!</h2>
+            <Button
+              onClick={() => navigate("/daybits/journal")}
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              style={{
+                fontFamily: "Montserrat",
+                backgroundColor: "#FE7965",
+                color: "white",
+              }}
+            >
+              Write a journal today!
+            </Button>
+          </div>
+        </div>
+      )}
     </>
   );
 };
