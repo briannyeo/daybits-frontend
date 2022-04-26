@@ -59,9 +59,14 @@ Then we worked on separate pages on the app, checking in everyday to git pull an
 
 ## Possible future development areas
 
+- Add user name to the navbar so that users know which account they are logged into
 - Allow users to *like* the journal entries of other users
 - Display the number of *comments* for each journal entry in the community page
 - Create an admin function that can moderate the *comments*
+
+### Unresolved Problems
+
+- In the Planner page, the number of days succeeded and missed reads from the journal entries. If users delete their journal entries, the number of days does not persist on the Planner page (and will get deleted too). (We plan to fix this by storing the no. of days in the backend)
 
 ### Installation instructions:
 1. `git clone` the [frontend](https://github.com/briannyeo/frontend-daybits) and the [backend](https://github.com/briannyeo/backend-daybits)
