@@ -7,7 +7,6 @@ import urlcat from "urlcat";
 import dayjs from "dayjs"; // ES 2015
 import Plannercard from "../components/Plannercard";
 import Progress from "./Progress";
-import JournalModal from "../components/JournalModal";
 
 const BACKEND = process.env.REACT_APP_BACKEND;
 const FAKE_DATE = [new Date(1970, 1, 1), new Date(1970, 1, 1)];

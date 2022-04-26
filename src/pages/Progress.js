@@ -1,12 +1,12 @@
 import React from "react";
 import "../App.css";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import urlcat from "urlcat";
-//const dayjs = require("dayjs");
+
 import dayjs from "dayjs"; // ES 2015
 import "./Progress.css";
-import Button from "@mui/material/Button";
+
 const BACKEND = process.env.REACT_APP_BACKEND;
 
 const Progress = () => {

@@ -1,17 +1,16 @@
 import React from "react";
 import { useState } from "react";
-import { styled } from "@mui/material/styles";
+
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
+
 import Grid from "@mui/material/Grid";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./journal.css";
 import urlcat from "urlcat";
 import TextField from "@mui/material/TextField";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import "./createJournal.css";
 import Button from "@mui/material/Button";
-import ReactMarkdown from "react-markdown";
 
 <link
   href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Rammetto+One&display=swap"

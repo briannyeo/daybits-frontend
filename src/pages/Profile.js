@@ -1,11 +1,10 @@
-import React, { Profiler } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
-import { useOutletContext, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import urlcat from "urlcat";
 import "./Profile.css";
-import { FOCUSABLE_SELECTOR } from "@testing-library/user-event/dist/utils";
 
 const Profile = (props) => {
   const [profile, setProfile] = useState({});

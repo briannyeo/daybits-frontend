@@ -1,13 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import urlcat from "urlcat";
-import { Link } from "react-router-dom";
-import { format, compareAsc } from "date-fns";
-import { addDays } from "date-fns/fp";
-import Profile from "./Profile";
+
 import "./Editprofile.css";
 import { useNavigate } from "react-router-dom";
-import { StayCurrentLandscapeTwoTone } from "@mui/icons-material";
 
 const dayjs = require("dayjs");
 //import dayjs from 'dayjs' // ES 2015

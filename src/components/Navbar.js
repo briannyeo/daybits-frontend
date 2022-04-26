@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
+
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
@@ -15,10 +15,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { loginAtom } from "../App";
 import urlcat from "urlcat";
-import userlogo from "../images/account.png";
-import writejournal from "../images/writejournal.png";
-import community from "../images/community.png";
-import planner from "../images/planner.png";
+
 import daybitslogo from "../images/daybitslogo.png";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "./Navbar.css";
