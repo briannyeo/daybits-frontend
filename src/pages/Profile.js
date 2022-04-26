@@ -11,7 +11,6 @@ const Profile = (props) => {
   const [loading, setLoading] = useState(true);
 
   const BACKEND = process.env.REACT_APP_BACKEND;
-  const navigate = useNavigate;
 
   //fetch all profile entries
   // useEffect(() => {
@@ -44,6 +43,25 @@ const Profile = (props) => {
     };
     showProfile();
   }, []);
+
+  // <Button
+  //   onClick={() => navigate("/daybits/journal")}
+  //   variant="contained"
+  //   sx={{ mt: 3, mb: 2 }}
+  //   style={{
+  //     fontFamily: "Montserrat",
+  //     backgroundColor: "#FE7965",
+  //     color: "white",
+  //   }}
+  // >
+  //   Write a journal today!
+  // </Button>;
+
+  const navigate = useNavigate();
+
+  const handleClickButton = () => {
+    navigate("/daybits/journal");
+  };
 
   return (
     <div className="profileContainer">
@@ -98,7 +116,7 @@ const Profile = (props) => {
             </div>
 
             <Button
-              onClick={() => navigate("/daybits/journal")}
+              onClick={handleClickButton}
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               style={{
