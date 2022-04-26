@@ -1,7 +1,7 @@
 import React, { Profiler } from "react";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import urlcat from "urlcat";
 import "./Profile.css";
@@ -12,6 +12,7 @@ const Profile = (props) => {
   const [loading, setLoading] = useState(true);
 
   const BACKEND = process.env.REACT_APP_BACKEND;
+  const navigate = useNavigate;
 
   //fetch all profile entries
   // useEffect(() => {
@@ -52,7 +53,9 @@ const Profile = (props) => {
           <p>loading</p>
         ) : (
           <>
+            <div className="profileDetails"></div>
             <h1>My Profile</h1>
+
             <h3 style={{ marginTop: "3rem" }}>
               I want to
               <span style={{ color: "green", fontStyle: "italic" }}>
@@ -75,20 +78,38 @@ const Profile = (props) => {
                 &nbsp;{profile.goal} &nbsp;
               </span>
             </h3>
-            <Link style={{ textDecoration: "none" }} to="/daybits/editprofile">
-              <Button
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                style={{
-                  fontFamily: "Montserrat",
-                  backgroundColor: "#FE7965",
-                  color: "white",
-                  marginTop: "3em",
-                }}
+            <div className="editButton">
+              <Link
+                style={{ textDecoration: "none" }}
+                to="/daybits/editprofile"
               >
-                Edit
-              </Button>
-            </Link>
+                <Button
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  style={{
+                    fontFamily: "Montserrat",
+                    backgroundColor: "white",
+                    color: "black",
+                    marginTop: "3em",
+                  }}
+                >
+                  Edit
+                </Button>
+              </Link>
+            </div>
+
+            <Button
+              onClick={() => navigate("/daybits/journal")}
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              style={{
+                fontFamily: "Montserrat",
+                backgroundColor: "#FE7965",
+                color: "white",
+              }}
+            >
+              Write a journal today!
+            </Button>
           </>
         )}
       </div>
