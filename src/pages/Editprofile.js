@@ -69,7 +69,7 @@ const Editprofile = () => {
     <>
       <h2>Profile</h2>
       <form className="editProfileForm" onSubmit={handleSubmit}>
-        I want to
+        I want to{" "}
         <select
           id="habit"
           name="habit"
